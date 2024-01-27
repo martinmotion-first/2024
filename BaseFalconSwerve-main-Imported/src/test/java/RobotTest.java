@@ -11,7 +11,7 @@ class RobotTest {
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-//		robot = new Robot();
+		robot = new Robot();
 	}
 
 	@Test
@@ -19,11 +19,11 @@ class RobotTest {
 		//setup
 
 		//Act
-//		robot.robotInit();
+		robot.robotInit();
 		
 		//Assert
-//		assertNotNull(robot.ctreConfigs);
-		assertTrue(true);
+		assertNotNull(robot.ctreConfigs); // <-- This _should_ be accessed statically to be used like this (via Robot.ctreConfigs), but...
+										  // ...testing the instantiation requires it this way...
 	}
 
 }

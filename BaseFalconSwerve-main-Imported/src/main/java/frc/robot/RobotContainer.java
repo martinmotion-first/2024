@@ -1,9 +1,11 @@
 package frc.robot;
 
+import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.simulation.XboxControllerSim;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -21,9 +23,15 @@ import frc.robot.subsystems.*;
 
 //MY TODOS
 //1) Crab walking as it stands does not work properly - the robot wants to move forward or left but is not smooth between the two - more digital than analog
-//2) TRY TO FIND SOME KIND OF EMULATOR ON CHIEF DELPHI
-//3) Lighting array strips controlled by arduino board
-//4) LED lighting panel controlled by raspberry pi
+//2) Lighting array strips controlled by arduino board
+//3) LED lighting panel controlled by raspberry pi
+
+// !!!!!! 
+// ARM robot - 
+// 4 brushless NEO motors - 
+    // 2 for rollers 1 top set, 1 bottom set
+    // 1 to extend arm up
+    // 1 for intake 
 
 
 public class RobotContainer {
@@ -59,6 +67,10 @@ public class RobotContainer {
         configureButtonBindings();
     }
 
+    public SwerveDriveOdometry retrieveOdometry(){
+        return s_Swerve.swerveOdometry;
+    }
+
     /**
      * Use this method to define your button->command mappings. Buttons can be created by
      * instantiating a {@link GenericHID} or one of its subclasses ({@link
@@ -77,6 +89,15 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        return new exampleAuto(s_Swerve);
+        return new ExampleAutonomous(s_Swerve);
+    }
+
+    public Command getAutonomousCommand(Field2d field) {
+        // An ExampleCommand will run in autonomous
+        return new ExampleAutotonomousWithField2d(s_Swerve, field);
+    }
+
+    public Swerve getSwerve(){
+        return s_Swerve;
     }
 }
