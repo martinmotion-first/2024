@@ -22,7 +22,6 @@ import frc.robot.subsystems.*;
  */
 
 //MY TODOS
-//1) Crab walking as it stands does not work properly - the robot wants to move forward or left but is not smooth between the two - more digital than analog
 //2) Lighting array strips controlled by arduino board
 //3) LED lighting panel controlled by raspberry pi
 
@@ -49,6 +48,7 @@ public class RobotContainer {
 
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
+    private final SimulatedSwerveDrive mySimulatedSwerveDrive = new SimulatedSwerveDrive();
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -68,7 +68,8 @@ public class RobotContainer {
     }
 
     public SwerveDriveOdometry retrieveOdometry(){
-        return s_Swerve.swerveOdometry;
+        // return s_Swerve.swerveOdometry;
+        return mySimulatedSwerveDrive.swerveOdometry;
     }
 
     /**

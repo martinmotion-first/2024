@@ -9,8 +9,12 @@ import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 
 import com.ctre.phoenix.sensors.BasePigeonSimCollection;
-import com.ctre.phoenix.sensors.Pigeon2;
 import com.ctre.phoenix6.mechanisms.swerve.SimSwerveDrivetrain.SimSwerveModule;
+import com.ctre.phoenix6.sim.Pigeon2SimState;
+import com.ctre.phoenix6.hardware.Pigeon2;
+import com.ctre.phoenix6.mechanisms.swerve.SimSwerveDrivetrain;
+import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrainConstants;
+import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -22,23 +26,44 @@ import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Swerve extends SubsystemBase {
+public class SimulatedSwerveDrive extends SubsystemBase {
     public SwerveDriveOdometry swerveOdometry;
     public SwerveModule[] mSwerveMods;
-    public Pigeon2 gyro;
+    public com.ctre.phoenix6.hardware.Pigeon2 gyro;
+    public SimSwerveDrivetrain simSwerveDrivetrain;
 
-    public Swerve() {
+    //Note from Brian - 30 inches in meters = .762 - assuming full distance for rough estimate and because not in the lab to measure
+    final double DRIVE_BASE_LENGTH_IN_METERS = .762;
+    final double DRIVE_BASE_WIDTH_IN_METERS = .762;
+
+    public SimulatedSwerveDrive() {
         gyro = new Pigeon2(Constants.Swerve.pigeonID);
-        gyro.configFactoryDefault();
         zeroGyro();
+        // mSwerveMods = new SwerveModule[] {
+        //     // new SwerveModule(0, Constants.Swerve.Mod0.constants),
+        //     // new SwerveModule(1, Constants.Swerve.Mod1.constants),
+        //     // new SwerveModule(2, Constants.Swerve.Mod2.constants),
+        //     // new SwerveModule(3, Constants.Swerve.Mod3.constants)
+        //     new com.ctre.phoenix6.mechanisms.swerve.SwerveModule()
 
-        mSwerveMods = new SwerveModule[] {
-            new SwerveModule(0, Constants.Swerve.Mod0.constants),
-            new SwerveModule(1, Constants.Swerve.Mod1.constants),
-            new SwerveModule(2, Constants.Swerve.Mod2.constants),
-            new SwerveModule(3, Constants.Swerve.Mod3.constants)
-        };
+        // };
 
+        //Note from Brian - I apologize for the compass direction designations, but it made sense in the moment
+
+        Translation2d wheelLocationSouthWest = new Translation2d(0,0);//bottom left
+        Translation2d wheelLocationSouthEast = new Translation2d(DRIVE_BASE_LENGTH_IN_METERS,0);//bottom left
+        Translation2d wheelLocationNorthWest = new Translation2d(0,DRIVE_BASE_WIDTH_IN_METERS);//bottom left
+        Translation2d wheelLocationNorthEast = new Translation2d(DRIVE_BASE_LENGTH_IN_METERS, DRIVE_BASE_WIDTH_IN_METERS);
+        Translation2d[] wheelLocations = {wheelLocationSouthWest, wheelLocationSouthEast, wheelLocationNorthWest, wheelLocationNorthEast};
+        SwerveDrivetrainConstants drivetrainConstants = new SwerveDrivetrainConstants();
+        SwerveModuleConstants[] moduleConstants = {new SwerveModuleConstants()};
+
+        simSwerveDrivetrain = new SimSwerveDrivetrain(
+            wheelLocations, 
+            gyro, 
+            drivetrainConstants, 
+            moduleConstants);
+        simSwerveDrivetrain.update(DRIVE_BASE_WIDTH_IN_METERS, DRIVE_BASE_LENGTH_IN_METERS, null);
         /* By pausing init for a second before setting module offsets, we avoid a bug with inverting motors.
          * See https://github.com/Team364/BaseFalconSwerve/issues/8 for more info.
          */
@@ -66,9 +91,6 @@ public class Swerve extends SubsystemBase {
         // 60.0,                    // The mass of the robot is 60 kg.
         // Units.inchesToMeters(3), // The robot uses 3" radius wheels.
         // 0.7112,                  // The track width is 0.7112 meters.
-
-
-
         swerveOdometry = new SwerveDriveOdometry(Constants.Swerve.swerveKinematics, getYaw(), getModulePositions());
     }
 
@@ -100,6 +122,7 @@ public class Swerve extends SubsystemBase {
         for(SwerveModule mod : mSwerveMods){
             mod.setDesiredState(desiredStates[mod.moduleNumber], false);
         }
+        
     }    
 
     public Pose2d getPose() {
@@ -120,6 +143,7 @@ public class Swerve extends SubsystemBase {
 
     public SwerveModulePosition[] getModulePositions(){
         SwerveModulePosition[] positions = new SwerveModulePosition[4];
+        
         for(SwerveModule mod : mSwerveMods){
             positions[mod.moduleNumber] = mod.getPosition();
         }
@@ -130,24 +154,27 @@ public class Swerve extends SubsystemBase {
         gyro.setYaw(0);
     }
 
-    //Note from Brian - was just playing around here in messing with sensor simulation - this is not currently used
-    public void pigeonSim(){
-        BasePigeonSimCollection gyroSim = gyro.getSimCollection(); 
-        double rawHeadingIThinkProbablyInDegrees = 0.0;
-        /*
-        * (from https://store.ctr-electronics.com/content/api/cpp/html/classctre_1_1phoenix_1_1sensors_1_1_base_pigeon_sim_collection.html)
-        * Sets the simulated input heading position of the Pigeon IMU.
-        The Pigeon IMU integrates the delta between each new raw heading value and uses this to calculate the true reported yaw and fused heading.
-        When using the WPI Sim GUI, you will notice a readonly 'yaw' and settable 'RawHeading'. The readonly signal is the emulated yaw which will match self-test in Tuner and the hardware API. Changes to 'RawHeading' will be integrated into the emulated yaw. This way a simulator can modify the heading without overriding your hardware API calls for home-ing your sensor.
-        Inputs to this function over time should be continuous, as user calls of setYaw() or setFusedHeading() will be accounted for in the calculation.
-        */
-        gyroSim.setRawHeading(rawHeadingIThinkProbablyInDegrees);
-        double thisIsHeadingInDegrees = gyro.getAbsoluteCompassHeading();
-        // gyroSim.addHeading(thisIsHeadingInDegrees) //
-    }
+    // //Note from Brian - was just playing around here in messing with sensor simulation - this is not currently used
+    // public void pigeonSim(){
+    //     // BasePigeonSimCollection gyroSim = gyro.getSimCollection(); 
+    //     double rawHeadingIThinkProbablyInDegrees = 0.0;
+    //     /*
+    //     * (from https://store.ctr-electronics.com/content/api/cpp/html/classctre_1_1phoenix_1_1sensors_1_1_base_pigeon_sim_collection.html)
+    //     * Sets the simulated input heading position of the Pigeon IMU.
+    //     The Pigeon IMU integrates the delta between each new raw heading value and uses this to calculate the true reported yaw and fused heading.
+    //     When using the WPI Sim GUI, you will notice a readonly 'yaw' and settable 'RawHeading'. The readonly signal is the emulated yaw which will match self-test in Tuner and the hardware API. Changes to 'RawHeading' will be integrated into the emulated yaw. This way a simulator can modify the heading without overriding your hardware API calls for home-ing your sensor.
+    //     Inputs to this function over time should be continuous, as user calls of setYaw() or setFusedHeading() will be accounted for in the calculation.
+    //     */
+    //     gyroSim.setRawHeading(rawHeadingIThinkProbablyInDegrees);
+    //     // double thisIsHeadingInDegrees = gyro.getAbsoluteCompassHeading();
+    //     // gyroSim.addHeading(thisIsHeadingInDegrees) //
+    // }
 
     public Rotation2d getYaw() {
-        return (Constants.Swerve.invertGyro) ? Rotation2d.fromDegrees(360 - gyro.getYaw()) : Rotation2d.fromDegrees(gyro.getYaw());
+        // return (Constants.Swerve.invertGyro) ? Rotation2d.fromDegrees(360 - gyro.getYaw()) : Rotation2d.fromDegrees(gyro.getYaw());
+        // Rotation2d.fromDegrees(0)
+        // gyro.getSimCollection().setRawHeading(90)
+        return Rotation2d.fromDegrees(gyro.getYaw().getValueAsDouble());
     }
 
     public void resetModulesToAbsolute(){
