@@ -15,6 +15,7 @@ import frc.robot.autos.AutonomousModeChoices;
 import frc.robot.autos.ExampleAutonomous;
 import frc.robot.autos.ExampleAutotonomousWithField2d;
 import frc.robot.autos.PlotScratchAutonomous;
+import frc.robot.autos.Position1Path1DoubleSpeaker;
 import frc.robot.subsystems.*;
 
 
@@ -51,6 +52,7 @@ public class Robot extends TimedRobot {
     chooserMenu.addOption("Example Auto", AutonomousModeChoices.EXAMPLE_AUTO.toString());
     chooserMenu.addOption("Example Auto w Field", AutonomousModeChoices.EXAMPLE_AUTO_WITH_FIELD.toString());
     chooserMenu.addOption("Plot Scratch", AutonomousModeChoices.PLOT_SCRATCH_AUTO.toString());
+    chooserMenu.addOption("Position 1 - Path 1  (double speaker)", AutonomousModeChoices.POSITION1_PATH1_DOUBLE_SPEAKER.toString());
     SmartDashboard.putData("Auto choices", chooserMenu);
   }
 
@@ -96,6 +98,9 @@ public class Robot extends TimedRobot {
         break;
       case PLOT_SCRATCH_AUTO:
         selectedCommand = new PlotScratchAutonomous(m_robotContainer.getSwerve(), m_field);
+        break;
+      case POSITION1_PATH1_DOUBLE_SPEAKER:
+        selectedCommand = new Position1Path1DoubleSpeaker(m_robotContainer.getSwerve());
         break;
       default:
         selectedCommand = new ExampleAutonomous(m_robotContainer.getSwerve());
