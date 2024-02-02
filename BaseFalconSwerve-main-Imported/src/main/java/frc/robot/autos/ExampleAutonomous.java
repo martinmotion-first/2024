@@ -3,6 +3,7 @@ package frc.robot.autos;
 import frc.robot.Constants;
 import frc.robot.subsystems.Swerve;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.wpi.first.math.controller.PIDController;
@@ -17,7 +18,14 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
-public class ExampleAutonomous extends SequentialCommandGroup {
+public class ExampleAutonomous extends SequentialCommandGroup implements IAutonomousPath6237MR {
+    List<Trajectory> trajectoriesUsed = new ArrayList<Trajectory>();
+
+    @Override
+    public List<Trajectory> getTrajectoryList(){
+        return trajectoriesUsed;
+    }
+
     public ExampleAutonomous(Swerve s_Swerve){
         TrajectoryConfig config =
             new TrajectoryConfig(
@@ -35,6 +43,8 @@ public class ExampleAutonomous extends SequentialCommandGroup {
                 // End 3 meters straight ahead of where we started, facing forward
                 new Pose2d(3, 0, new Rotation2d(0)),
                 config);
+
+        trajectoriesUsed.add(exampleTrajectory);
 
         var thetaController =
             new ProfiledPIDController(

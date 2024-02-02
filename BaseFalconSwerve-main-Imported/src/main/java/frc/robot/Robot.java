@@ -4,20 +4,26 @@
 
 package frc.robot;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.FieldObject2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.lib.util.DisplayUtil;
 import frc.robot.autos.AutonomousModeChoices;
 import frc.robot.autos.ExampleAutonomous;
 import frc.robot.autos.ExampleAutotonomousWithField2d;
+import frc.robot.autos.IAutonomousPath6237MR;
 import frc.robot.autos.PlotScratchAutonomous;
 import frc.robot.autos.Position1Path1DoubleSpeaker;
 import frc.robot.subsystems.*;
-
+import edu.wpi.first.math.trajectory.Trajectory;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -46,7 +52,6 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    SmartDashboard.putData("Field", m_field);
 
     chooserMenu.setDefaultOption("Example Auto", AutonomousModeChoices.EXAMPLE_AUTO.toString());
     chooserMenu.addOption("Example Auto", AutonomousModeChoices.EXAMPLE_AUTO.toString());
@@ -111,6 +116,31 @@ public class Robot extends TimedRobot {
       log("Scheduling command:" + m_autonomousCommand.getName());
       m_autonomousCommand.schedule();
     }
+    SmartDashboard.putData("Field", m_field);
+
+
+    // IAutonomousPath6237MR pathToTest = new Position1Path1DoubleSpeaker(m_robotContainer.getSwerve());
+    IAutonomousPath6237MR pathToTest = new ExampleAutonomous(m_robotContainer.getSwerve());
+    List<Trajectory> originalTrajectories = pathToTest.getTrajectoryList();
+    //************ CANNOT POSSIBLY STRESS THIS ENOUGH ********** 
+    /* 
+      THE FOLLOWING ADJUSTMENTS ARE DONE PURELY TO CENTER THE TRAJECTORIES TO A LOCATION FOR DISPLAY AND SHOULD ONLY BE DONE IN TEST/SIMULATION
+    */
+    double DISPLAY_OFFSET_TO_USE_AS_ORIGIN_X = 1.7;
+    double DISPLAY_OFFSET_TO_USE_AS_ORIGIN_Y = 7.1;
+    List<Trajectory> modifiedTrajectories = new ArrayList<Trajectory>();
+    originalTrajectories.forEach((traj) -> {
+      modifiedTrajectories.add(DisplayUtil.offsetTrajectoryCoordinatesForDisplayByXAndY(traj, DISPLAY_OFFSET_TO_USE_AS_ORIGIN_X, DISPLAY_OFFSET_TO_USE_AS_ORIGIN_Y));
+    });
+    //************ END CANNOT POSSIBLY STRESS THIS ENOUGH **********  
+
+    modifiedTrajectories.forEach((trajectoryInList) -> {
+      String randomName = java.util.UUID.randomUUID().toString();
+      FieldObject2d objectToPlaceTrajectoryOn = m_field.getObject(randomName);
+      objectToPlaceTrajectoryOn.setTrajectory(trajectoryInList);
+      
+    });
+
     log("LEAVING simulationInit");
   }
 

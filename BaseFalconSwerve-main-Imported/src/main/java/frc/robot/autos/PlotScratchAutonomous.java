@@ -14,11 +14,11 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
 public class PlotScratchAutonomous extends SequentialCommandGroup {
+
     public PlotScratchAutonomous(Swerve s_Swerve, Field2d field2d){
         System.out.println("*************** IN PLOT SCRATCH AUTO COMMAND CONTRUCTOR *********************");
         TrajectoryConfig config =
@@ -60,12 +60,4 @@ public class PlotScratchAutonomous extends SequentialCommandGroup {
             swerveControllerCommand
         );
     }
-
-    //can't do this; method is final in superclass
-    // @Override
-    // public void execute(){
-    //     super.execute();
-    //     System.out.println("*************** IN PLOT SCRATCH AUTO COMMAND EXECUTE *********************");
-    //     System.out.println("*************** IN PLOT SCRATCH AUTO COMMAND EXECUTE *********************");
-    // }
 }

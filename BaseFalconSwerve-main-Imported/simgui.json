@@ -3,6 +3,9 @@
     "RoboRIO": {
       "RoboRIO Input": {
         "open": true
+      },
+      "window": {
+        "visible": true
       }
     }
   },
@@ -19,13 +22,33 @@
         }
       },
       "/SmartDashboard/Field": {
+        "78602508-e22d-4a1a-ab0b-aff73ef1c65c": {
+          "arrowSize": 2,
+          "style": "Line",
+          "weight": 1.0
+        },
+        "aabc7c04-1d60-4856-91d4-68affac7de0f": {
+          "style": "Line",
+          "weight": 2.0
+        },
+        "b664c77a-8c31-43f5-b0d1-e391d56dd561": {
+          "style": "Line",
+          "weight": 2.0
+        },
+        "bdd83d6c-d0eb-4467-8c38-0422796b2127": {
+          "style": "Line",
+          "weight": 2.0
+        },
         "bottom": 544,
         "builtin": "2024 Crescendo",
         "height": 8.013679504394531,
         "left": 46,
         "right": 1088,
         "top": 36,
-        "width": 16.541748046875
+        "width": 16.541748046875,
+        "window": {
+          "visible": true
+        }
       }
     }
   },
@@ -56,13 +79,7 @@
     }
   },
   "NetworkTables Info": {
-    "Clients": {
-      "open": true
-    },
     "Connections": {
-      "open": true
-    },
-    "Server": {
       "open": true
     },
     "visible": true
@@ -79,10 +96,7 @@
           ],
           "height": 330
         }
-      ],
-      "window": {
-        "visible": false
-      }
+      ]
     }
   }
 }
