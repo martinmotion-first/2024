@@ -13,6 +13,8 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -76,6 +78,10 @@ public class RobotContainer {
     // configure the launcher to stop when no other command is running
     m_launcher.setDefaultCommand(new RunCommand(() -> m_launcher.stopLauncher(), m_launcher));
   }
+
+//   public Pose2d getPose(){
+//     return m_robotDrive.getPose();
+//   }
 
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
@@ -160,7 +166,7 @@ public class RobotContainer {
             thetaController,
             m_robotDrive::setModuleStates,
             m_robotDrive);
-
+    
     // Reset odometry to the starting pose of the trajectory.
     m_robotDrive.resetOdometry(exampleTrajectory.getInitialPose());
 

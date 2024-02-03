@@ -152,22 +152,6 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
     // m_field.setRobotPose(m_odometry.getPoseMeters());
     //THIS IS HIGHLY TEMPORARY, BUT ATTEMPTING TO FORCE A MOVE COMMAND
-    if(storedSimulationCommand == null){
-      storedSimulationCommand = new PlotScratchAutonomous(m_robotContainer.getSwerve(), m_field);
-    }
-    if(!CommandScheduler.getInstance().isScheduled(storedSimulationCommand)){
-      log("Scheduling a new Plot Command");
-      CommandScheduler.getInstance().schedule(storedSimulationCommand);
-      //EVEN MORE TEMP - THIS SEEMS LIKE A TERRIBLE IDEA, BUT ATTEMPTING TO MANUALLY EXECUTE
-      log("################################### EXECUTING A PLOT COMMAND ###########################################");
-      // storedSimulationCommand.execute();
-      log("################################### POST EXECUTING A PLOT COMMAND ###########################################");
-    }
-    //END TEMPORARY
-    Pose2d coords = m_robotContainer.retrieveOdometry().getPoseMeters();
-    log("X(meters)=" + coords.getX());
-    log("Y(meters)=" + coords.getX());
-    m_field.setRobotPose(coords);
     log("LEAVING simulationPeriodic");
   }
 

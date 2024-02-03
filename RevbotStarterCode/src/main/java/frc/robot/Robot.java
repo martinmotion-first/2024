@@ -4,9 +4,23 @@
 
 package frc.robot;
 
+import java.util.List;
+
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.math.trajectory.TrajectoryConfig;
+import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.FieldObject2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.Constants.AutoConstants;
+import frc.robot.Constants.DriveConstants;
+import frc.utils.DisplayUtility;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -18,6 +32,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
+  private final Field2d m_field = new Field2d(); //added - not to be here long term
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -69,6 +84,55 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+  }
+
+  @Override
+  public void simulationInit(){
+      SmartDashboard.putData("Field", m_field);//I added this - it should not go here long term I don't think
+          //following from https://docs.wpilib.org/en/stable/docs/software/dashboards/glass/field2d-widget.html
+    //COPYING THIS AS IS FROM RobotContainer.getAutonomousCommand() FOR TESTING ONLY
+        TrajectoryConfig config =
+        new TrajectoryConfig(
+                AutoConstants.kMaxSpeedMetersPerSecond,
+                AutoConstants.kMaxAccelerationMetersPerSecondSquared)
+            // Add kinematics to ensure max speed is actually obeyed
+            .setKinematics(DriveConstants.kDriveKinematics);
+
+    // An example trajectory to follow. All units in meters.
+
+    Trajectory exampleTrajectory =
+        TrajectoryGenerator.generateTrajectory(
+            // Start at the origin facing the +X direction
+            new Pose2d(0, 0, new Rotation2d(0)),
+            // Pass through these two interior waypoints, making an 's' curve path
+            List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
+            // End 3 meters straight ahead of where we started, facing forward
+            new Pose2d(3, 0, new Rotation2d(0)),
+            config);
+
+    Trajectory exampleTrajectory2 =
+        TrajectoryGenerator.generateTrajectory(
+            // Start at the origin facing the +X direction
+            new Pose2d(3, 0, new Rotation2d(0)),
+            // Pass through these two interior waypoints, making an 's' curve path
+            List.of(new Translation2d(4, 1), new Translation2d(5, -1)),
+            // End 3 meters straight ahead of where we started, facing forward
+            new Pose2d(6, 0, new Rotation2d(0)),
+            config);
+    //END COPYING
+    //************ CANNOT POSSIBLY STRESS THIS ENOUGH ********** 
+    /* 
+      THE FOLLOWING ADJUSTMENTS ARE DONE PURELY TO CENTER THE TRAJECTORIES IN THE MIDDLE OF THE DISPLAY AND SHOULD ONLY BE DONE IN TEST/SIMULATION
+    */
+    double DISPLAY_OFFSET_X = 3;
+    double DISPLAY_OFFSET_Y = 3;
+    exampleTrajectory = DisplayUtility.offsetTrajectoryCoordinatesForDisplayByXAndY(exampleTrajectory, DISPLAY_OFFSET_X, DISPLAY_OFFSET_Y);
+    exampleTrajectory2 = DisplayUtility.offsetTrajectoryCoordinatesForDisplayByXAndY(exampleTrajectory2, DISPLAY_OFFSET_X, DISPLAY_OFFSET_Y);
+    //************ END CANNOT POSSIBLY STRESS THIS ENOUGH ********** 
+
+    m_field.getObject("traj").setTrajectory(exampleTrajectory);
+    FieldObject2d q = m_field.getObject("traj2");
+    q.setTrajectory(exampleTrajectory2);
   }
 
   /** This function is called periodically during autonomous. */
