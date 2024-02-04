@@ -3,9 +3,17 @@ package frc.robot;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.autos.Position1Path1DoubleSpeaker;
+import frc.robot.autos.AutonomousModeChoices;
+import frc.robot.autos.BlueCenterAuto6237MR;
+import frc.robot.autos.BlueLeftAuto6237MR;
+import frc.robot.autos.BlueRightAuto6237MR;
+import frc.robot.autos.ExampleAutonomous;
+import frc.robot.autos.RedCenterAuto6237MR;
+import frc.robot.autos.RedLeftAuto6237MR;
+import frc.robot.autos.RedRightAuto6237MR;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.subsystems.Swerve;
 
@@ -61,7 +69,7 @@ public class RobotContainer {
      */
     private void configureButtonBindings() {
         /* Driver Buttons */
-        //zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
+        zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
     }
 
     /**
@@ -69,15 +77,26 @@ public class RobotContainer {
      *
      * @return the command to run in autonomous
      */
-    public Command getAutonomousCommand() {
-        // An ExampleCommand will run in autonomous
-        return new Position1Path1DoubleSpeaker(s_Swerve);
+    public SequentialCommandGroup getAutonomousCommand(String selectedOption) {
+        switch (AutonomousModeChoices.valueOf(selectedOption)){
+            case EXAMPLE_AUTO:
+                return new ExampleAutonomous(s_Swerve);
+            case BLUE_RIGHT_AUTO_MODE_1:
+                return new BlueRightAuto6237MR(s_Swerve);
+            case RED_LEFT_AUTO_MODE_1:
+                return new RedLeftAuto6237MR(s_Swerve);
+            case BLUE_CENTER_AUTO_MODE_1:
+                return new BlueCenterAuto6237MR(s_Swerve);
+            case RED_CENTER_AUTO_MODE_1:
+                return new RedCenterAuto6237MR(s_Swerve);
+            case BLUE_LEFT_AUTO_MODE_1:
+                return new BlueLeftAuto6237MR(s_Swerve);
+            case RED_RIGHT_AUTO_MODE_1:
+                return new RedRightAuto6237MR(s_Swerve);
+            default:
+               return new ExampleAutonomous(s_Swerve);
+        }
     }
-
-    // public Command getAutonomousCommand(Field2d field) {
-    //     // An ExampleCommand will run in autonomous
-    //     return new ExampleAutotonomous(s_Swerv);
-    // }
 
     public Swerve getSwerve(){
         return s_Swerve;

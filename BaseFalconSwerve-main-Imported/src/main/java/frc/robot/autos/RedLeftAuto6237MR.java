@@ -14,6 +14,7 @@ import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.Constants;
+import frc.robot.Constants.SimulatorConstants6237MR;
 import frc.robot.subsystems.Swerve;
 
 public class RedLeftAuto6237MR extends SequentialCommandGroup implements IAutonomousPath6237MR {
@@ -23,6 +24,10 @@ public class RedLeftAuto6237MR extends SequentialCommandGroup implements IAutono
     public List<Trajectory> getTrajectoryList(){
         return trajectoriesUsed;
     }
+    @Override
+    public double getSimulatorDisplayCoordinateX(){return SimulatorConstants6237MR.kRedLeftStartingPositionX;}
+    @Override
+    public double getSimulatorDisplayCoordinateY(){return SimulatorConstants6237MR.kRedLeftStartingPositionY;}
 
     public RedLeftAuto6237MR(Swerve s_Swerve){
         TrajectoryConfig config =

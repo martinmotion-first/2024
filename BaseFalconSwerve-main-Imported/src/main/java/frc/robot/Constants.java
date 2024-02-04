@@ -155,4 +155,24 @@ public final class Constants {
                 kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
     }
 
+    public static final class SimulatorConstants6237MR{
+        public static final double kBlueRightStartingPositionX = 1.971;
+        public static final double kBlueRightStartingPositionY = 2.107;
+
+        public static final double kRedLeftStartingPositionX = 15.741;
+        public static final double kRedLeftStartingPositionY = 2.107;
+
+        public static final double kBlueCenterStartingPositionX = 1.8;
+        public static final double kBlueCenterStartingPositionY = 3.5;
+
+        public static final double kRedCenterStartingPositionX = 16.123;
+        public static final double kRedCenterStartingPositionY = 3.5;
+
+        public static final double kBlueLeftStartingPositionX = 1.716;
+        public static final double kBlueLeftStartingPositionY = 7.032;
+
+        public static final double kRedRightStartingPositionX = 15.955;
+        public static final double kRedRightStartingPositionY = 7.032;
+    }
+
 }
