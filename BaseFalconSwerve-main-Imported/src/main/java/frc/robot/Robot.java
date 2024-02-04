@@ -7,8 +7,6 @@ package frc.robot;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.sound.sampled.AudioFileFormat.Type;
-
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
@@ -19,12 +17,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.lib.util.DisplayUtil;
-import frc.robot.autos.AutonomousModeChoices;
-import frc.robot.autos.BlueRightAuto6237MR;
-import frc.robot.autos.ExampleAutonomous;
+import frc.robot.autos.AutonomousModeChoices6237MR;
 import frc.robot.autos.IAutonomousPath6237MR;
-import frc.robot.autos.Position1Path1DoubleSpeaker;
-import frc.robot.autos.Position1Path1SpeakerShotGrabRingAndOut;
 import frc.robot.autos.RedCenterAuto6237MR;
 import frc.robot.autos.RedLeftAuto6237MR;
 import frc.robot.autos.RedRightAuto6237MR;
@@ -58,15 +52,16 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-    chooserMenu.addOption("Example Auto", AutonomousModeChoices.EXAMPLE_AUTO.toString());
-    chooserMenu.addOption("Blue Right Auto Mode 1", AutonomousModeChoices.BLUE_RIGHT_AUTO_MODE_1.toString());
-    chooserMenu.addOption("Blue Center Auto Mode 1", AutonomousModeChoices.BLUE_CENTER_AUTO_MODE_1.toString()); 
-    chooserMenu.addOption("Blue Left Auto Mode 1", AutonomousModeChoices.BLUE_LEFT_AUTO_MODE_1.toString());
-    chooserMenu.addOption("Red Left Auto Mode 1", AutonomousModeChoices.RED_LEFT_AUTO_MODE_1.toString()); //inverted Blue Right Auto
-    chooserMenu.addOption("Red Center Auto Mode 1", AutonomousModeChoices.RED_CENTER_AUTO_MODE_1.toString()); //inverted Blue Center Auto
-    chooserMenu.addOption("Red Right Auto Mode 1", AutonomousModeChoices.RED_RIGHT_AUTO_MODE_1.toString());
+    chooserMenu.addOption("Example Auto", AutonomousModeChoices6237MR.EXAMPLE_AUTO.toString());
+    chooserMenu.addOption("Blue Right Auto Mode 1", AutonomousModeChoices6237MR.BLUE_RIGHT_AUTO_MODE_1.toString());
+    chooserMenu.addOption("Blue Center Auto Mode 1", AutonomousModeChoices6237MR.BLUE_CENTER_AUTO_MODE_1.toString()); 
+    chooserMenu.addOption("Blue Left Auto Mode 1", AutonomousModeChoices6237MR.BLUE_LEFT_AUTO_MODE_1.toString());
+    chooserMenu.addOption("Red Left Auto Mode 1", AutonomousModeChoices6237MR.RED_LEFT_AUTO_MODE_1.toString()); //inverted Blue Right Auto
+    chooserMenu.addOption("Red Center Auto Mode 1", AutonomousModeChoices6237MR.RED_CENTER_AUTO_MODE_1.toString()); //inverted Blue Center Auto
+    chooserMenu.addOption("Red Right Auto Mode 1", AutonomousModeChoices6237MR.RED_RIGHT_AUTO_MODE_1.toString()); //inverted Blue Left Auto
+    chooserMenu.addOption("Angle Playground", AutonomousModeChoices6237MR.ANGLE_PLAYGROUND.toString()); //inverted Blue Left Auto
     
-    chooserMenu.setDefaultOption("Example Auto", AutonomousModeChoices.EXAMPLE_AUTO.toString());
+    chooserMenu.setDefaultOption("Example Auto", AutonomousModeChoices6237MR.EXAMPLE_AUTO.toString());
 
     SmartDashboard.putData("Auto choices", chooserMenu);
     SmartDashboard.putData(m_robotContainer.getSwerve());
