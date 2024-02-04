@@ -2,17 +2,12 @@ package frc.robot;
 
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.simulation.XboxControllerSim;
-import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
-import frc.robot.autos.*;
-import frc.robot.commands.*;
-import frc.robot.subsystems.*;
+import frc.robot.autos.Position1Path1DoubleSpeaker;
+import frc.robot.commands.TeleopSwerve;
+import frc.robot.subsystems.Swerve;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -20,18 +15,6 @@ import frc.robot.subsystems.*;
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and button mappings) should be declared here.
  */
-
-//MY TODOS
-//2) Lighting array strips controlled by arduino board
-//3) LED lighting panel controlled by raspberry pi
-
-// !!!!!! 
-// ARM robot - 
-// 4 brushless NEO motors - 
-    // 2 for rollers 1 top set, 1 bottom set
-    // 1 to extend arm up
-    // 1 for intake 
-
 
 public class RobotContainer {
     /* Controllers */
@@ -78,7 +61,7 @@ public class RobotContainer {
      */
     private void configureButtonBindings() {
         /* Driver Buttons */
-        zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
+        //zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
     }
 
     /**
@@ -91,10 +74,10 @@ public class RobotContainer {
         return new Position1Path1DoubleSpeaker(s_Swerve);
     }
 
-    public Command getAutonomousCommand(Field2d field) {
-        // An ExampleCommand will run in autonomous
-        return new ExampleAutotonomousWithField2d(s_Swerve, field);
-    }
+    // public Command getAutonomousCommand(Field2d field) {
+    //     // An ExampleCommand will run in autonomous
+    //     return new ExampleAutotonomous(s_Swerv);
+    // }
 
     public Swerve getSwerve(){
         return s_Swerve;

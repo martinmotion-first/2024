@@ -1,8 +1,5 @@
 package frc.robot.autos;
 
-import frc.robot.Constants;
-import frc.robot.subsystems.Swerve;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +14,8 @@ import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
+import frc.robot.Constants;
+import frc.robot.subsystems.Swerve;
 
 public class ExampleAutonomous extends SequentialCommandGroup implements IAutonomousPath6237MR {
     List<Trajectory> trajectoriesUsed = new ArrayList<Trajectory>();

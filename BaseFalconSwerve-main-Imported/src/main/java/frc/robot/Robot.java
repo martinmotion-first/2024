@@ -7,7 +7,7 @@ package frc.robot;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.FieldObject2d;
@@ -17,13 +17,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.lib.util.DisplayUtil;
 import frc.robot.autos.AutonomousModeChoices;
+import frc.robot.autos.BlueRightAuto6237MR;
 import frc.robot.autos.ExampleAutonomous;
-import frc.robot.autos.ExampleAutotonomousWithField2d;
 import frc.robot.autos.IAutonomousPath6237MR;
-import frc.robot.autos.PlotScratchAutonomous;
 import frc.robot.autos.Position1Path1DoubleSpeaker;
-import frc.robot.subsystems.*;
-import edu.wpi.first.math.trajectory.Trajectory;
+import frc.robot.autos.Position1Path1SpeakerShotGrabRingAndOut;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -38,7 +36,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
-  private final Field2d m_field = new Field2d();
+  private final Field2d m_field3 = new Field2d();
   private SendableChooser<String> chooserMenu = new SendableChooser<String>();
 
 
@@ -53,12 +51,15 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-    chooserMenu.setDefaultOption("Example Auto", AutonomousModeChoices.EXAMPLE_AUTO.toString());
     chooserMenu.addOption("Example Auto", AutonomousModeChoices.EXAMPLE_AUTO.toString());
-    chooserMenu.addOption("Example Auto w Field", AutonomousModeChoices.EXAMPLE_AUTO_WITH_FIELD.toString());
-    chooserMenu.addOption("Plot Scratch", AutonomousModeChoices.PLOT_SCRATCH_AUTO.toString());
+    chooserMenu.addOption("Example Auto w Field", AutonomousModeChoices.POSITION1_PATH1_SPEAKER_SHOT_GRAB_RING_LEAVE_PARKED.toString());
     chooserMenu.addOption("Position 1 - Path 1  (double speaker)", AutonomousModeChoices.POSITION1_PATH1_DOUBLE_SPEAKER.toString());
+
+    chooserMenu.setDefaultOption("Example Auto", AutonomousModeChoices.EXAMPLE_AUTO.toString());
+
     SmartDashboard.putData("Auto choices", chooserMenu);
+
+    SmartDashboard.putData(m_robotContainer.getSwerve());
   }
 
   /**
@@ -77,7 +78,7 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     // m_field.setRobotPose(m_odometry.getPoseMeters());
-    m_field.setRobotPose(m_robotContainer.retrieveOdometry().getPoseMeters());
+    m_field3.setRobotPose(m_robotContainer.retrieveOdometry().getPoseMeters());
     log("LEAVING robotPeriodic");
   }
 
@@ -92,54 +93,10 @@ public class Robot extends TimedRobot {
   public void simulationInit(){
     // m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     log("ENTERING simulationInit");
-    String selectedOption = chooserMenu.getSelected();
-    Command selectedCommand;
-    switch (AutonomousModeChoices.valueOf(selectedOption)){
-      case EXAMPLE_AUTO:
-        selectedCommand = new ExampleAutonomous(m_robotContainer.getSwerve());
-        break;
-      case EXAMPLE_AUTO_WITH_FIELD:
-        selectedCommand = new ExampleAutotonomousWithField2d(m_robotContainer.getSwerve(), m_field);
-        break;
-      case PLOT_SCRATCH_AUTO:
-        selectedCommand = new PlotScratchAutonomous(m_robotContainer.getSwerve(), m_field);
-        break;
-      case POSITION1_PATH1_DOUBLE_SPEAKER:
-        selectedCommand = new Position1Path1DoubleSpeaker(m_robotContainer.getSwerve());
-        break;
-      default:
-        selectedCommand = new ExampleAutonomous(m_robotContainer.getSwerve());
-    }
-    // m_autonomousCommand = m_robotContainer.getAutonomousCommand(m_field);
-    m_autonomousCommand = selectedCommand;
-    if (m_autonomousCommand != null) {
-      log("Scheduling command:" + m_autonomousCommand.getName());
-      m_autonomousCommand.schedule();
-    }
-    SmartDashboard.putData("Field", m_field);
+    
 
 
-    // IAutonomousPath6237MR pathToTest = new Position1Path1DoubleSpeaker(m_robotContainer.getSwerve());
-    IAutonomousPath6237MR pathToTest = new ExampleAutonomous(m_robotContainer.getSwerve());
-    List<Trajectory> originalTrajectories = pathToTest.getTrajectoryList();
-    //************ CANNOT POSSIBLY STRESS THIS ENOUGH ********** 
-    /* 
-      THE FOLLOWING ADJUSTMENTS ARE DONE PURELY TO CENTER THE TRAJECTORIES TO A LOCATION FOR DISPLAY AND SHOULD ONLY BE DONE IN TEST/SIMULATION
-    */
-    double DISPLAY_OFFSET_TO_USE_AS_ORIGIN_X = 1.7;
-    double DISPLAY_OFFSET_TO_USE_AS_ORIGIN_Y = 7.1;
-    List<Trajectory> modifiedTrajectories = new ArrayList<Trajectory>();
-    originalTrajectories.forEach((traj) -> {
-      modifiedTrajectories.add(DisplayUtil.offsetTrajectoryCoordinatesForDisplayByXAndY(traj, DISPLAY_OFFSET_TO_USE_AS_ORIGIN_X, DISPLAY_OFFSET_TO_USE_AS_ORIGIN_Y));
-    });
-    //************ END CANNOT POSSIBLY STRESS THIS ENOUGH **********  
 
-    modifiedTrajectories.forEach((trajectoryInList) -> {
-      String randomName = java.util.UUID.randomUUID().toString();
-      FieldObject2d objectToPlaceTrajectoryOn = m_field.getObject(randomName);
-      objectToPlaceTrajectoryOn.setTrajectory(trajectoryInList);
-      
-    });
 
     log("LEAVING simulationInit");
   }
@@ -151,7 +108,6 @@ public class Robot extends TimedRobot {
     log("ENTERING simulationPeriodic");
     CommandScheduler.getInstance().run();
     // m_field.setRobotPose(m_odometry.getPoseMeters());
-    //THIS IS HIGHLY TEMPORARY, BUT ATTEMPTING TO FORCE A MOVE COMMAND
     log("LEAVING simulationPeriodic");
   }
 
@@ -165,12 +121,75 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     log("ENTERING autonomousInit");
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    //TEMP REMOVING
+    // m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
-    // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
+    // // schedule the autonomous command (example)
+    // if (m_autonomousCommand != null) {
+    //   m_autonomousCommand.schedule();
+    // }
+    //END TEMP REMOVING
+
+
+String selectedOption = chooserMenu.getSelected();
+IAutonomousPath6237MR selectedCommandGroup;
+    switch (AutonomousModeChoices.valueOf(selectedOption)){
+      case EXAMPLE_AUTO:
+        selectedCommandGroup = new ExampleAutonomous(m_robotContainer.getSwerve());
+        break;
+      // case EXAMPLE_AUTO_WITH_FIELD:
+      //   selectedCommand = new ExampleAutotonomousWithField2d(m_robotContainer.getSwerve(), m_field);
+      //   break;
+      // case PLOT_SCRATCH_AUTO:
+      //   selectedCommand = new PlotScratchAutonomous(m_robotContainer.getSwerve(), m_field);
+      //   break;
+      case POSITION1_PATH1_SPEAKER_SHOT_GRAB_RING_LEAVE_PARKED:
+        selectedCommandGroup = new Position1Path1SpeakerShotGrabRingAndOut(m_robotContainer.getSwerve());
+      case POSITION1_PATH1_DOUBLE_SPEAKER:
+        selectedCommandGroup = new Position1Path1DoubleSpeaker(m_robotContainer.getSwerve());
+        break;
+      default:
+        selectedCommandGroup = new ExampleAutonomous(m_robotContainer.getSwerve());
     }
+    // m_autonomousCommand = m_robotContainer.getAutonomousCommand(m_field);
+    // m_autonomousCommand = selectedCommandGroup;
+    // if (m_autonomousCommand != null) {
+    //   log("Scheduling command:" + m_autonomousCommand.getName());
+    //   m_autonomousCommand.schedule();
+    // }
+    
+    
+    SmartDashboard.putData("Field 3", m_field3);
+
+
+    //**** ALL OF THIS IS FOR TESTING WITHIN THE SIMULATOR */
+    IAutonomousPath6237MR pathToTest = new BlueRightAuto6237MR(m_robotContainer.getSwerve());//new ExampleAutonomous(m_robotContainer.getSwerve());
+    List<Trajectory> originalTrajectories = pathToTest.getTrajectoryList();
+    //************ CANNOT POSSIBLY STRESS THIS ENOUGH **********
+    /*
+      THE FOLLOWING ADJUSTMENTS ARE DONE PURELY TO CENTER THE TRAJECTORIES TO A LOCATION FOR DISPLAY AND SHOULD ONLY BE DONE IN TEST/SIMULATION
+    */
+    double DISPLAY_OFFSET_TO_USE_AS_ORIGIN_X = 15.741;
+    double DISPLAY_OFFSET_TO_USE_AS_ORIGIN_Y = 2.187;
+    List<Trajectory> modifiedTrajectories = new ArrayList<Trajectory>();
+    originalTrajectories.forEach((traj) -> {
+      modifiedTrajectories.add(DisplayUtil.offsetTrajectoryCoordinatesForDisplayByXAndY(traj, DISPLAY_OFFSET_TO_USE_AS_ORIGIN_X, DISPLAY_OFFSET_TO_USE_AS_ORIGIN_Y));
+    });
+    // modifiedTrajectories = originalTrajectories;
+    
+    //************ END CANNOT POSSIBLY STRESS THIS ENOUGH **********
+
+    // int counter = 0;
+    modifiedTrajectories.forEach((trajectoryInList) -> {
+      String randomName = java.util.UUID.randomUUID().toString();
+      // String name = "trajectory";
+      FieldObject2d objectToPlaceTrajectoryOn = m_field3.getObject(randomName);
+      objectToPlaceTrajectoryOn.setTrajectory(trajectoryInList);
+
+    });
+    //***** ALL OF THE ABOVE IS FOR TESTING WITHIN THE SIMULATOR */
+    
+
     log("LEAVING autonomousInit");
   }
 
@@ -179,7 +198,7 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     log("ENTERING autonomousPeriodic");
     log("LEAVING autonomousPeriodic");
-  } 
+  }
 
   @Override
   public void teleopInit() {

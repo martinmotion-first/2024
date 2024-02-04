@@ -13,7 +13,10 @@
     "types": {
       "/FMSInfo": "FMSInfo",
       "/SmartDashboard/Auto choices": "String Chooser",
-      "/SmartDashboard/Field": "Field2d"
+      "/SmartDashboard/Field": "Field2d",
+      "/SmartDashboard/Field 2": "Field2d",
+      "/SmartDashboard/Field 3": "Field2d",
+      "/SmartDashboard/Swerve": "Subsystem"
     },
     "windows": {
       "/SmartDashboard/Auto choices": {
@@ -45,7 +48,21 @@
         "left": 46,
         "right": 1088,
         "top": 36,
+        "width": 16.541748046875
+      },
+      "/SmartDashboard/Field 3": {
+        "bottom": 544,
+        "builtin": "2024 Crescendo",
+        "height": 8.013679504394531,
+        "left": 46,
+        "right": 1088,
+        "top": 36,
         "width": 16.541748046875,
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Swerve": {
         "window": {
           "visible": true
         }
@@ -82,6 +99,9 @@
     "Connections": {
       "open": true
     },
+    "Server": {
+      "open": true
+    },
     "visible": true
   },
   "Plot": {
@@ -94,9 +114,12 @@
             0.0,
             0.8500000238418579
           ],
-          "height": 330
+          "height": 0
         }
-      ]
+      ],
+      "window": {
+        "visible": false
+      }
     }
   }
 }

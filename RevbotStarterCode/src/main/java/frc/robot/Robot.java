@@ -120,19 +120,56 @@ public class Robot extends TimedRobot {
             new Pose2d(6, 0, new Rotation2d(0)),
             config);
     //END COPYING
-    //************ CANNOT POSSIBLY STRESS THIS ENOUGH ********** 
+    //************ CANNOT POSSIBLY STRESS THIS ENOUGH **********
+    Trajectory movementTrajectory1 = TrajectoryGenerator.generateTrajectory(
+          new Pose2d(0, 0, Rotation2d.fromDegrees(0)),
+          List.of(new Translation2d(0.101, 1.1265)),
+          new Pose2d(0.202, 2.253, Rotation2d.fromDegrees(120)),
+      config);
+
+    Trajectory movementTrajectory2 = TrajectoryGenerator.generateTrajectory(
+      new Pose2d(0.202, 2.253, Rotation2d.fromDegrees(0)),
+      List.of(new Translation2d(0.6785, 2.191)),
+      // List.of(new Translation2d(.21, 2.19)),
+      new Pose2d(1.155, 2.129, Rotation2d.fromDegrees(60)),
+    config);
+
+    Trajectory movementTrajectory3 = TrajectoryGenerator.generateTrajectory(
+      new Pose2d(1.155, 2.129, Rotation2d.fromDegrees(0)),
+      List.of(new Translation2d(1.566, 2.129)),
+      new Pose2d(1.977, 2.129, Rotation2d.fromDegrees(0)),
+    config);
+
+    Trajectory movementTrajectory4 = TrajectoryGenerator.generateTrajectory(
+      new Pose2d(1.977, 2.129, Rotation2d.fromDegrees(0
+      )),
+      List.of(new Translation2d(1.977, 0.62)),
+      new Pose2d(5.796, 0.62, Rotation2d.fromDegrees(0)),
+    config);
+    
+    double DISPLAY_OFFSET_X = 3;
+    double DISPLAY_OFFSET_Y = 3;
+    movementTrajectory1 = DisplayUtility.offsetTrajectoryCoordinatesForDisplayByXAndY(movementTrajectory1, DISPLAY_OFFSET_X, DISPLAY_OFFSET_Y);
+    movementTrajectory2 = DisplayUtility.offsetTrajectoryCoordinatesForDisplayByXAndY(movementTrajectory2, DISPLAY_OFFSET_X, DISPLAY_OFFSET_Y);
+    movementTrajectory3 = DisplayUtility.offsetTrajectoryCoordinatesForDisplayByXAndY(movementTrajectory3, DISPLAY_OFFSET_X, DISPLAY_OFFSET_Y);
+    movementTrajectory4 = DisplayUtility.offsetTrajectoryCoordinatesForDisplayByXAndY(movementTrajectory4, DISPLAY_OFFSET_X, DISPLAY_OFFSET_Y);
+
     /* 
       THE FOLLOWING ADJUSTMENTS ARE DONE PURELY TO CENTER THE TRAJECTORIES IN THE MIDDLE OF THE DISPLAY AND SHOULD ONLY BE DONE IN TEST/SIMULATION
     */
-    double DISPLAY_OFFSET_X = 3;
-    double DISPLAY_OFFSET_Y = 3;
-    exampleTrajectory = DisplayUtility.offsetTrajectoryCoordinatesForDisplayByXAndY(exampleTrajectory, DISPLAY_OFFSET_X, DISPLAY_OFFSET_Y);
-    exampleTrajectory2 = DisplayUtility.offsetTrajectoryCoordinatesForDisplayByXAndY(exampleTrajectory2, DISPLAY_OFFSET_X, DISPLAY_OFFSET_Y);
+    // double DISPLAY_OFFSET_X = 3;
+    // double DISPLAY_OFFSET_Y = 3;
+    // exampleTrajectory = DisplayUtility.offsetTrajectoryCoordinatesForDisplayByXAndY(exampleTrajectory, DISPLAY_OFFSET_X, DISPLAY_OFFSET_Y);
+    // exampleTrajectory2 = DisplayUtility.offsetTrajectoryCoordinatesForDisplayByXAndY(exampleTrajectory2, DISPLAY_OFFSET_X, DISPLAY_OFFSET_Y);
     //************ END CANNOT POSSIBLY STRESS THIS ENOUGH ********** 
 
-    m_field.getObject("traj").setTrajectory(exampleTrajectory);
-    FieldObject2d q = m_field.getObject("traj2");
-    q.setTrajectory(exampleTrajectory2);
+    // m_field.getObject("traj").setTrajectory(exampleTrajectory);
+    // m_field.getObject("traj2").setTrajectory(exampleTrajectory2);
+
+    m_field.getObject("traj").setTrajectory(movementTrajectory1);
+    m_field.getObject("traj2").setTrajectory(movementTrajectory2);
+    m_field.getObject("traj3").setTrajectory(movementTrajectory3);
+    m_field.getObject("traj4").setTrajectory(movementTrajectory4);
   }
 
   /** This function is called periodically during autonomous. */

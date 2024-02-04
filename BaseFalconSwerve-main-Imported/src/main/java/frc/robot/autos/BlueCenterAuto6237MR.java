@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.Constants;
 import frc.robot.subsystems.Swerve;
 
-public class BlueRightAuto6237MR extends SequentialCommandGroup implements IAutonomousPath6237MR {
+public class BlueCenterAuto6237MR extends SequentialCommandGroup implements IAutonomousPath6237MR {
     List<Trajectory> trajectoriesUsed = new ArrayList<Trajectory>();
 
     @Override
@@ -24,7 +24,7 @@ public class BlueRightAuto6237MR extends SequentialCommandGroup implements IAuto
         return trajectoriesUsed;
     }
 
-    public BlueRightAuto6237MR(Swerve s_Swerve){
+    public BlueCenterAuto6237MR(Swerve s_Swerve){
         TrajectoryConfig config =
             new TrajectoryConfig(
                     Constants.AutoConstants.kMaxSpeedMetersPerSecond,
