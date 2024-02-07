@@ -15,6 +15,9 @@ import frc.lib.util.SwerveModuleConstants;
 public final class Constants {
     public static final double stickDeadband = 0.5;
 
+    public static final int kXboxDriverPort = 0;
+    public static final int kXboxOperatorPort = 1;
+    
     public static final class Swerve {
         public static final int pigeonID = 8;
         public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-

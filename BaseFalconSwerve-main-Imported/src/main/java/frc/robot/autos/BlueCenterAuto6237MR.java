@@ -11,11 +11,18 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.Constants;
 import frc.robot.Constants.SimulatorConstants6237MR;
-import frc.robot.commands.IntakeCommand6237MR;
+import frc.robot.commands.ArmToIntakePositionCommand6237MR;
+import frc.robot.commands.ArmToScoringPostionCommand6237MR;
+import frc.robot.commands.RunLauncherCommand6237MR;
+import frc.robot.commands.StopRunningLauncher6237MR;
+import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.LauncherSubsystem;
 import frc.robot.subsystems.Swerve;
 
 public class BlueCenterAuto6237MR extends SequentialCommandGroup implements IAutonomousPath6237MR {
@@ -30,7 +37,7 @@ public class BlueCenterAuto6237MR extends SequentialCommandGroup implements IAut
     @Override
     public double getSimulatorDisplayCoordinateY(){return SimulatorConstants6237MR.kBlueCenterStartingPositionY;}
 
-    public BlueCenterAuto6237MR(Swerve s_Swerve){
+    public BlueCenterAuto6237MR(Swerve s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
         TrajectoryConfig config =
             new TrajectoryConfig(
                     Constants.AutoConstants.kMaxSpeedMetersPerSecond,
@@ -92,9 +99,8 @@ public class BlueCenterAuto6237MR extends SequentialCommandGroup implements IAut
                 thetaController,
                 s_Swerve::setModuleStates,
                 s_Swerve);
-
-        IntakeCommand6237MR intakeOn = new IntakeCommand6237MR();
-
+                
+                
         SwerveControllerCommand swerveCommand2 =
             new SwerveControllerCommand(
                 movementTrajectory2,
@@ -105,8 +111,14 @@ public class BlueCenterAuto6237MR extends SequentialCommandGroup implements IAut
                 thetaController,
                 s_Swerve::setModuleStates,
                 s_Swerve);
-
-        IntakeCommand6237MR intakeOff = new IntakeCommand6237MR();
+                    
+        Command fireLauncher = new RunLauncherCommand6237MR(launcher);
+        Command armToLoadNotePosition = new ArmToIntakePositionCommand6237MR(arm);
+        Command armToScoringPosition = new ArmToScoringPostionCommand6237MR(arm);
+        Command retractIntake = intake.retract();
+        Command feedLauncher = intake.feedLauncher(launcher);
+        Command stopCommand = new StopRunningLauncher6237MR(launcher);
+        
 
         SwerveControllerCommand swerveCommand3 =
             new SwerveControllerCommand(
@@ -121,9 +133,8 @@ public class BlueCenterAuto6237MR extends SequentialCommandGroup implements IAut
 
         addCommands(
             swerveCommand1,
-            intakeOn,
+            retractIntake,
             swerveCommand2,
-            intakeOff,
             swerveCommand3
         );
     }

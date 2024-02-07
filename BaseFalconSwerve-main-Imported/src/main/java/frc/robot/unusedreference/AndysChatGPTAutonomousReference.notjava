@@ -1,0 +1,94 @@
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import edu.wpi.first.wpilibj.Timer;
+
+// Assuming you have a SwerveDrive class with individual wheel control methods
+
+public class SwerveDrive {
+    private TalonFX[] driveMotors;  // Assuming you have four Falcon 500s for drive
+
+    public SwerveDrive() {
+        // Initialize your Falcon 500 motors and other components here
+        driveMotors = new TalonFX[] {
+                new TalonFX(1),  // Replace with the correct CAN IDs for your motors
+                new TalonFX(2),
+                new TalonFX(3),
+                new TalonFX(4)
+        };
+    }
+
+    public void autonomous90DegreeTurn() {
+        // Constants for PID control
+        double kP = 0.1;
+        double kI = 0.01;
+        double kD = 0.05;
+
+        // Initialize variables for PID control
+        double integral = 0;
+        double previousError = 0;
+
+        // Target angle for a 90-degree turn to the right
+        double targetAngle = 90.0;
+
+        // Loop until the robot reaches the target angle
+        while (!hasReachedTargetAngle(targetAngle)) {
+            double currentAngle = getCurrentRobotAngle();  // Use your sensor feedback method
+
+            // Calculate error
+            double error = targetAngle - currentAngle;
+
+            // Update integral for PID control
+            integral += error;
+
+            // Calculate PID components
+            double proportional = kP * error;
+            double derivative = kD * (error - previousError);
+            double integralComponent = kI * integral;
+
+            // Calculate the total PID output
+            double pidOutput = proportional + integralComponent + derivative;
+
+            // Apply the PID output to individual wheel control
+            setIndividualWheelSpeeds(pidOutput);
+
+            // Update previous error for the next iteration
+            previousError = error;
+
+            // Add a small delay to control loop frequency (adjust as needed)
+            Timer.delay(0.02);  // Example delay method from WPILib
+        }
+
+        // Stop the robot after reaching the target angle
+        stop();
+    }
+
+    private void setIndividualWheelSpeeds(double turnSpeed) {
+        // Implement your individual wheel control logic here
+        // Assuming a simplistic example where all wheels turn at the same speed for simplicity
+        for (TalonFX motor : driveMotors) {
+            motor.set(ControlMode.PercentOutput, turnSpeed);
+        }
+    }
+
+    private boolean hasReachedTargetAngle(double targetAngle) {
+        // Implement your logic to determine if the target angle is reached
+        // For simplicity, you can use a margin of error
+        double marginOfError = 2.0;
+        return Math.abs(getCurrentRobotAngle() - targetAngle) < marginOfError;
+    }
+
+    // Add your other methods for sensor feedback, etc.
+
+    private double getCurrentRobotAngle() {
+        // Implement your sensor feedback logic to get the current robot angle
+        return 0.0;
+    }
+
+    private void stop() {
+        // Implement your logic to stop the robot
+        // For example, set all wheel speeds to 0
+        setIndividualWheelSpeeds(0.0);
+    }
+
+    // ... (remaining code)
+}

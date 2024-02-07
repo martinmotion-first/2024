@@ -18,6 +18,8 @@ import frc.robot.autos.RedCenterAuto6237MR;
 import frc.robot.autos.RedLeftAuto6237MR;
 import frc.robot.autos.RedRightAuto6237MR;
 import frc.robot.commands.TeleopSwerve;
+import frc.robot.controllers.DriverMapping6237MR;
+import frc.robot.controllers.OperatorMapping6237MR;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LauncherSubsystem;
@@ -32,9 +34,8 @@ import frc.robot.subsystems.Swerve;
 
 public class RobotContainer {
     /* Controllers */
-    private final XboxController driver = new XboxController(0);
-    private final XboxController operator = new XboxController(0);
-
+    private final XboxController driver = new XboxController(Constants.kXboxDriverPort);
+    private final XboxController operator = new XboxController(Constants.kXboxOperatorPort);
 
     /* Drive Controls */
     private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -89,42 +90,8 @@ public class RobotContainer {
      * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        /* Driver Buttons */
-        zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
-    
-        //revbot subsytem configurations
-        // button to put swerve modules in an "x" configuration to hold position
-    // new JoystickButton(operator, XboxController.Button.kLeftStick.value)
-    //     .whileTrue(new RunCommand(() -> m_robotDrive.setX(), m_robotDrive));
-
-    // set up arm preset positions
-    new JoystickButton(operator, XboxController.Button.kLeftBumper.value)
-        .onTrue(new InstantCommand(() -> m_arm.setTargetPosition(Constants.Arm.kScoringPosition)));
-    new Trigger(
-            () ->
-                operator.getLeftTriggerAxis()
-                    > Constants.OIConstants.kTriggerButtonThreshold)
-        .onTrue(new InstantCommand(() -> m_arm.setTargetPosition(Constants.Arm.kIntakePosition)));
-    new JoystickButton(operator, XboxController.Button.kStart.value)
-        .onTrue(new InstantCommand(() -> m_arm.setTargetPosition(Constants.Arm.kHomePosition)));
-
-    // intake controls (run while button is held down, run retract command once when the button is released)
-    new Trigger(
-            () ->
-                operator.getRightTriggerAxis()
-                    > Constants.OIConstants.kTriggerButtonThreshold)
-        .whileTrue(new RunCommand(() -> m_intake.setPower(Constants.Intake.kIntakePower), m_intake))
-        .onFalse(m_intake.retract());
-
-    new JoystickButton(operator, XboxController.Button.kY.value)
-        .whileTrue(new RunCommand(() -> m_intake.setPower(-1.0)));
-
-    // launcher controls (button to pre-spin the launcher and button to launch)
-    new JoystickButton(operator, XboxController.Button.kRightBumper.value)
-        .whileTrue(new RunCommand(() -> m_launcher.runLauncher(), m_launcher));
-
-    new JoystickButton(operator, XboxController.Button.kA.value)
-        .onTrue(m_intake.feedLauncher(m_launcher));
+        OperatorMapping6237MR.mapXboxController(operator, m_intake, m_arm, m_launcher);
+        // DriverMapping6237MR.mapXboxController(driver, s_Swerve);
     }
 
     /**
@@ -135,23 +102,23 @@ public class RobotContainer {
     public SequentialCommandGroup getAutonomousCommand(String selectedOption) {
         switch (AutonomousModeChoices6237MR.valueOf(selectedOption)){
             case EXAMPLE_AUTO:
-                return new ExampleAutonomous(s_Swerve);
+                return new ExampleAutonomous(s_Swerve, m_arm, m_launcher, m_intake);
             case BLUE_RIGHT_AUTO_MODE_1:
-                return new BlueRightAuto6237MR(s_Swerve);
+                return new BlueRightAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case RED_LEFT_AUTO_MODE_1:
-                return new RedLeftAuto6237MR(s_Swerve);
+                return new RedLeftAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case BLUE_CENTER_AUTO_MODE_1:
-                return new BlueCenterAuto6237MR(s_Swerve);
+                return new BlueCenterAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case RED_CENTER_AUTO_MODE_1:
-                return new RedCenterAuto6237MR(s_Swerve);
+                return new RedCenterAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case BLUE_LEFT_AUTO_MODE_1:
-                return new BlueLeftAuto6237MR(s_Swerve);
+                return new BlueLeftAuto6237MR(s_Swerve, m_intake, m_arm, m_launcher);
             case RED_RIGHT_AUTO_MODE_1:
-                return new RedRightAuto6237MR(s_Swerve);
+                return new RedRightAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case ANGLE_PLAYGROUND:
-                return new AnglePlaygroundAuto6237MR(s_Swerve);
+                return new AnglePlaygroundAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             default:
-               return new ExampleAutonomous(s_Swerve);
+               return new ExampleAutonomous(s_Swerve, m_arm, m_launcher, m_intake);
         }
     }
 

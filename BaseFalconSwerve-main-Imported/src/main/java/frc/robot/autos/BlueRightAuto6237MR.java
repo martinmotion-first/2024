@@ -15,6 +15,9 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.Constants;
 import frc.robot.Constants.SimulatorConstants6237MR;
+import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.LauncherSubsystem;
 import frc.robot.subsystems.Swerve;
 
 public class BlueRightAuto6237MR extends SequentialCommandGroup implements IAutonomousPath6237MR {
@@ -29,7 +32,7 @@ public class BlueRightAuto6237MR extends SequentialCommandGroup implements IAuto
     @Override
     public double getSimulatorDisplayCoordinateY(){return SimulatorConstants6237MR.kBlueRightStartingPositionY;}
 
-    public BlueRightAuto6237MR(Swerve s_Swerve){
+    public BlueRightAuto6237MR(Swerve s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
         TrajectoryConfig config =
             new TrajectoryConfig(
                     Constants.AutoConstants.kMaxSpeedMetersPerSecond,

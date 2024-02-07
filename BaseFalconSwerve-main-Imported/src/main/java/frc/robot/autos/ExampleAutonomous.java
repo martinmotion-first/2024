@@ -15,6 +15,9 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.Constants;
+import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.LauncherSubsystem;
 import frc.robot.subsystems.Swerve;
 
 public class ExampleAutonomous extends SequentialCommandGroup implements IAutonomousPath6237MR {
@@ -27,7 +30,7 @@ public class ExampleAutonomous extends SequentialCommandGroup implements IAutono
     public double getSimulatorDisplayCoordinateX(){ return 5;}
     public double getSimulatorDisplayCoordinateY(){ return 5;};
 
-    public ExampleAutonomous(Swerve s_Swerve){
+    public ExampleAutonomous(Swerve s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
         TrajectoryConfig config =
             new TrajectoryConfig(
                     Constants.AutoConstants.kMaxSpeedMetersPerSecond,

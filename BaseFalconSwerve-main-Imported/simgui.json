@@ -1,5 +1,22 @@
 {
   "HALProvider": {
+    "Other Devices": {
+      "SPARK MAX [1]": {
+        "header": {
+          "open": true
+        }
+      },
+      "SPARK MAX [3]": {
+        "header": {
+          "open": true
+        }
+      },
+      "SPARK MAX [4]": {
+        "header": {
+          "open": true
+        }
+      }
+    },
     "RoboRIO": {
       "RoboRIO Input": {
         "open": true
@@ -48,10 +65,7 @@
         "left": 46,
         "right": 1088,
         "top": 36,
-        "width": 16.541748046875,
-        "window": {
-          "visible": true
-        }
+        "width": 16.541748046875
       },
       "/SmartDashboard/Field 3": {
         "bottom": 544,
@@ -73,7 +87,7 @@
     }
   },
   "NetworkTables": {
-    "Persistent Values": {
+    "Retained Values": {
       "open": false
     },
     "retained": {
@@ -93,8 +107,7 @@
       "Shuffleboard": {
         ".metadata": {
           "open": true
-        },
-        "open": true
+        }
       }
     }
   },
@@ -103,7 +116,9 @@
       "open": true
     },
     "Server": {
-      "open": true
+      "Subscribers": {
+        "open": true
+      }
     },
     "visible": true
   },

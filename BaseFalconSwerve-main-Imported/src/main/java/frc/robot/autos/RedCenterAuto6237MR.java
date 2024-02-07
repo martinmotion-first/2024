@@ -15,7 +15,9 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.Constants;
 import frc.robot.Constants.SimulatorConstants6237MR;
-import frc.robot.commands.IntakeCommand6237MR;
+import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.LauncherSubsystem;
 import frc.robot.subsystems.Swerve;
 
 public class RedCenterAuto6237MR extends SequentialCommandGroup implements IAutonomousPath6237MR {
@@ -30,7 +32,7 @@ public class RedCenterAuto6237MR extends SequentialCommandGroup implements IAuto
     @Override
     public double getSimulatorDisplayCoordinateY(){return SimulatorConstants6237MR.kRedCenterStartingPositionY;}
 
-    public RedCenterAuto6237MR(Swerve s_Swerve){
+    public RedCenterAuto6237MR(Swerve s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
         TrajectoryConfig config =
             new TrajectoryConfig(
                     Constants.AutoConstants.kMaxSpeedMetersPerSecond,
@@ -76,8 +78,6 @@ public class RedCenterAuto6237MR extends SequentialCommandGroup implements IAuto
                 s_Swerve::setModuleStates,
                 s_Swerve);
 
-        IntakeCommand6237MR intakeOn = new IntakeCommand6237MR();
-
         SwerveControllerCommand swerveCommand2 =
             new SwerveControllerCommand(
                 movementTrajectory2,
@@ -88,8 +88,6 @@ public class RedCenterAuto6237MR extends SequentialCommandGroup implements IAuto
                 thetaController,
                 s_Swerve::setModuleStates,
                 s_Swerve);
-
-        IntakeCommand6237MR intakeOff = new IntakeCommand6237MR();
 
         SwerveControllerCommand swerveCommand3 =
             new SwerveControllerCommand(
@@ -104,9 +102,9 @@ public class RedCenterAuto6237MR extends SequentialCommandGroup implements IAuto
 
         addCommands(
             swerveCommand1,
-            intakeOn,
+            // intakeOn,
             swerveCommand2,
-            intakeOff,
+            // intakeOff,
             swerveCommand3
         );
     }
