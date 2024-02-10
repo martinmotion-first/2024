@@ -1,9 +1,5 @@
 package frc.robot.autos;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.RotateInPlaceCommand6237MR;

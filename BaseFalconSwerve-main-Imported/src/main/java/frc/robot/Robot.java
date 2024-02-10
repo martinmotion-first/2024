@@ -4,24 +4,15 @@
 
 package frc.robot;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
-import edu.wpi.first.wpilibj.smartdashboard.FieldObject2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.lib.util.DisplayUtil;
 import frc.robot.autos.AutonomousModeChoices6237MR;
 import frc.robot.autos.IAutonomousPath6237MR;
-import frc.robot.autos.RedCenterAuto6237MR;
-import frc.robot.autos.RedLeftAuto6237MR;
-import frc.robot.autos.RedRightAuto6237MR;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -117,62 +108,62 @@ public class Robot extends TimedRobot {
       //such as creating absolute x,y coordinates and performing visual translations to make these paths appear correctly
       IAutonomousPath6237MR pathToTest = (IAutonomousPath6237MR) m_autonomousCommandGroup;
 
-      //   switch (AutonomousModeChoices.valueOf(selectedOption)){
-      //     case EXAMPLE_AUTO:
-      //       m_autonomousCommandGroup = new ExampleAutonomous(m_robotContainer.getSwerve());
-      //       m_autonomousCommandGroup.schedule();
-      //       break;
-      //     case BLUE_RIGHT_AUTO_MODE_1:
-      //       m_autonomousCommandGroup = new BlueRightAuto6237MR(m_robotContainer.getSwerve());
-      //       m_autonomousCommandGroup.schedule();
-      //       break;
-      //     case RED_LEFT_AUTO_MODE_1:
-      //       m_autonomousCommandGroup = new RedLeftAuto6237MR(m_robotContainer.getSwerve());
-      //       m_autonomousCommandGroup.schedule();
-      //       break;
-      //     default:
-      //       m_autonomousCommandGroup = new ExampleAutonomous(m_robotContainer.getSwerve());
-      //       m_autonomousCommandGroup.schedule();
-      //   }
-      // }
+    //   //   switch (AutonomousModeChoices.valueOf(selectedOption)){
+    //   //     case EXAMPLE_AUTO:
+    //   //       m_autonomousCommandGroup = new ExampleAutonomous(m_robotContainer.getSwerve());
+    //   //       m_autonomousCommandGroup.schedule();
+    //   //       break;
+    //   //     case BLUE_RIGHT_AUTO_MODE_1:
+    //   //       m_autonomousCommandGroup = new BlueRightAuto6237MR(m_robotContainer.getSwerve());
+    //   //       m_autonomousCommandGroup.schedule();
+    //   //       break;
+    //   //     case RED_LEFT_AUTO_MODE_1:
+    //   //       m_autonomousCommandGroup = new RedLeftAuto6237MR(m_robotContainer.getSwerve());
+    //   //       m_autonomousCommandGroup.schedule();
+    //   //       break;
+    //   //     default:
+    //   //       m_autonomousCommandGroup = new ExampleAutonomous(m_robotContainer.getSwerve());
+    //   //       m_autonomousCommandGroup.schedule();
+    //   //   }
+    //   // }
 
-      List<Trajectory> originalTrajectories = pathToTest.getTrajectoryList();
-      /*
-        THE FOLLOWING ADJUSTMENTS ARE DONE PURELY TO CENTER THE TRAJECTORIES TO A LOCATION FOR DISPLAY AND SHOULD ONLY BE DONE IN TEST/SIMULATION
-      */
-      // List<Trajectory> modifiedTrajectories = new ArrayList<Trajectory>();
-      // originalTrajectories.forEach((traj) -> {
-      //   modifiedTrajectories.add(DisplayUtil.offsetTrajectoryCoordinatesForDisplayByXAndY(traj, pathToTest.getSimulatorDisplayCoordinateX(), pathToTest.getSimulatorDisplayCoordinateY()));
-      // });
-      List<Trajectory> modifiedTrajectories = new ArrayList<Trajectory>();
-      if(m_autonomousCommandGroup instanceof RedLeftAuto6237MR || m_autonomousCommandGroup instanceof RedCenterAuto6237MR || m_autonomousCommandGroup instanceof RedRightAuto6237MR){
-        originalTrajectories.forEach((traj) -> {
-          Trajectory modifiedTrajectory = DisplayUtil.offsetTrajectoryCoordinatesForDisplayByXAndY(traj, pathToTest.getSimulatorDisplayCoordinateX(), pathToTest.getSimulatorDisplayCoordinateY());
-          modifiedTrajectory = DisplayUtil.invertXValuesForRedStartingCoordinates(modifiedTrajectory);
-          modifiedTrajectories.add(modifiedTrajectory);
-        });
-      }else{
-        originalTrajectories.forEach((traj) -> {
-          modifiedTrajectories.add(DisplayUtil.offsetTrajectoryCoordinatesForDisplayByXAndY(traj, pathToTest.getSimulatorDisplayCoordinateX(), pathToTest.getSimulatorDisplayCoordinateY()));
-        });
-      }
+    //   List<Trajectory> originalTrajectories = pathToTest.getTrajectoryList();
+    //   /*
+    //     THE FOLLOWING ADJUSTMENTS ARE DONE PURELY TO CENTER THE TRAJECTORIES TO A LOCATION FOR DISPLAY AND SHOULD ONLY BE DONE IN TEST/SIMULATION
+    //   */
+    //   // List<Trajectory> modifiedTrajectories = new ArrayList<Trajectory>();
+    //   // originalTrajectories.forEach((traj) -> {
+    //   //   modifiedTrajectories.add(DisplayUtil.offsetTrajectoryCoordinatesForDisplayByXAndY(traj, pathToTest.getSimulatorDisplayCoordinateX(), pathToTest.getSimulatorDisplayCoordinateY()));
+    //   // });
+    //   List<Trajectory> modifiedTrajectories = new ArrayList<Trajectory>();
+    //   if(m_autonomousCommandGroup instanceof RedLeftAuto6237MR || m_autonomousCommandGroup instanceof RedCenterAuto6237MR || m_autonomousCommandGroup instanceof RedRightAuto6237MR){
+    //     originalTrajectories.forEach((traj) -> {
+    //       Trajectory modifiedTrajectory = DisplayUtil.offsetTrajectoryCoordinatesForDisplayByXAndY(traj, pathToTest.getSimulatorDisplayCoordinateX(), pathToTest.getSimulatorDisplayCoordinateY());
+    //       modifiedTrajectory = DisplayUtil.invertXValuesForRedStartingCoordinates(modifiedTrajectory);
+    //       modifiedTrajectories.add(modifiedTrajectory);
+    //     });
+    //   }else{
+    //     originalTrajectories.forEach((traj) -> {
+    //       modifiedTrajectories.add(DisplayUtil.offsetTrajectoryCoordinatesForDisplayByXAndY(traj, pathToTest.getSimulatorDisplayCoordinateX(), pathToTest.getSimulatorDisplayCoordinateY()));
+    //     });
+    //   }
 
-        // List<Trajectory> modifiedTrajectories2 = new ArrayList<Trajectory>();
-        // originalTrajectories.forEach((traj2) -> {
-        //   modifiedTrajectories2.add(DisplayUtil.invertXValuesForRedStartingCoordinates(traj2));
-        // });
-        // modifiedTrajectories = modifiedTrajectories2;
+    //     // List<Trajectory> modifiedTrajectories2 = new ArrayList<Trajectory>();
+    //     // originalTrajectories.forEach((traj2) -> {
+    //     //   modifiedTrajectories2.add(DisplayUtil.invertXValuesForRedStartingCoordinates(traj2));
+    //     // });
+    //     // modifiedTrajectories = modifiedTrajectories2;
 
-      // modifiedTrajectories.forEach((trajectoryInList) -> {
-      //   String randomName = java.util.UUID.randomUUID().toString();
-      //   FieldObject2d objectToPlaceTrajectoryOn = m_field3.getObject(randomName);
-      //   objectToPlaceTrajectoryOn.setTrajectory(trajectoryInList);
-      // });
-      for(int trajectoryIndex = 0; trajectoryIndex < modifiedTrajectories.size(); trajectoryIndex++){
-        String name = "trajectory" + trajectoryIndex;
-        FieldObject2d objectToPlaceTrajectoryOn = m_field3.getObject(name);
-        objectToPlaceTrajectoryOn.setTrajectory(modifiedTrajectories.get(trajectoryIndex));
-      }
+    //   // modifiedTrajectories.forEach((trajectoryInList) -> {
+    //   //   String randomName = java.util.UUID.randomUUID().toString();
+    //   //   FieldObject2d objectToPlaceTrajectoryOn = m_field3.getObject(randomName);
+    //   //   objectToPlaceTrajectoryOn.setTrajectory(trajectoryInList);
+    //   // });
+    //   for(int trajectoryIndex = 0; trajectoryIndex < modifiedTrajectories.size(); trajectoryIndex++){
+    //     String name = "trajectory" + trajectoryIndex;
+    //     FieldObject2d objectToPlaceTrajectoryOn = m_field3.getObject(name);
+    //     objectToPlaceTrajectoryOn.setTrajectory(modifiedTrajectories.get(trajectoryIndex));
+    //   }
     }
     log("LEAVING simulationPeriodic");
   }

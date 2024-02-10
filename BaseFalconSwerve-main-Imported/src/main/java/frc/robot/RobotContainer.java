@@ -11,7 +11,6 @@ import frc.robot.autos.AutonomousModeChoices6237MR;
 import frc.robot.autos.BlueCenterAuto6237MR;
 import frc.robot.autos.BlueLeftAuto6237MR;
 import frc.robot.autos.BlueRightAuto6237MR;
-import frc.robot.autos.ExampleAutonomous;
 import frc.robot.autos.RedCenterAuto6237MR;
 import frc.robot.autos.RedLeftAuto6237MR;
 import frc.robot.autos.RedRightAuto6237MR;
@@ -99,8 +98,8 @@ public class RobotContainer {
      */
     public SequentialCommandGroup getAutonomousCommand(String selectedOption) {
         switch (AutonomousModeChoices6237MR.valueOf(selectedOption)){
-            case EXAMPLE_AUTO:
-                return new ExampleAutonomous(s_Swerve, m_arm, m_launcher, m_intake);
+            // case EXAMPLE_AUTO:
+            //     return new ExampleAutonomous(s_Swerve, m_arm, m_launcher, m_intake);
             case BLUE_RIGHT_AUTO_MODE_1:
                 return new BlueRightAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case RED_LEFT_AUTO_MODE_1:
@@ -116,7 +115,7 @@ public class RobotContainer {
             case ANGLE_PLAYGROUND:
                 return new AnglePlaygroundAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             default:
-               return new ExampleAutonomous(s_Swerve, m_arm, m_launcher, m_intake);
+               return new AnglePlaygroundAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
         }
     }
 
