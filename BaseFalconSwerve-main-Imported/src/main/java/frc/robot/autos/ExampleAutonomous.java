@@ -21,12 +21,12 @@ import frc.robot.subsystems.LauncherSubsystem;
 import frc.robot.subsystems.Swerve;
 
 public class ExampleAutonomous extends SequentialCommandGroup implements IAutonomousPath6237MR {
-    List<Trajectory> trajectoriesUsed = new ArrayList<Trajectory>();
+    // List<Trajectory> trajectoriesUsed = new ArrayList<Trajectory>();
 
-    @Override
-    public List<Trajectory> getTrajectoryList(){
-        return trajectoriesUsed;
-    }
+    // @Override
+    // public List<Trajectory> getTrajectoryList(){
+    //     return trajectoriesUsed;
+    // }
     public double getSimulatorDisplayCoordinateX(){ return 5;}
     public double getSimulatorDisplayCoordinateY(){ return 5;};
 
