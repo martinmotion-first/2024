@@ -20,20 +20,15 @@ public class OperatorMapping6237MR {
     // set up arm preset positions
     new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value)
         .onTrue(new InstantCommand(() -> arm.setTargetPosition(Constants.Arm.kScoringPosition)));
-    new Trigger(
-            () ->
-                operatorController.getLeftTriggerAxis()
-                    > Constants.OIConstants.kTriggerButtonThreshold)
+
+    new Trigger(() -> operatorController.getLeftTriggerAxis() > Constants.OIConstants.kTriggerButtonThreshold)
         .onTrue(new InstantCommand(() -> arm.setTargetPosition(Constants.Arm.kIntakePosition)));
 
     new JoystickButton(operatorController, XboxController.Button.kStart.value)
         .onTrue(new InstantCommand(() -> arm.setTargetPosition(Constants.Arm.kHomePosition)));
 
     // intake controls (run while button is held down, run retract command once when the button is released)
-    new Trigger(
-            () ->
-                operatorController.getRightTriggerAxis()
-                    > Constants.OIConstants.kTriggerButtonThreshold)
+    new Trigger(() -> operatorController.getRightTriggerAxis() > Constants.OIConstants.kTriggerButtonThreshold)
         .whileTrue(new RunCommand(() -> intake.setPower(Constants.Intake.kIntakePower), intake))
         .onFalse(intake.retract());
 

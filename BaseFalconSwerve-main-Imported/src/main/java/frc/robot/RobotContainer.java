@@ -3,11 +3,9 @@ package frc.robot;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.autos.AnglePlaygroundAuto6237MR;
 import frc.robot.autos.AutonomousModeChoices6237MR;
 import frc.robot.autos.BlueCenterAuto6237MR;
@@ -91,7 +89,7 @@ public class RobotContainer {
      */
     private void configureButtonBindings() {
         OperatorMapping6237MR.mapXboxController(operator, m_intake, m_arm, m_launcher);
-        // DriverMapping6237MR.mapXboxController(driver, s_Swerve);
+        DriverMapping6237MR.mapXboxController(driver, s_Swerve);
     }
 
     /**
