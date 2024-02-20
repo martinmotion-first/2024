@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autos.AnglePlaygroundAuto6237MR;
 import frc.robot.autos.AutonomousModeChoices6237MR;
 import frc.robot.autos.BlueCenterAuto6237MR;
@@ -18,6 +17,9 @@ import frc.robot.autos.doublespeaker.BlueLeftDoubleSpeakerAuto6237MR;
 import frc.robot.autos.doublespeaker.BlueRightDoubleSpeakerAuto6237MR;
 import frc.robot.autos.doublespeaker.RedLeftDoubleSpeakerAuto6237MR;
 import frc.robot.autos.doublespeaker.RedRightDoubleSpeakerAuto6237MR;
+import frc.robot.autosDebug.ArmDebugAuto6237MR;
+import frc.robot.autosDebug.IntakeDebugAuto6237MR;
+import frc.robot.autosDebug.LauncherDebugAuto6237MR;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.controllers.DriverMapping6237MR;
 import frc.robot.controllers.OperatorMapping6237MR;
@@ -38,18 +40,8 @@ public class RobotContainer {
     private final XboxController driver = new XboxController(Constants.kXboxDriverPort);
     private final XboxController operator = new XboxController(Constants.kXboxOperatorPort);
 
-    /* Drive Controls */
-    private final int translationAxis = XboxController.Axis.kLeftY.value;
-    private final int strafeAxis = XboxController.Axis.kLeftX.value;
-    private final int rotationAxis = XboxController.Axis.kRightX.value;
-
-    /* Driver Buttons */
-    private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
-    private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
-
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
-
     private final ArmSubsystem m_arm = new ArmSubsystem();
     private final IntakeSubsystem m_intake = new IntakeSubsystem();
     private final LauncherSubsystem m_launcher = new LauncherSubsystem();
@@ -57,18 +49,18 @@ public class RobotContainer {
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
+        // Configure the button bindings
+        configureButtonBindings();
+
         s_Swerve.setDefaultCommand(
             new TeleopSwerve(
                 s_Swerve, 
-                () -> -driver.getRawAxis(translationAxis), 
-                () -> -driver.getRawAxis(strafeAxis), 
-                () -> -driver.getRawAxis(rotationAxis), 
-                () -> robotCentric.getAsBoolean()
+                () -> -driver.getRawAxis(DriverMapping6237MR.translationAxis), 
+                () -> -driver.getRawAxis(DriverMapping6237MR.strafeAxis), 
+                () -> -driver.getRawAxis(DriverMapping6237MR.rotationAxis), 
+                () -> DriverMapping6237MR.robotCentric.getAsBoolean()
             )
         );
-
-        // Configure the button bindings
-        configureButtonBindings();
 
         // set the arm subsystem to run the "runAutomatic" function continuously when no other command is running
         m_arm.setDefaultCommand(new RunCommand(() -> m_arm.runAutomatic(), m_arm));
@@ -114,6 +106,7 @@ public class RobotContainer {
                 return new BlueLeftAuto6237MR(s_Swerve, m_intake, m_arm, m_launcher);
             case RED_RIGHT_AUTO_MODE_1:
                 return new RedRightAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
+
             case BLUE_LEFT_DOUBLE_SPEAKER:
                 return new BlueLeftDoubleSpeakerAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case RED_RIGHT_DOUBLE_SPEAKER:
@@ -126,6 +119,14 @@ public class RobotContainer {
                 return new BlueRightDoubleSpeakerAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case RED_LEFT_DOUBLE_SPEAKER:
                 return new RedLeftDoubleSpeakerAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
+
+            case DEBUG_ARM_AUTO:
+                return new ArmDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
+            case DEBUG_INTAKE_AUTO:
+                return new IntakeDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
+            case DEBUG_LAUNCHER_AUTO:
+                return new LauncherDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
+
             case ANGLE_PLAYGROUND:
                 return new AnglePlaygroundAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             default:
