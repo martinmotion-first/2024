@@ -52,6 +52,13 @@ public class Robot extends TimedRobot {
     chooserMenu.addOption("Red Right Auto Mode 1", AutonomousModeChoices6237MR.RED_RIGHT_AUTO_MODE_1.toString()); //inverted Blue Left Auto
     chooserMenu.addOption("Angle Playground", AutonomousModeChoices6237MR.ANGLE_PLAYGROUND.toString()); //inverted Blue Left Auto
     
+    chooserMenu.addOption("Blue Left Double Speaker", AutonomousModeChoices6237MR.BLUE_LEFT_DOUBLE_SPEAKER.toString());
+    chooserMenu.addOption("Red Right Double Speaker", AutonomousModeChoices6237MR.RED_RIGHT_DOUBLE_SPEAKER.toString());
+    chooserMenu.addOption("Blue Center Double Speaker", AutonomousModeChoices6237MR.BLUE_CENTER_DOUBLE_SPEAKER.toString());
+    chooserMenu.addOption("Red Center Double Speaker", AutonomousModeChoices6237MR.RED_CENTER_DOUBLE_SPEAKER.toString());
+    chooserMenu.addOption("Blue Right Double Speaker", AutonomousModeChoices6237MR.BLUE_RIGHT_DOUBLE_SPEAKER.toString());
+    chooserMenu.addOption("Red Left Double Speaker", AutonomousModeChoices6237MR.RED_LEFT_DOUBLE_SPEAKER.toString());
+
     chooserMenu.setDefaultOption("Example Auto", AutonomousModeChoices6237MR.EXAMPLE_AUTO.toString());
 
     SmartDashboard.putData("Auto choices", chooserMenu);
