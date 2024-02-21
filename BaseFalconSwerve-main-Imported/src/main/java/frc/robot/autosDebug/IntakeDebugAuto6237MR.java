@@ -35,6 +35,3 @@ public class IntakeDebugAuto6237MR extends SequentialCommandGroup implements IAu
         }
     
 }
-
-    
-}
