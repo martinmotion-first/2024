@@ -47,9 +47,9 @@ public class BlueCenterAuto6237MR extends SequentialCommandGroup implements IAut
         Command turnIntakeOn = new ArmToIntakePositionCommand6237MR(arm);
         Command moveRobotToNote = new MoveByMetersCommand6237MR(s_Swerve, 2.828, 2.04);
         Command turnIntakeOff = new ArmToScoringPostionCommand6237MR(arm);
-        //moveArmToScoringPosition
-        Command rotateToLeave = new RotateInPlaceCommand6237MR(s_Swerve, 180); //this may be neither needed, nor desirable
-        Command moveRobotToLeave = new MoveByMetersCommand6237MR(s_Swerve, 5.679, 2.161);
+        Command moveArmToScoringPosition2 = new ArmToScoringPostionCommand6237MR(arm);
+        // Command rotateToLeave = new RotateInPlaceCommand6237MR(s_Swerve, 180); //this may be neither needed, nor desirable
+        // Command moveRobotToLeave = new MoveByMetersCommand6237MR(s_Swerve, 5.679, 2.161);
 
         addCommands(
             moveToWhereFirstRingGetsFired 
@@ -61,9 +61,9 @@ public class BlueCenterAuto6237MR extends SequentialCommandGroup implements IAut
             ,turnIntakeOn 
             ,moveRobotToNote 
             ,turnIntakeOff 
-            ,moveArmToScoringPosition
-            ,rotateToLeave 
-            ,moveRobotToLeave 
+            ,moveArmToScoringPosition2
+            // ,rotateToLeave 
+            // ,moveRobotToLeave 
         );
     }
 }
