@@ -21,14 +21,14 @@ public class OperatorMapping6237MR {
     new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value)
         .onTrue(new InstantCommand(() -> arm.setTargetPosition(Constants.Arm.kIntakePosition))); //swapping trigger and bumper for Rachel
 
-    new Trigger(() -> operatorController.getLeftTriggerAxis() > Constants.OIConstants.kTriggerButtonThreshold) //swapping trigger and bumper for Rachel
+    new Trigger(() -> operatorController.getLeftTriggerAxis() > Constants.kTriggerButtonThreshold) //swapping trigger and bumper for Rachel
         .onTrue(new InstantCommand(() -> arm.setTargetPosition(Constants.Arm.kScoringPosition)));
 
     new JoystickButton(operatorController, XboxController.Button.kStart.value)
         .onTrue(new InstantCommand(() -> arm.setTargetPosition(Constants.Arm.kHomePosition)));
 
     // intake controls (run while button is held down, run retract command once when the button is released)
-    new Trigger(() -> operatorController.getRightTriggerAxis() > Constants.OIConstants.kTriggerButtonThreshold)
+    new Trigger(() -> operatorController.getRightTriggerAxis() > Constants.kTriggerButtonThreshold)
         .whileTrue(new RunCommand(() -> intake.setPower(Constants.Intake.kIntakePower), intake))
         .onFalse(intake.retract());
 

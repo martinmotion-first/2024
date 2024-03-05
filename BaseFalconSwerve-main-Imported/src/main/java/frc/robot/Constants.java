@@ -13,7 +13,8 @@ import frc.lib.util.COTSFalconSwerveConstants;
 import frc.lib.util.SwerveModuleConstants;
 
 public final class Constants {
-    public static final double stickDeadband = 0.5;
+    public static final double stickDeadband = 0.1;
+    public static final double kTriggerButtonThreshold = 0.3;
 
     public static final int kXboxDriverPort = 0;
     public static final int kXboxOperatorPort = 1;
@@ -92,6 +93,9 @@ public final class Constants {
         /** Meters per Second */
         // public static final double maxSpeed = .1; //4.5; //TODO: This must be tuned to specific robot
         public static final double maxSpeed = 4.5;
+        // public static final double maxSpeed = 2.5; //tuning this down to try to limit the overall drive power temporarily
+
+
         /** Radians per Second */
         // public static final double maxAngularVelocity = .1; //10; //TODO: This must be tuned to specific robot
         public static final double maxAngularVelocity = 10; //10; //TODO: This must be tuned to specific robot
@@ -180,12 +184,6 @@ public final class Constants {
         public static final double kRedRightStartingPositionY = 7.032;
     }
 
-    //Constants imported from the revbox started code
-    public static final class OIConstants {
-        public static final int kDriverControllerPort = 0;
-        public static final double kDriveDeadband = 0.05;
-        public static final double kTriggerButtonThreshold = 0.5;
-    }
     public static final class Arm {
         public static final int kArmCanId = 33;//2;
         public static final boolean kArmInverted = true;
@@ -227,7 +225,8 @@ public final class Constants {
 
     public static final double kRetractDistance = -3.5;
 
-    public static final double kShotFeedTime = 10.0;
+    public static final double kShotFeedTime = 1.0;
+    // public static final double kShotFeedTime = 10.0; //testing with this temporarily, but resetting for operator
   }
 
   public static final class Launcher {
