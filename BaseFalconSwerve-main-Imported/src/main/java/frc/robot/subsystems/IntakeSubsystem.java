@@ -120,6 +120,45 @@ public class IntakeSubsystem extends SubsystemBase {
     return newCommand;
   }
 
+    /**
+   * Constructs a command that feeds a note into the launcher by running the intake for a set amount of time.
+   * This command takes control of the launcher subsystem to make sure the wheels keep spinning during the launch sequence.
+   * @param _launcher The instance of the launcher subsystem
+   * @return The launch command
+   */
+  public Command feedLauncherAlt(LauncherSubsystem _launcher, double powerIn, double timerValue) {
+    Command newCommand =
+        new Command() {
+          private Timer m_timer;
+
+          @Override
+          public void initialize() {
+            m_timer = new Timer();
+            m_timer.start();
+          }
+
+          @Override
+          public void execute() {
+            setPower(powerIn);
+            _launcher.runLauncher();
+          }
+
+          @Override
+          public boolean isFinished() {
+            return m_timer.get() > timerValue;
+          }
+
+          @Override
+          public void end(boolean interrupted) {
+            setPower(0.0);
+          }
+        };
+
+    newCommand.addRequirements(this, _launcher);
+
+    return newCommand;
+  }
+
   @Override
   public void periodic() { // This method will be called once per scheduler run
     // if we've reached the position target, drop out of position mode
