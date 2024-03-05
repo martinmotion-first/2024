@@ -10,6 +10,7 @@ public class DriverMapping6237MR {
     /* Driver Buttons */
     public static JoystickButton zeroGyro;
     public static JoystickButton robotCentric;
+    public static JoystickButton invertFrontAndBackButton;
 
     /* Drive Controls */
     public static int translationAxis = XboxController.Axis.kLeftY.value;
@@ -19,8 +20,14 @@ public class DriverMapping6237MR {
     public static void mapXboxController(XboxController driverController, Swerve swerveDrive) {
         zeroGyro = new JoystickButton(driverController, XboxController.Button.kY.value);
         robotCentric = new JoystickButton(driverController, XboxController.Button.kLeftBumper.value);
+        invertFrontAndBackButton = new JoystickButton(driverController, XboxController.Button.kRightBumper.value);
+
 
         zeroGyro.onTrue(new InstantCommand(() -> swerveDrive.zeroGyro()));
+
+
+        //!!! Remember to switch bumpers to triggers
+        //!!!! remember to adjust deadband down
     }
     
 }

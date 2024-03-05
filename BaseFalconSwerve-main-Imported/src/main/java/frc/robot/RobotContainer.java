@@ -58,7 +58,8 @@ public class RobotContainer {
                 () -> -driver.getRawAxis(DriverMapping6237MR.translationAxis), 
                 () -> -driver.getRawAxis(DriverMapping6237MR.strafeAxis), 
                 () -> -driver.getRawAxis(DriverMapping6237MR.rotationAxis), 
-                () -> DriverMapping6237MR.robotCentric.getAsBoolean()
+                () -> DriverMapping6237MR.robotCentric.getAsBoolean(),
+                () -> DriverMapping6237MR.invertFrontAndBackButton.getAsBoolean()
             )
         );
 

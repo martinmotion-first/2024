@@ -227,7 +227,7 @@ public final class Constants {
 
     public static final double kRetractDistance = -3.5;
 
-    public static final double kShotFeedTime = 1.0;
+    public static final double kShotFeedTime = 10.0;
   }
 
   public static final class Launcher {

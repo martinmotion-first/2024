@@ -19,10 +19,10 @@ public class OperatorMapping6237MR {
 
     // set up arm preset positions
     new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value)
-        .onTrue(new InstantCommand(() -> arm.setTargetPosition(Constants.Arm.kScoringPosition)));
+        .onTrue(new InstantCommand(() -> arm.setTargetPosition(Constants.Arm.kIntakePosition))); //swapping trigger and bumper for Rachel
 
-    new Trigger(() -> operatorController.getLeftTriggerAxis() > Constants.OIConstants.kTriggerButtonThreshold)
-        .onTrue(new InstantCommand(() -> arm.setTargetPosition(Constants.Arm.kIntakePosition)));
+    new Trigger(() -> operatorController.getLeftTriggerAxis() > Constants.OIConstants.kTriggerButtonThreshold) //swapping trigger and bumper for Rachel
+        .onTrue(new InstantCommand(() -> arm.setTargetPosition(Constants.Arm.kScoringPosition)));
 
     new JoystickButton(operatorController, XboxController.Button.kStart.value)
         .onTrue(new InstantCommand(() -> arm.setTargetPosition(Constants.Arm.kHomePosition)));
@@ -41,5 +41,8 @@ public class OperatorMapping6237MR {
 
     new JoystickButton(operatorController, XboxController.Button.kA.value)
         .onTrue(intake.feedLauncher(launcher));
+
+    new JoystickButton(operatorController, XboxController.Button.kB.value)
+        .onTrue(intake.feedLauncherAlt(launcher, .05, 1.0));
     }
 }
