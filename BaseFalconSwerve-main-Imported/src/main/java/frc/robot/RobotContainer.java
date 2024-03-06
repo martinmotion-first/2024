@@ -17,9 +17,12 @@ import frc.robot.autos.doublespeaker.BlueLeftDoubleSpeakerAuto6237MR;
 import frc.robot.autos.doublespeaker.BlueRightDoubleSpeakerAuto6237MR;
 import frc.robot.autos.doublespeaker.RedLeftDoubleSpeakerAuto6237MR;
 import frc.robot.autos.doublespeaker.RedRightDoubleSpeakerAuto6237MR;
+import frc.robot.autosDebug.AngleDebugAuto6237MR;
+import frc.robot.autosDebug.AngleDebugAuto6237MR2;
 import frc.robot.autosDebug.ArmDebugAuto6237MR;
 import frc.robot.autosDebug.IntakeDebugAuto6237MR;
 import frc.robot.autosDebug.LauncherDebugAuto6237MR;
+import frc.robot.autosDebug.MovementDebugAuto6237MR;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.controllers.DriverMapping6237MR;
 import frc.robot.controllers.OperatorMapping6237MR;
@@ -127,6 +130,12 @@ public class RobotContainer {
                 return new IntakeDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case DEBUG_LAUNCHER_AUTO:
                 return new LauncherDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
+            case DEBUG_MOVEMENT:
+                return new MovementDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
+            case DEBUG_ANGLE_120:
+                return new AngleDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
+            case DEBUG_ANGLE_NEG_120:
+                return new AngleDebugAuto6237MR2(s_Swerve, m_arm, m_launcher, m_intake);
 
             case ANGLE_PLAYGROUND:
                 return new AnglePlaygroundAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
