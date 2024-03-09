@@ -14,6 +14,6 @@ public class RunLauncherCommand6237MR extends Command {
 
     @Override
     public void execute(){
-        m_launcher.runLauncher();
+        m_launcher.runLauncher(false);
     }
 }

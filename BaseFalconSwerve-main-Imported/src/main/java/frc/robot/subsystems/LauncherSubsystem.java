@@ -12,6 +12,7 @@ public class LauncherSubsystem extends SubsystemBase {
   private CANSparkMax m_bottomMotor;
 
   private boolean m_launcherRunning;
+  private boolean m_run_lowerpower = false;
 
   /**
    * Creates a new LauncherSubsystem.
@@ -40,7 +41,8 @@ public class LauncherSubsystem extends SubsystemBase {
   /**
    * Turns the launcher on.  Can be run once and the launcher will stay running or run continuously in a {@code RunCommand}.
    */
-  public void runLauncher() {
+  public void runLauncher(boolean runLowPower) {
+    m_run_lowerpower = runLowPower;
     m_launcherRunning = true;
   }
 
@@ -54,9 +56,12 @@ public class LauncherSubsystem extends SubsystemBase {
   @Override
   public void periodic() {  // this method will be called once per scheduler run
     // set the launcher motor powers based on whether the launcher is on or not
-    if (m_launcherRunning) {
+    if (m_launcherRunning && !m_run_lowerpower) {
       m_topMotor.set(Constants.Launcher.kTopPower);
       m_bottomMotor.set(Constants.Launcher.kBottomPower);
+    }else if(m_launcherRunning && m_run_lowerpower){
+      m_topMotor.set(Constants.Launcher.kTopLowPower);
+      m_bottomMotor.set(Constants.Launcher.kBottomLowPower);
     } else {
       m_topMotor.set(0.0);
       m_bottomMotor.set(0.0);
