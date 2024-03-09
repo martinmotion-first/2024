@@ -13,7 +13,7 @@ public class AngleDebugAuto6237MR2 extends SequentialCommandGroup implements IAu
 
     public AngleDebugAuto6237MR2(Swerve s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
         Command rotateCommand = new RotateInPlaceCommand6237MR(s_Swerve, -120);
-
+        addRequirements(s_Swerve);
         addCommands(rotateCommand);
     }
 

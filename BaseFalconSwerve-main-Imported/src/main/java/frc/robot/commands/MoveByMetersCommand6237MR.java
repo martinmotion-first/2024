@@ -43,6 +43,9 @@ public class MoveByMetersCommand6237MR extends Command{
             thetaController,
             swerveDrive::setModuleStates,
             swerveDrive);
+
+        
+        addRequirements(swerveDrive);
     }
 
     @Override

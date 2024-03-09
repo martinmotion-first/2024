@@ -18,7 +18,7 @@ public class LauncherDebugAuto6237MR extends SequentialCommandGroup implements I
         Command fireLauncherCommand = new RunLauncherCommand6237MR(launcher);
         Command pauseCommand = new WaitCommand(1);
         Command stopLauncherCommand = new StopRunningLauncher6237MR(launcher);
-
+        addRequirements(launcher);
         addCommands(
             fireLauncherCommand,
             pauseCommand,

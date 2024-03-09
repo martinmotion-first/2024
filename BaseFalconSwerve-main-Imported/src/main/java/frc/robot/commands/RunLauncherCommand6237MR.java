@@ -9,6 +9,7 @@ public class RunLauncherCommand6237MR extends Command {
 
     public RunLauncherCommand6237MR(LauncherSubsystem launcher) {
         m_launcher = launcher;
+        addRequirements(m_launcher);
     }
 
     @Override

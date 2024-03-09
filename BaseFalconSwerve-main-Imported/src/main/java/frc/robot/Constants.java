@@ -92,8 +92,8 @@ public final class Constants {
         /* Swerve Profiling Values */
         /** Meters per Second */
         // public static final double maxSpeed = .1; //4.5; //TODO: This must be tuned to specific robot
-        public static final double maxSpeed = 4.5;
         // public static final double maxSpeed = 2.5; //tuning this down to try to limit the overall drive power temporarily
+        public static final double maxSpeed = 4.5;
 
 
         /** Radians per Second */
@@ -204,7 +204,9 @@ public final class Constants {
         // ~76.9deg angle)
         public static final ArmFeedforward kArmFeedforward =
             new ArmFeedforward(0.0, 3.0, 12.0 / kArmFreeSpeed, 0.0);
-        public static final PIDGains kArmPositionGains = new PIDGains(2.5, 0.0, 0.0);
+        //public static final PIDGains kArmPositionGains = new PIDGains(2.5, 0.0, 0.0); 
+        //chatGPT gave me a suggestion for new PIDGains(5.0, 0.1, 0.05); - I personally would be more curious about the i and d than the p
+        public static final PIDGains kArmPositionGains = new PIDGains(2.5, 0.1, 0.05);
         public static final TrapezoidProfile.Constraints kArmMotionConstraint =
             new TrapezoidProfile.Constraints(1.0, 2.0);
 

@@ -16,7 +16,7 @@ public class IntakeDebugAuto6237MR extends SequentialCommandGroup implements IAu
         Command turnIntakeOn = intake.feedLauncher(launcher);
         Command pauseCommand = new WaitCommand(2);
         Command intakeOff = intake.retract();
-
+        addRequirements(intake, launcher);
         addCommands(
             turnIntakeOn,
             pauseCommand,

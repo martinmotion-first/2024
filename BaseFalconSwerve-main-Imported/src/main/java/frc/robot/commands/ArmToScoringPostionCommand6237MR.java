@@ -9,10 +9,12 @@ public class ArmToScoringPostionCommand6237MR extends Command {
 
     public ArmToScoringPostionCommand6237MR(ArmSubsystem theRobotArm){
         m_robotArm = theRobotArm;
+        addRequirements(m_robotArm);
     }
     
     @Override
     public void execute() {
-        m_robotArm.setTargetPosition(Constants.Arm.kIntakePosition);
+        m_robotArm.setTargetPosition(Constants.Arm.kScoringPosition);
+        m_robotArm.runAutomatic();
     }
 }

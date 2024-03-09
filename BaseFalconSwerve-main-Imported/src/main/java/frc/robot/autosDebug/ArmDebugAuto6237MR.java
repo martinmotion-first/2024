@@ -20,6 +20,7 @@ public class ArmDebugAuto6237MR extends SequentialCommandGroup implements IAuton
 
         Command pauseCommand2 = new WaitCommand(3);
         Command moveArmToScoringPosition2 = new ArmToScoringPostionCommand6237MR(arm);
+        addRequirements(arm);
         addCommands(
             moveArmToScoringPosition,
             pauseCommand,

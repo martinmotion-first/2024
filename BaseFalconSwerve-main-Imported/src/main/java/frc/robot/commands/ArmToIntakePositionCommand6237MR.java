@@ -10,10 +10,12 @@ public class ArmToIntakePositionCommand6237MR extends Command {
 
     public ArmToIntakePositionCommand6237MR(ArmSubsystem theRobotArm){
         m_robotArm = theRobotArm;
+        addRequirements(m_robotArm);
     }
     
     @Override
     public void execute() {
         m_robotArm.setTargetPosition(Constants.Arm.kIntakePosition);
+        m_robotArm.runAutomatic();
     }
 }
