@@ -37,12 +37,12 @@ public class OperatorMapping6237MR {
 
     // launcher controls (button to pre-spin the launcher and button to launch)
     new JoystickButton(operatorController, XboxController.Button.kRightBumper.value)
-        .whileTrue(new RunCommand(() -> launcher.runLauncher(), launcher));
+        .whileTrue(new RunCommand(() -> launcher.runLauncher(false), launcher));
 
     new JoystickButton(operatorController, XboxController.Button.kA.value)
         .onTrue(intake.feedLauncher(launcher));
 
     new JoystickButton(operatorController, XboxController.Button.kB.value)
-        .onTrue(intake.feedLauncherAlt(launcher, .05, 1.0));
+        .onTrue(intake.feedLauncherAlt(launcher, .25, 1.0));
     }
 }

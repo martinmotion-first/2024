@@ -101,7 +101,7 @@ public class IntakeSubsystem extends SubsystemBase {
           @Override
           public void execute() {
             setPower(1.0);
-            _launcher.runLauncher();
+            _launcher.runLauncher(false);
           }
 
           @Override
@@ -140,7 +140,7 @@ public class IntakeSubsystem extends SubsystemBase {
           @Override
           public void execute() {
             setPower(powerIn);
-            _launcher.runLauncher();
+            _launcher.runLauncher(true);
           }
 
           @Override

@@ -9,6 +9,7 @@ public class StopRunningLauncher6237MR extends Command {
 
     public StopRunningLauncher6237MR(LauncherSubsystem launcher) {
         m_launcher = launcher;
+        addRequirements(m_launcher);
     }
 
     @Override

@@ -17,7 +17,7 @@ public class MovementDebugAuto6237MR extends SequentialCommandGroup implements I
         Command movementTwo = new MoveByMetersCommand6237MR(s_Swerve, 0, -1);
         Command movementThree = new MoveByMetersCommand6237MR(s_Swerve, -1, 0);
         Command movementFour = new MoveByMetersCommand6237MR(s_Swerve, -1, -1);
-
+        addRequirements(s_Swerve);
         addCommands(
             movementOne,
             movementTwo,
