@@ -15,10 +15,10 @@ public class ArmDebugAuto6237MR extends SequentialCommandGroup implements IAuton
  
     public ArmDebugAuto6237MR(Swerve s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
         Command moveArmToScoringPosition = new ArmToScoringPostionCommand6237MR(arm);
-        Command pauseCommand = new WaitCommand(3);
+        Command pauseCommand = new WaitCommand(2);
         Command moveArmToIntakePosition = new ArmToIntakePositionCommand6237MR(arm);
 
-        Command pauseCommand2 = new WaitCommand(3);
+        Command pauseCommand2 = new WaitCommand(2);
         Command moveArmToScoringPosition2 = new ArmToScoringPostionCommand6237MR(arm);
         addRequirements(arm);
         addCommands(

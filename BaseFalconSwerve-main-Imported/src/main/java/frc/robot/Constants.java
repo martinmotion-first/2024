@@ -237,6 +237,9 @@ public final class Constants {
 
     public static final double kTopPower = -0.7;
     public static final double kBottomPower = -0.8;
+
+    public static final double kTopLowPower = -0.2;
+    public static final double kBottomLowPower = -0.2;
   }
 
 }
