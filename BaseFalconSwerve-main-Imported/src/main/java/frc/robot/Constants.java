@@ -13,7 +13,7 @@ import frc.lib.util.COTSFalconSwerveConstants;
 import frc.lib.util.SwerveModuleConstants;
 
 public final class Constants {
-    public static final double stickDeadband = 0.1;
+    public static final double stickDeadband = 0.2;
     public static final double kTriggerButtonThreshold = 0.3;
 
     public static final int kXboxDriverPort = 0;
@@ -92,13 +92,13 @@ public final class Constants {
         /* Swerve Profiling Values */
         /** Meters per Second */
         // public static final double maxSpeed = .1; //4.5; //TODO: This must be tuned to specific robot
+        public static final double maxSpeed = .5;
         // public static final double maxSpeed = 2.5; //tuning this down to try to limit the overall drive power temporarily
-        public static final double maxSpeed = 4.5;
 
 
         /** Radians per Second */
         // public static final double maxAngularVelocity = .1; //10; //TODO: This must be tuned to specific robot
-        public static final double maxAngularVelocity = 10; //10; //TODO: This must be tuned to specific robot
+        public static final double maxAngularVelocity = .5; //10; //TODO: This must be tuned to specific robot
 
         /* Neutral Modes */
         public static final NeutralMode angleNeutralMode = NeutralMode.Coast;
@@ -204,9 +204,7 @@ public final class Constants {
         // ~76.9deg angle)
         public static final ArmFeedforward kArmFeedforward =
             new ArmFeedforward(0.0, 3.0, 12.0 / kArmFreeSpeed, 0.0);
-        //public static final PIDGains kArmPositionGains = new PIDGains(2.5, 0.0, 0.0); 
-        //chatGPT gave me a suggestion for new PIDGains(5.0, 0.1, 0.05); - I personally would be more curious about the i and d than the p
-        public static final PIDGains kArmPositionGains = new PIDGains(2.5, 0.1, 0.05);
+        public static final PIDGains kArmPositionGains = new PIDGains(2.5, 0.0, 0.0);
         public static final TrapezoidProfile.Constraints kArmMotionConstraint =
             new TrapezoidProfile.Constraints(1.0, 2.0);
 
@@ -239,9 +237,6 @@ public final class Constants {
 
     public static final double kTopPower = -0.7;
     public static final double kBottomPower = -0.8;
-
-    public static final double kTopLowPower = -0.2;
-    public static final double kBottomLowPower = -0.2;
   }
 
 }
