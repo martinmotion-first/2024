@@ -148,7 +148,8 @@ public final class Constants {
       
     }
 
-    public static final class AutoConstants { //TODO: The below constants are used in the example auto, and must be tuned to specific robot
+    public static final class AutonomousModeConstants { //TODO: The below constants are used in the example auto, and must be tuned to specific robot
+        //Autonomous-only drivetrain constants
         public static final double kMaxSpeedMetersPerSecond = 3;
         public static final double kMaxAccelerationMetersPerSecondSquared = 3;
         public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
@@ -162,6 +163,11 @@ public final class Constants {
         public static final TrapezoidProfile.Constraints kThetaControllerConstraints =
             new TrapezoidProfile.Constraints(
                 kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
+
+        //Autonomous-only Arm subsytem constants
+        public static final double kAutonomousArmWaitTime = 1;
+        //Autonomous-only Intake Subsystem constants
+        public static final double kAutonomonousIntakeRunTime = 1;
     }
 
     public static final class SimulatorConstants6237MR{

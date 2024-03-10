@@ -23,7 +23,6 @@ import frc.robot.autosDebug.AngleDebugAuto6237MR2;
 import frc.robot.autosDebug.ArmDebugAuto6237MR;
 import frc.robot.autosDebug.IntakeDebugAuto6237MR;
 import frc.robot.autosDebug.IntakeToLauncherDebugAuto6237MR;
-import frc.robot.autosDebug.LauncherDebugAuto6237MR;
 import frc.robot.autosDebug.MoveAndFireDebugAuto6237MR;
 import frc.robot.autosDebug.MovementDebugAuto6237MR;
 import frc.robot.commands.TeleopSwerve;
@@ -131,8 +130,6 @@ public class RobotContainer {
                 return new ArmDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case DEBUG_INTAKE_AUTO:
                 return new IntakeDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
-            case DEBUG_LAUNCHER_AUTO:
-                return new LauncherDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case DEBUG_MOVEMENT:
                 return new MovementDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case DEBUG_ANGLE_120:

@@ -62,8 +62,7 @@ public class Robot extends TimedRobot {
 
     chooserMenu.addOption("DEBUG Arm", AutonomousModeChoices6237MR.DEBUG_ARM_AUTO.toString());
     chooserMenu.addOption("DEBUG Intake", AutonomousModeChoices6237MR.DEBUG_INTAKE_AUTO.toString());
-    chooserMenu.addOption("DEBUG Launcher", AutonomousModeChoices6237MR.DEBUG_LAUNCHER_AUTO.toString());
-    chooserMenu.addOption("DEBUG Movement", AutonomousModeChoices6237MR.DEBUG_LAUNCHER_AUTO.toString());
+    chooserMenu.addOption("DEBUG Movement", AutonomousModeChoices6237MR.DEBUG_MOVEMENT.toString());
     chooserMenu.addOption("DEBUG Angle 1", AutonomousModeChoices6237MR.DEBUG_ANGLE_120.toString());
     chooserMenu.addOption("DEBUG Angle 2", AutonomousModeChoices6237MR.DEBUG_ANGLE_NEG_120.toString());
     chooserMenu.addOption("DEBUG Feed Intake and Fire Launcher", AutonomousModeChoices6237MR.DEBUG_INTAKE_TO_LAUNCER.toString());

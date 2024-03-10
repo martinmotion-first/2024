@@ -5,10 +5,9 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants.SimulatorConstants6237MR;
 import frc.robot.commands.ArmToIntakePositionCommand6237MR;
 import frc.robot.commands.ArmToScoringPostionCommand6237MR;
+import frc.robot.commands.FireLauncherCommand6237MR;
 import frc.robot.commands.MoveByMetersCommand6237MR;
 import frc.robot.commands.RotateInPlaceCommand6237MR;
-import frc.robot.commands.RunLauncherCommand6237MR;
-import frc.robot.commands.StopRunningLauncher6237MR;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LauncherSubsystem;
@@ -24,8 +23,7 @@ public class RedLeftAuto6237MR extends SequentialCommandGroup implements IAutono
         Command moveRobotToFiringPosition = new MoveByMetersCommand6237MR(s_Swerve, 0.202, -2.253);
         Command rotateToFiringPostion = new RotateInPlaceCommand6237MR(s_Swerve, 120); //???
         Command moveArmToScoringPosition = new ArmToScoringPostionCommand6237MR(arm);
-        Command fireLauncherCommand = new RunLauncherCommand6237MR(launcher);
-        Command stopLauncher = new StopRunningLauncher6237MR(launcher);
+        Command fireLauncherCommand = new FireLauncherCommand6237MR(launcher, intake);
         Command moveArmToIntakePosition = new ArmToIntakePositionCommand6237MR(arm);
         Command rotateToLeave = new RotateInPlaceCommand6237MR(s_Swerve, 60); 
         Command moveRobotToLeave = new MoveByMetersCommand6237MR(s_Swerve, 5.796, -0.62); 
@@ -35,7 +33,6 @@ public class RedLeftAuto6237MR extends SequentialCommandGroup implements IAutono
             ,rotateToFiringPostion
             ,moveArmToScoringPosition
             ,fireLauncherCommand
-            ,stopLauncher
             ,moveArmToIntakePosition
             ,rotateToLeave
             ,moveRobotToLeave

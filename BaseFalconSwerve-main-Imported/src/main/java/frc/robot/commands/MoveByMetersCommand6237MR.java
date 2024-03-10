@@ -22,13 +22,13 @@ public class MoveByMetersCommand6237MR extends Command{
     public MoveByMetersCommand6237MR(SwerveSubsystem swerveDrive, double xInMeters, double yInMeters){
         TrajectoryConfig config =
             new TrajectoryConfig(
-                    Constants.AutoConstants.kMaxSpeedMetersPerSecond,
-                    Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
+                    Constants.AutonomousModeConstants.kMaxSpeedMetersPerSecond,
+                    Constants.AutonomousModeConstants.kMaxAccelerationMetersPerSecondSquared)
                 .setKinematics(Constants.Swerve.swerveKinematics);
         
         var thetaController =
             new ProfiledPIDController(
-                Constants.AutoConstants.kPThetaController, 0, 0, Constants.AutoConstants.kThetaControllerConstraints);
+                Constants.AutonomousModeConstants.kPThetaController, 0, 0, Constants.AutonomousModeConstants.kThetaControllerConstraints);
         thetaController.enableContinuousInput(-Math.PI, Math.PI);
 
         List<Pose2d> waypoints = new ArrayList<Pose2d>();
@@ -39,8 +39,8 @@ public class MoveByMetersCommand6237MR extends Command{
             t,
             swerveDrive::getPose,
             Constants.Swerve.swerveKinematics,
-            new PIDController(Constants.AutoConstants.kPXController, 0, 0),
-            new PIDController(Constants.AutoConstants.kPYController, 0, 0),
+            new PIDController(Constants.AutonomousModeConstants.kPXController, 0, 0),
+            new PIDController(Constants.AutonomousModeConstants.kPYController, 0, 0),
             thetaController,
             swerveDrive::setModuleStates,
             swerveDrive);
@@ -53,13 +53,13 @@ public class MoveByMetersCommand6237MR extends Command{
     public static SwerveControllerCommand FactoryIt(SwerveSubsystem swerveDrive, double xInMeters, double yInMeters){
         TrajectoryConfig config =
             new TrajectoryConfig(
-                    Constants.AutoConstants.kMaxSpeedMetersPerSecond,
-                    Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
+                    Constants.AutonomousModeConstants.kMaxSpeedMetersPerSecond,
+                    Constants.AutonomousModeConstants.kMaxAccelerationMetersPerSecondSquared)
                 .setKinematics(Constants.Swerve.swerveKinematics);
         
         var thetaController =
             new ProfiledPIDController(
-                Constants.AutoConstants.kPThetaController, 0, 0, Constants.AutoConstants.kThetaControllerConstraints);
+                Constants.AutonomousModeConstants.kPThetaController, 0, 0, Constants.AutonomousModeConstants.kThetaControllerConstraints);
         thetaController.enableContinuousInput(-Math.PI, Math.PI);
 
         List<Pose2d> waypoints = new ArrayList<>();
@@ -73,8 +73,8 @@ public class MoveByMetersCommand6237MR extends Command{
             t,
             swerveDrive::getPose,
             Constants.Swerve.swerveKinematics,
-            new PIDController(Constants.AutoConstants.kPXController, 0, 0),
-            new PIDController(Constants.AutoConstants.kPYController, 0, 0),
+            new PIDController(Constants.AutonomousModeConstants.kPXController, 0, 0),
+            new PIDController(Constants.AutonomousModeConstants.kPYController, 0, 0),
             thetaController,
             swerveDrive::setModuleStates,
             swerveDrive);

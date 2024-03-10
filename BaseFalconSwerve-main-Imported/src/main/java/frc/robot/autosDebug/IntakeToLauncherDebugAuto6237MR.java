@@ -1,15 +1,13 @@
 package frc.robot.autosDebug;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.Constants;
 import frc.robot.autos.IAutonomousPath6237MR;
 import frc.robot.commands.ArmToIntakePositionCommand6237MR;
 import frc.robot.commands.ArmToScoringPostionCommand6237MR;
-import frc.robot.commands.RunLauncherCommand6237MR;
-import frc.robot.commands.StopRunningLauncher6237MR;
+import frc.robot.commands.FireLauncherCommand6237MR;
+import frc.robot.commands.MoveByMetersCommand6237MR;
+import frc.robot.commands.RunIntakeCommand6237MR;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LauncherSubsystem;
@@ -19,25 +17,23 @@ public class IntakeToLauncherDebugAuto6237MR extends SequentialCommandGroup impl
     public IntakeToLauncherDebugAuto6237MR(SwerveSubsystem s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
 
         Command armToFloor = new ArmToIntakePositionCommand6237MR(arm);
-        // Command intakeOn = intake.feedLauncher(launcher);
-        Command intakeOn = new RunCommand(() -> intake.setPower(Constants.Intake.kIntakePower), intake);
-        Command pauseOne = new WaitCommand(1);
-        Command intakeRetract = intake.retract();
+        Command intakeCommand = new RunIntakeCommand6237MR(intake);
+        Command backIntoNote = new MoveByMetersCommand6237MR(s_Swerve, -1, 0);
         Command armToScoring = new ArmToScoringPostionCommand6237MR(arm);
-        Command fireLauncherCommand = new RunLauncherCommand6237MR(launcher);
-        Command pauseCommand = new WaitCommand(1);
-        Command stopLauncherCommand = new StopRunningLauncher6237MR(launcher);
+        Command resetMovementPositionToStart = new MoveByMetersCommand6237MR(s_Swerve, 0, 1);
+        // Command waitForPositioning = new WaitCommand(Constants.Arm.kAutonomousArmWaitTime);
+        Command fireLauncherCommand = new FireLauncherCommand6237MR(launcher, intake);
+
         addRequirements(intake, launcher);
 
         addCommands(
             armToFloor,
-            intakeOn,
-            pauseOne,
-            intakeRetract,
+            intakeCommand,
+            backIntoNote,
             armToScoring,
-            fireLauncherCommand,
-            pauseCommand,
-            stopLauncherCommand
+            resetMovementPositionToStart,
+            // waitForPositioning,
+            fireLauncherCommand
         );
     }
 
