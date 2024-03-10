@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "frc.robot.Main",
+      "projectName": "BaseFalconSwerve-main-Imported"
+    },
+    {
+      "type": "java",
       "name": "RedLeftAuto6237MR",
       "request": "launch",
       "mainClass": "frc.robot.autos.RedLeftAuto6237MR",

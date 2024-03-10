@@ -66,7 +66,7 @@ public class MoveByMetersCommand6237MR extends Command{
         // waypoints.add(new Pose2d(0,0,new Rotation2d(0)));
         // waypoints.add(new Pose2d(1, -1, new Rotation2d(0)));
         waypoints.add(new Pose2d(xInMeters / 3, yInMeters / 3,new Rotation2d(0)));
-        waypoints.add(new Pose2d(xInMeters / 2, yInMeters / 2, new Rotation2d(0)));
+        waypoints.add(new Pose2d( (xInMeters * 2) / 3, (yInMeters * 2) / 3, new Rotation2d(0)));
         Trajectory t = TrajectoryGenerator.generateTrajectory(waypoints, config);
 
         SwerveControllerCommand newCommand = new SwerveControllerCommand(
