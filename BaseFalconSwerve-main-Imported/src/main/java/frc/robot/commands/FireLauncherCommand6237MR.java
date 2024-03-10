@@ -44,6 +44,7 @@ public class FireLauncherCommand6237MR extends Command {
 
     @Override
     public void end(boolean interrupted) {
+        m_launcher.stopLauncher();
         m_intake.setPower(0.0);
         DisplayUtil.log(this.getName(), "In end with interrupted variable: " + interrupted + "<<<<<");
     }

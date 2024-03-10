@@ -17,7 +17,7 @@ public class BrianTestsHowMathWorks {
     @Test
 	void testWaypointCoordinates() {
 		//setup
-        double destinationX = 0;
+        double destinationX = -3;
         double destinationY = 7;
 
 		//Act
