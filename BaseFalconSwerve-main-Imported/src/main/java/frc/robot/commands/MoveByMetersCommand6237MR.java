@@ -32,7 +32,7 @@ public class MoveByMetersCommand6237MR extends Command{
         thetaController.enableContinuousInput(-Math.PI, Math.PI);
 
         List<Pose2d> waypoints = new ArrayList<Pose2d>();
-        waypoints.add(new Pose2d(xInMeters,yInMeters,new Rotation2d()));
+        waypoints.add(new Pose2d(xInMeters / 2.0, yInMeters / 2.0, new Rotation2d()));
         Trajectory t = TrajectoryGenerator.generateTrajectory(waypoints, config);
 
         m_swerveCommand = new SwerveControllerCommand(
