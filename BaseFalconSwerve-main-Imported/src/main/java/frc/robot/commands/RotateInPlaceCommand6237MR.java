@@ -65,14 +65,15 @@ public class RotateInPlaceCommand6237MR extends Command{
 
     @Override
     public void initialize() {
-        super.initialize(); 
+        // super.initialize(); 
+        m_swerveDrive.zeroGyro();
         DisplayUtil.log(this.getName(), "In initialize ");
     }
     
     @Override
     public void execute() {
         // !!!! IF THIS WORKS !!!! - Remember to create a different version of drive for Autonomous potentially since this currently _could_ end up using Teleop constants...
-        m_swerveDrive.drive(new Translation2d(), m_desiredRotation, false, true);
+        m_swerveDrive.driveAlternate(new Translation2d(), m_desiredRotation, false, true, .1);
         DisplayUtil.log(this.getName(), "In execute");
     }
 
@@ -80,6 +81,7 @@ public class RotateInPlaceCommand6237MR extends Command{
     public boolean isFinished(){
         boolean areWeFinished = Math.abs(m_swerveDrive.getYaw().getDegrees()) > Math.abs(m_desiredRotation);
         DisplayUtil.log(this.getName(), "In isFinished with value:" + areWeFinished);
+        DisplayUtil.log(this.getName(), "Swerve subsytem yaw value:" + m_swerveDrive.getYaw().getDegrees());
         return areWeFinished;
     }
 
