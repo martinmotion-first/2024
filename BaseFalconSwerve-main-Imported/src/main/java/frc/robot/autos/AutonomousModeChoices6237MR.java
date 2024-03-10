@@ -1,7 +1,6 @@
 package frc.robot.autos;
 
 public enum AutonomousModeChoices6237MR {
-    EXAMPLE_AUTO,
     BLUE_RIGHT_AUTO_MODE_1,
     RED_LEFT_AUTO_MODE_1,
     BLUE_CENTER_AUTO_MODE_1,
@@ -18,7 +17,6 @@ public enum AutonomousModeChoices6237MR {
     DEBUG_INTAKE_AUTO,
     ANGLE_PLAYGROUND,
     DEBUG_ANGLE_120,
-    DEBUG_ANGLE_NEG_120,
     DEBUG_MOVEMENT,
     DEBUG_INTAKE_TO_LAUNCER,
     DEBUG_MOVE_AND_FIRE

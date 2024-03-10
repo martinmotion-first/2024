@@ -44,32 +44,35 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     CameraServer.startAutomaticCapture();
 
-    chooserMenu.addOption("Example Auto", AutonomousModeChoices6237MR.EXAMPLE_AUTO.toString());
-    chooserMenu.addOption("Blue Right Auto Mode 1", AutonomousModeChoices6237MR.BLUE_RIGHT_AUTO_MODE_1.toString());
-    chooserMenu.addOption("Blue Center Auto Mode 1", AutonomousModeChoices6237MR.BLUE_CENTER_AUTO_MODE_1.toString()); 
-    chooserMenu.addOption("Blue Left Auto Mode 1", AutonomousModeChoices6237MR.BLUE_LEFT_AUTO_MODE_1.toString());
-    chooserMenu.addOption("Red Left Auto Mode 1", AutonomousModeChoices6237MR.RED_LEFT_AUTO_MODE_1.toString()); //inverted Blue Right Auto
-    chooserMenu.addOption("Red Center Auto Mode 1", AutonomousModeChoices6237MR.RED_CENTER_AUTO_MODE_1.toString()); //inverted Blue Center Auto
-    chooserMenu.addOption("Red Right Auto Mode 1", AutonomousModeChoices6237MR.RED_RIGHT_AUTO_MODE_1.toString()); //inverted Blue Left Auto
-    chooserMenu.addOption("Angle Playground", AutonomousModeChoices6237MR.ANGLE_PLAYGROUND.toString()); //inverted Blue Left Auto
-    
-    chooserMenu.addOption("Blue Left Double Speaker", AutonomousModeChoices6237MR.BLUE_LEFT_DOUBLE_SPEAKER.toString());
-    chooserMenu.addOption("Red Right Double Speaker", AutonomousModeChoices6237MR.RED_RIGHT_DOUBLE_SPEAKER.toString());
-    chooserMenu.addOption("Blue Center Double Speaker", AutonomousModeChoices6237MR.BLUE_CENTER_DOUBLE_SPEAKER.toString());
-    chooserMenu.addOption("Red Center Double Speaker", AutonomousModeChoices6237MR.RED_CENTER_DOUBLE_SPEAKER.toString());
-    chooserMenu.addOption("Blue Right Double Speaker", AutonomousModeChoices6237MR.BLUE_RIGHT_DOUBLE_SPEAKER.toString());
-    chooserMenu.addOption("Red Left Double Speaker", AutonomousModeChoices6237MR.RED_LEFT_DOUBLE_SPEAKER.toString());
+    //!!!!!!!!!!!!!! NOTE !!!!!!!!!!!!!!!!!!!!!!!
+    // I am currently removing these autonomous options as they'll need to be investigated again and tested against.
+    // Mostly I don't want someone to choose one accidentally during testing and tuning
+
+    // chooserMenu.addOption("Blue Right Auto Mode 1", AutonomousModeChoices6237MR.BLUE_RIGHT_AUTO_MODE_1.toString());
+    // chooserMenu.addOption("Blue Center Auto Mode 1", AutonomousModeChoices6237MR.BLUE_CENTER_AUTO_MODE_1.toString()); 
+    // chooserMenu.addOption("Blue Left Auto Mode 1", AutonomousModeChoices6237MR.BLUE_LEFT_AUTO_MODE_1.toString());
+    // chooserMenu.addOption("Red Left Auto Mode 1", AutonomousModeChoices6237MR.RED_LEFT_AUTO_MODE_1.toString()); //inverted Blue Right Auto
+    // chooserMenu.addOption("Red Center Auto Mode 1", AutonomousModeChoices6237MR.RED_CENTER_AUTO_MODE_1.toString()); //inverted Blue Center Auto
+    // chooserMenu.addOption("Red Right Auto Mode 1", AutonomousModeChoices6237MR.RED_RIGHT_AUTO_MODE_1.toString()); //inverted Blue Left Auto
+
+    // chooserMenu.addOption("Blue Left Double Speaker", AutonomousModeChoices6237MR.BLUE_LEFT_DOUBLE_SPEAKER.toString());
+    // chooserMenu.addOption("Red Right Double Speaker", AutonomousModeChoices6237MR.RED_RIGHT_DOUBLE_SPEAKER.toString());
+    // chooserMenu.addOption("Blue Center Double Speaker", AutonomousModeChoices6237MR.BLUE_CENTER_DOUBLE_SPEAKER.toString());
+    // chooserMenu.addOption("Red Center Double Speaker", AutonomousModeChoices6237MR.RED_CENTER_DOUBLE_SPEAKER.toString());
+    // chooserMenu.addOption("Blue Right Double Speaker", AutonomousModeChoices6237MR.BLUE_RIGHT_DOUBLE_SPEAKER.toString());
+    // chooserMenu.addOption("Red Left Double Speaker", AutonomousModeChoices6237MR.RED_LEFT_DOUBLE_SPEAKER.toString());
 
     chooserMenu.addOption("DEBUG Arm", AutonomousModeChoices6237MR.DEBUG_ARM_AUTO.toString());
     chooserMenu.addOption("DEBUG Intake", AutonomousModeChoices6237MR.DEBUG_INTAKE_AUTO.toString());
     chooserMenu.addOption("DEBUG Movement", AutonomousModeChoices6237MR.DEBUG_MOVEMENT.toString());
     chooserMenu.addOption("DEBUG Angle 1", AutonomousModeChoices6237MR.DEBUG_ANGLE_120.toString());
-    chooserMenu.addOption("DEBUG Angle 2", AutonomousModeChoices6237MR.DEBUG_ANGLE_NEG_120.toString());
     chooserMenu.addOption("DEBUG Feed Intake and Fire Launcher", AutonomousModeChoices6237MR.DEBUG_INTAKE_TO_LAUNCER.toString());
     chooserMenu.addOption("DEBUG Move and Fire Launcher", AutonomousModeChoices6237MR.DEBUG_MOVE_AND_FIRE.toString());
 
-    chooserMenu.setDefaultOption("Example Auto", AutonomousModeChoices6237MR.EXAMPLE_AUTO.toString());
+    //one of a few different options that was used during testing. Probably should be deleted later, but leaving at this moment...
+    // chooserMenu.addOption("Angle Playground", AutonomousModeChoices6237MR.ANGLE_PLAYGROUND.toString()); 
 
+    chooserMenu.setDefaultOption("DEBUG Intake", AutonomousModeChoices6237MR.DEBUG_INTAKE_AUTO.toString());
     SmartDashboard.putData("Auto choices", chooserMenu);
     SmartDashboard.putData(m_robotContainer.getSwerve());
   }

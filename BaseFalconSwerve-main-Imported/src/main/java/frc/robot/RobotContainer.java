@@ -134,8 +134,6 @@ public class RobotContainer {
                 return new MovementDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case DEBUG_ANGLE_120:
                 return new AngleDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
-            case DEBUG_ANGLE_NEG_120:
-                return new AngleDebugAuto6237MR2(s_Swerve, m_arm, m_launcher, m_intake);
             case DEBUG_INTAKE_TO_LAUNCER:
                 return new IntakeToLauncherDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case DEBUG_MOVE_AND_FIRE:
@@ -144,7 +142,7 @@ public class RobotContainer {
             case ANGLE_PLAYGROUND:
                 return new AnglePlaygroundAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             default:
-               return new AnglePlaygroundAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
+               return new IntakeDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
         }
     }
 
