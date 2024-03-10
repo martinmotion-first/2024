@@ -12,8 +12,13 @@ import frc.robot.subsystems.SwerveSubsystem;
 public class AngleDebugAuto6237MR extends SequentialCommandGroup implements IAutonomousPath6237MR {
 
     public AngleDebugAuto6237MR(SwerveSubsystem s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
+
+        //Attempt 1 utilizing the existing Command structure...
         Command rotateCommand = new RotateInPlaceCommand6237MR(s_Swerve, 120);
-        addRequirements(s_Swerve);
+
+        //Attempt 2 using a Factory style build to retrieve the command
+        // Command rotateCommand = RotateInPlaceCommand6237MR.Create(s_Swerve, 120);
+        
         addCommands(rotateCommand);
     }
 

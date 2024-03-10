@@ -19,7 +19,6 @@ import frc.robot.autos.doublespeaker.BlueRightDoubleSpeakerAuto6237MR;
 import frc.robot.autos.doublespeaker.RedLeftDoubleSpeakerAuto6237MR;
 import frc.robot.autos.doublespeaker.RedRightDoubleSpeakerAuto6237MR;
 import frc.robot.autosDebug.AngleDebugAuto6237MR;
-import frc.robot.autosDebug.AngleDebugAuto6237MR2;
 import frc.robot.autosDebug.ArmDebugAuto6237MR;
 import frc.robot.autosDebug.IntakeDebugAuto6237MR;
 import frc.robot.autosDebug.IntakeToLauncherDebugAuto6237MR;
@@ -132,7 +131,7 @@ public class RobotContainer {
                 return new IntakeDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case DEBUG_MOVEMENT:
                 return new MovementDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
-            case DEBUG_ANGLE_120:
+            case DEBUG_ROBOT_ROTATION:
                 return new AngleDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case DEBUG_INTAKE_TO_LAUNCER:
                 return new IntakeToLauncherDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
