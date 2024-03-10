@@ -50,6 +50,35 @@ public class MoveByMetersCommand6237MR extends Command{
         DisplayUtil.log(this.getName(), "Ending constructor");
     }
 
+    public static SwerveControllerCommand FactoryIt(SwerveSubsystem swerveDrive, double xInMeters, double yInMeters){
+        TrajectoryConfig config =
+            new TrajectoryConfig(
+                    Constants.AutoConstants.kMaxSpeedMetersPerSecond,
+                    Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
+                .setKinematics(Constants.Swerve.swerveKinematics);
+        
+        var thetaController =
+            new ProfiledPIDController(
+                Constants.AutoConstants.kPThetaController, 0, 0, Constants.AutoConstants.kThetaControllerConstraints);
+        thetaController.enableContinuousInput(-Math.PI, Math.PI);
+
+        List<Pose2d> waypoints = new ArrayList<Pose2d>();
+        waypoints.add(new Pose2d(xInMeters / 2.0, yInMeters / 2.0, new Rotation2d()));
+        Trajectory t = TrajectoryGenerator.generateTrajectory(waypoints, config);
+
+        SwerveControllerCommand newCommand = new SwerveControllerCommand(
+            t,
+            swerveDrive::getPose,
+            Constants.Swerve.swerveKinematics,
+            new PIDController(Constants.AutoConstants.kPXController, 0, 0),
+            new PIDController(Constants.AutoConstants.kPYController, 0, 0),
+            thetaController,
+            swerveDrive::setModuleStates,
+            swerveDrive);
+
+        return newCommand;
+    }
+
     @Override
     public void execute(){
         DisplayUtil.log(this.getName(), "Starting execute");
