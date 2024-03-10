@@ -32,4 +32,9 @@ public class DisplayUtil {
 
         return adjustedTrajectory;
     }
+
+    public static void log(String caller, String message){
+        System.out.println("***************************" + caller + "***************************");
+        System.out.println(">>>" + message);
+    }
 }

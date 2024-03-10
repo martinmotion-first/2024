@@ -20,7 +20,7 @@ import frc.robot.subsystems.SwerveSubsystem;
 public class RotateInPlaceCommand6237MR extends Command{
     // private SwerveControllerCommand swerveCommand;
 
-    private SwerveSubsystem m_swerveDrive;
+    private final SwerveSubsystem m_swerveDrive;
     private double m_desiredRotation;
 
     private SwerveControllerCommand wrappedCommand;

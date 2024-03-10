@@ -12,11 +12,12 @@ import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
+import frc.lib.util.DisplayUtil;
 import frc.robot.Constants;
 import frc.robot.subsystems.SwerveSubsystem;
 
 public class MoveByMetersCommand6237MR extends Command{
-    private SwerveControllerCommand m_swerveCommand;
+    private final SwerveControllerCommand m_swerveCommand;
     
     public MoveByMetersCommand6237MR(SwerveSubsystem swerveDrive, double xInMeters, double yInMeters){
         TrajectoryConfig config =
@@ -46,10 +47,33 @@ public class MoveByMetersCommand6237MR extends Command{
 
         
         addRequirements(swerveDrive);
+        DisplayUtil.log(this.getName(), "Ending constructor");
     }
 
     @Override
     public void execute(){
+        DisplayUtil.log(this.getName(), "Starting execute");
         m_swerveCommand.execute();
+        DisplayUtil.log(this.getName(), "Ending execute");
+    }
+
+    @Override
+    public void initialize() {
+        m_swerveCommand.initialize();
+        DisplayUtil.log(this.getName(), "In initialize");
+    }
+
+    @Override
+    public boolean isFinished()
+    {   
+        boolean f = m_swerveCommand.isFinished();
+        DisplayUtil.log(this.getName(), "In isFinished with response:" + f);
+        return f; //or false for the moment?
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        super.end(interrupted);
+        DisplayUtil.log(this.getName(), "In end with interrupted variable: " + interrupted + "<<<<<");
     }
 }
