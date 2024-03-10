@@ -20,13 +20,13 @@ public class RedLeftAuto6237MR extends SequentialCommandGroup implements IAutono
     public double getSimulatorDisplayCoordinateY(){return SimulatorConstants6237MR.kRedLeftStartingPositionY;}
 
     public RedLeftAuto6237MR(SwerveSubsystem s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
-        Command moveRobotToFiringPosition = new MoveByMetersCommand6237MR(s_Swerve, 0.202, -2.253);
+        Command moveRobotToFiringPosition = MoveByMetersCommand6237MR.Create(s_Swerve, 0.202, -2.253);
         Command rotateToFiringPostion = new RotateInPlaceCommand6237MR(s_Swerve, 120); //???
         Command moveArmToScoringPosition = new ArmToScoringPostionCommand6237MR(arm);
         Command fireLauncherCommand = new FireLauncherCommand6237MR(launcher, intake);
         Command moveArmToIntakePosition = new ArmToIntakePositionCommand6237MR(arm);
         Command rotateToLeave = new RotateInPlaceCommand6237MR(s_Swerve, 60); 
-        Command moveRobotToLeave = new MoveByMetersCommand6237MR(s_Swerve, 5.796, -0.62); 
+        Command moveRobotToLeave = MoveByMetersCommand6237MR.Create(s_Swerve, 5.796, -0.62); 
 
         addCommands(
             moveRobotToFiringPosition

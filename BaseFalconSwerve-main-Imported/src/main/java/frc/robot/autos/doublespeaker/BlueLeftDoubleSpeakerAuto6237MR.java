@@ -28,11 +28,11 @@ public class BlueLeftDoubleSpeakerAuto6237MR extends SequentialCommandGroup impl
         Command rotateToBackwardsFromStarting = new RotateInPlaceCommand6237MR(s_Swerve, -60);
         Command moveArmToIntakePosition = new ArmToIntakePositionCommand6237MR(arm);
         Command turnIntakeOn = new ArmToIntakePositionCommand6237MR(arm);
-        Command movementOne = new MoveByMetersCommand6237MR(s_Swerve, 0, .772); 
+        Command movementOne = MoveByMetersCommand6237MR.Create(s_Swerve, 0, .772); 
         Command turnIntakeOff = new ArmToScoringPostionCommand6237MR(arm);
-        Command movementTwo = new MoveByMetersCommand6237MR(s_Swerve, 0, .772); //QUESTION - is this forward or should this be +.772 on the actual bot
+        Command movementTwo = MoveByMetersCommand6237MR.Create(s_Swerve, 0, .772); //QUESTION - is this forward or should this be +.772 on the actual bot
         Command fireLauncherCommand2 = new FireLauncherCommand6237MR(launcher, intake);
-        Command movementThree = new MoveByMetersCommand6237MR(s_Swerve, 0, 5.751);
+        Command movementThree = MoveByMetersCommand6237MR.Create(s_Swerve, 0, 5.751);
 
         addCommands(
             rotateToFireAtSpeaker

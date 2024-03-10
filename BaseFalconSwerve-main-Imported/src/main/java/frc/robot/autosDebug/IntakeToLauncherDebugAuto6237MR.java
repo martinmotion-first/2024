@@ -21,9 +21,9 @@ public class IntakeToLauncherDebugAuto6237MR extends SequentialCommandGroup impl
         Command armToFloor = new ArmToIntakePositionCommand6237MR(arm);
         Command waitForPositioningArmPositioning1 = new WaitCommand(Constants.AutonomousModeConstants.kAutonomousArmWaitTime);
         Command intakeCommand = new RunIntakeCommand6237MR(intake);
-        Command backIntoNote = new MoveByMetersCommand6237MR(s_Swerve, -1, 0);
+        Command backIntoNote = MoveByMetersCommand6237MR.Create(s_Swerve, -1, 0);
         Command armToScoring = new ArmToScoringPostionCommand6237MR(arm);
-        Command resetMovementPositionToStart = new MoveByMetersCommand6237MR(s_Swerve, 0, 1);
+        Command resetMovementPositionToStart = MoveByMetersCommand6237MR.Create(s_Swerve, 0, 1);
         Command waitForPositioningArmPositioning2 = new WaitCommand(Constants.AutonomousModeConstants.kAutonomousArmWaitTime);
         Command fireLauncherCommand = new FireLauncherCommand6237MR(launcher, intake);
 

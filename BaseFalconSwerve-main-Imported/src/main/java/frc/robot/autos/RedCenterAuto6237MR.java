@@ -21,18 +21,18 @@ public class RedCenterAuto6237MR extends SequentialCommandGroup implements IAuto
 
     public RedCenterAuto6237MR(SwerveSubsystem s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
         
-        Command moveToWhereFirstRingGetsFired = new MoveByMetersCommand6237MR(s_Swerve, .772, -2.04);
+        Command moveToWhereFirstRingGetsFired = MoveByMetersCommand6237MR.Create(s_Swerve, .772, -2.04);
         Command moveArmToScoringPosition = new ArmToScoringPostionCommand6237MR(arm);
         Command rotateRobotToFiringAngle = new RotateInPlaceCommand6237MR(s_Swerve, -180);
         Command fireLauncherCommand = new FireLauncherCommand6237MR(launcher, intake);
         Command rotateToIntakePostion = new RotateInPlaceCommand6237MR(s_Swerve, -180);
         Command moveArmToIntakePosition = new ArmToIntakePositionCommand6237MR(arm);
         Command turnIntakeOn = new ArmToIntakePositionCommand6237MR(arm);
-        Command moveRobotToNote = new MoveByMetersCommand6237MR(s_Swerve, 2.828, -2.04);
+        Command moveRobotToNote = MoveByMetersCommand6237MR.Create(s_Swerve, 2.828, -2.04);
         Command turnIntakeOff = new ArmToScoringPostionCommand6237MR(arm);
         //moveArmToScoringPosition
         Command rotateToLeave = new RotateInPlaceCommand6237MR(s_Swerve, 180); //this may be neither needed, nor desirable
-        Command moveRobotToLeave = new MoveByMetersCommand6237MR(s_Swerve, 5.679, -2.161);
+        Command moveRobotToLeave = MoveByMetersCommand6237MR.Create(s_Swerve, 5.679, -2.161);
 
         addCommands(
             moveToWhereFirstRingGetsFired 

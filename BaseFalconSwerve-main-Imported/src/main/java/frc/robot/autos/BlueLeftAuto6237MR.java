@@ -47,9 +47,9 @@ public class BlueLeftAuto6237MR extends SequentialCommandGroup implements IAuton
         Command rotateToBackwardsFromStarting = new RotateInPlaceCommand6237MR(s_Swerve, -60);
         Command moveArmToIntakePosition = new ArmToIntakePositionCommand6237MR(arm);
         Command turnIntakeOn = new ArmToIntakePositionCommand6237MR(arm);
-        Command movementOne = new MoveByMetersCommand6237MR(s_Swerve, 0, .772); 
+        Command movementOne = MoveByMetersCommand6237MR.Create(s_Swerve, 0, .772); 
         Command turnIntakeOff = new ArmToScoringPostionCommand6237MR(arm);
-        Command movementThree = new MoveByMetersCommand6237MR(s_Swerve, 0, 5.751);
+        Command movementThree = MoveByMetersCommand6237MR.Create(s_Swerve, 0, 5.751);
 
         addCommands(
             rotateToFireAtSpeaker
