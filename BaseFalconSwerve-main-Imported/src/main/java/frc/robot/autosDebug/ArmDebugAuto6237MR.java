@@ -9,11 +9,11 @@ import frc.robot.commands.ArmToScoringPostionCommand6237MR;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LauncherSubsystem;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 public class ArmDebugAuto6237MR extends SequentialCommandGroup implements IAutonomousPath6237MR {
  
-    public ArmDebugAuto6237MR(Swerve s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
+    public ArmDebugAuto6237MR(SwerveSubsystem s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
         Command moveArmToScoringPosition = new ArmToScoringPostionCommand6237MR(arm);
         Command pauseCommand = new WaitCommand(2);
         Command moveArmToIntakePosition = new ArmToIntakePositionCommand6237MR(arm);

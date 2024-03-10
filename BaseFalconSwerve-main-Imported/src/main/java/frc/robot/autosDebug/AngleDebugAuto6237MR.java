@@ -7,11 +7,11 @@ import frc.robot.commands.RotateInPlaceCommand6237MR;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LauncherSubsystem;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 public class AngleDebugAuto6237MR extends SequentialCommandGroup implements IAutonomousPath6237MR {
 
-    public AngleDebugAuto6237MR(Swerve s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
+    public AngleDebugAuto6237MR(SwerveSubsystem s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
         Command rotateCommand = new RotateInPlaceCommand6237MR(s_Swerve, 120);
         addRequirements(s_Swerve);
         addCommands(rotateCommand);

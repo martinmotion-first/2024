@@ -11,7 +11,7 @@ import frc.robot.commands.RunLauncherCommand6237MR;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LauncherSubsystem;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 public class RedCenterAuto6237MR extends SequentialCommandGroup implements IAutonomousPath6237MR {
     @Override
@@ -19,7 +19,7 @@ public class RedCenterAuto6237MR extends SequentialCommandGroup implements IAuto
     @Override
     public double getSimulatorDisplayCoordinateY(){return SimulatorConstants6237MR.kRedCenterStartingPositionY;}
 
-    public RedCenterAuto6237MR(Swerve s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
+    public RedCenterAuto6237MR(SwerveSubsystem s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
         
         Command moveToWhereFirstRingGetsFired = new MoveByMetersCommand6237MR(s_Swerve, .772, -2.04);
         Command moveArmToScoringPosition = new ArmToScoringPostionCommand6237MR(arm);

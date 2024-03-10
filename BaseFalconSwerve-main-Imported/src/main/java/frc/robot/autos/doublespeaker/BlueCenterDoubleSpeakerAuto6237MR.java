@@ -12,7 +12,7 @@ import frc.robot.commands.RunLauncherCommand6237MR;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LauncherSubsystem;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 public class BlueCenterDoubleSpeakerAuto6237MR extends SequentialCommandGroup implements IAutonomousPath6237MR {
     @Override
@@ -20,7 +20,7 @@ public class BlueCenterDoubleSpeakerAuto6237MR extends SequentialCommandGroup im
     @Override
     public double getSimulatorDisplayCoordinateY(){return SimulatorConstants6237MR.kBlueCenterStartingPositionY;}
 
-    public BlueCenterDoubleSpeakerAuto6237MR(Swerve s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
+    public BlueCenterDoubleSpeakerAuto6237MR(SwerveSubsystem s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
         Command moveToWhereFirstRingGetsFired = new MoveByMetersCommand6237MR(s_Swerve, .772, 2.04);
         Command moveArmToScoringPosition = new ArmToScoringPostionCommand6237MR(arm);
         Command rotateRobotToFiringAngle = new RotateInPlaceCommand6237MR(s_Swerve, -180);

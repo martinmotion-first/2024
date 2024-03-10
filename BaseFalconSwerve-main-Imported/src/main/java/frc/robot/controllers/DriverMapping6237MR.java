@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 public class DriverMapping6237MR {
 
@@ -23,7 +23,7 @@ public class DriverMapping6237MR {
     public static int strafeAxis = XboxController.Axis.kLeftX.value;
     public static int rotationAxis = XboxController.Axis.kRightX.value;
 
-    public static void mapXboxController(XboxController driverController, Swerve swerveDrive) {
+    public static void mapXboxController(XboxController driverController, SwerveSubsystem swerveDrive) {
         zeroGyro = new JoystickButton(driverController, XboxController.Button.kY.value);
         // robotCentric = new JoystickButton(driverController, XboxController.Button.kLeftBumper.value);
         // invertFrontAndBackButton = new JoystickButton(driverController, XboxController.Button.kRightBumper.value);

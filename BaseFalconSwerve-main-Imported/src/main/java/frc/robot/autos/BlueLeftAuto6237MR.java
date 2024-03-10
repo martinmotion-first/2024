@@ -11,7 +11,7 @@ import frc.robot.commands.RunLauncherCommand6237MR;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LauncherSubsystem;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 public class BlueLeftAuto6237MR extends SequentialCommandGroup implements IAutonomousPath6237MR {
     @Override
@@ -20,7 +20,7 @@ public class BlueLeftAuto6237MR extends SequentialCommandGroup implements IAuton
     public double getSimulatorDisplayCoordinateY(){return SimulatorConstants6237MR.kBlueLeftStartingPositionY;}
 
 
-    public BlueLeftAuto6237MR(Swerve s_Swerve, IntakeSubsystem intake, ArmSubsystem arm, LauncherSubsystem launcher){
+    public BlueLeftAuto6237MR(SwerveSubsystem s_Swerve, IntakeSubsystem intake, ArmSubsystem arm, LauncherSubsystem launcher){
         /*
          start x = 1.716 , y = 7.032 
          absolute coords

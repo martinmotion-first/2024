@@ -13,12 +13,12 @@ import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.Constants;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 public class MoveByMetersCommand6237MR extends Command{
     private SwerveControllerCommand m_swerveCommand;
     
-    public MoveByMetersCommand6237MR(Swerve swerveDrive, double xInMeters, double yInMeters){
+    public MoveByMetersCommand6237MR(SwerveSubsystem swerveDrive, double xInMeters, double yInMeters){
         TrajectoryConfig config =
             new TrajectoryConfig(
                     Constants.AutoConstants.kMaxSpeedMetersPerSecond,

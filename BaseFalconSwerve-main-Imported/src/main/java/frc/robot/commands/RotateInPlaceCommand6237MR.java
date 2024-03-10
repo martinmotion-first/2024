@@ -15,12 +15,12 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.Constants;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 public class RotateInPlaceCommand6237MR extends Command{
     // private SwerveControllerCommand swerveCommand;
 
-    private Swerve m_swerveDrive;
+    private SwerveSubsystem m_swerveDrive;
     private double m_desiredRotation;
 
     private SwerveControllerCommand wrappedCommand;
@@ -28,7 +28,7 @@ public class RotateInPlaceCommand6237MR extends Command{
     //Not _positive_ yet, but I believe that when the angle is received in the swerve command, 
     //it will be in the syntax of 0 to -180 for the right turning arc
     //and 0 to 180 for the left turning arc
-    public RotateInPlaceCommand6237MR(Swerve swerveDrive, double desiredRotation){
+    public RotateInPlaceCommand6237MR(SwerveSubsystem swerveDrive, double desiredRotation){
         m_swerveDrive = swerveDrive;
         m_desiredRotation = desiredRotation;
 

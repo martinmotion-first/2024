@@ -9,11 +9,11 @@ import frc.robot.commands.StopRunningLauncher6237MR;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LauncherSubsystem;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 public class LauncherDebugAuto6237MR extends SequentialCommandGroup implements IAutonomousPath6237MR {
  
-        public LauncherDebugAuto6237MR(Swerve s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
+        public LauncherDebugAuto6237MR(SwerveSubsystem s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
 
         Command fireLauncherCommand = new RunLauncherCommand6237MR(launcher);
         Command pauseCommand = new WaitCommand(1);

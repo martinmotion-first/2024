@@ -11,10 +11,10 @@ import frc.robot.commands.StopRunningLauncher6237MR;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LauncherSubsystem;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 public class IntakeToLauncherDebugAuto6237MR extends SequentialCommandGroup implements IAutonomousPath6237MR {
-    public IntakeToLauncherDebugAuto6237MR(Swerve s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
+    public IntakeToLauncherDebugAuto6237MR(SwerveSubsystem s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
 
         Command armToFloor = new ArmToIntakePositionCommand6237MR(arm);
         Command intakeOn = intake.feedLauncher(launcher);

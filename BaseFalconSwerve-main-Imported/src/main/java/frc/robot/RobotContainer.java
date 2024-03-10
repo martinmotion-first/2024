@@ -13,6 +13,7 @@ import frc.robot.autos.BlueRightAuto6237MR;
 import frc.robot.autos.RedCenterAuto6237MR;
 import frc.robot.autos.RedLeftAuto6237MR;
 import frc.robot.autos.RedRightAuto6237MR;
+import frc.robot.autos.doublespeaker.BlueCenterDoubleSpeakerAuto6237MR;
 import frc.robot.autos.doublespeaker.BlueLeftDoubleSpeakerAuto6237MR;
 import frc.robot.autos.doublespeaker.BlueRightDoubleSpeakerAuto6237MR;
 import frc.robot.autos.doublespeaker.RedLeftDoubleSpeakerAuto6237MR;
@@ -23,6 +24,7 @@ import frc.robot.autosDebug.ArmDebugAuto6237MR;
 import frc.robot.autosDebug.IntakeDebugAuto6237MR;
 import frc.robot.autosDebug.IntakeToLauncherDebugAuto6237MR;
 import frc.robot.autosDebug.LauncherDebugAuto6237MR;
+import frc.robot.autosDebug.MoveAndFireDebugAuto6237MR;
 import frc.robot.autosDebug.MovementDebugAuto6237MR;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.controllers.DriverMapping6237MR;
@@ -30,7 +32,7 @@ import frc.robot.controllers.OperatorMapping6237MR;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LauncherSubsystem;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -45,7 +47,7 @@ public class RobotContainer {
     private final XboxController operator = new XboxController(Constants.kXboxOperatorPort);
 
     /* Subsystems */
-    private final Swerve s_Swerve = new Swerve();
+    private final SwerveSubsystem s_Swerve = new SwerveSubsystem();
     private final ArmSubsystem m_arm = new ArmSubsystem();
     private final IntakeSubsystem m_intake = new IntakeSubsystem();
     private final LauncherSubsystem m_launcher = new LauncherSubsystem();
@@ -117,7 +119,7 @@ public class RobotContainer {
             case RED_RIGHT_DOUBLE_SPEAKER:
                 return new RedRightDoubleSpeakerAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case BLUE_CENTER_DOUBLE_SPEAKER:
-                return new BlueCenterAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
+                return new BlueCenterDoubleSpeakerAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case RED_CENTER_DOUBLE_SPEAKER:
                 return new RedCenterAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case BLUE_RIGHT_DOUBLE_SPEAKER:
@@ -139,6 +141,8 @@ public class RobotContainer {
                 return new AngleDebugAuto6237MR2(s_Swerve, m_arm, m_launcher, m_intake);
             case DEBUG_INTAKE_TO_LAUNCER:
                 return new IntakeToLauncherDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
+            case DEBUG_MOVE_AND_FIRE:
+                return new MoveAndFireDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
 
             case ANGLE_PLAYGROUND:
                 return new AnglePlaygroundAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
@@ -147,7 +151,7 @@ public class RobotContainer {
         }
     }
 
-    public Swerve getSwerve(){
+    public SwerveSubsystem getSwerve(){
         return s_Swerve;
     }
 }
