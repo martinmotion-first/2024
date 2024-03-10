@@ -14,7 +14,7 @@ import frc.robot.subsystems.SwerveSubsystem;
 public class MoveAndFireDebugAuto6237MR extends SequentialCommandGroup implements IAutonomousPath6237MR {
  
     public MoveAndFireDebugAuto6237MR(SwerveSubsystem s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
-        Command movementOne = new MoveByMetersCommand6237MR(s_Swerve, 1, 1);
+        Command movementOne = MoveByMetersCommand6237MR.FactoryIt(s_Swerve, 1, 1);
         // Command fireLauncherCommand = new RunLauncherCommand6237MR(launcher);
         Command fireLauncherCommand = new FireLauncherCommand6237MR(launcher, intake);
         

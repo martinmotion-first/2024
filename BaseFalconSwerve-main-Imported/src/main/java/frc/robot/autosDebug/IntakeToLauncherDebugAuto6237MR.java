@@ -1,8 +1,10 @@
 package frc.robot.autosDebug;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.Constants;
 import frc.robot.autos.IAutonomousPath6237MR;
 import frc.robot.commands.ArmToIntakePositionCommand6237MR;
 import frc.robot.commands.ArmToScoringPostionCommand6237MR;
@@ -17,8 +19,10 @@ public class IntakeToLauncherDebugAuto6237MR extends SequentialCommandGroup impl
     public IntakeToLauncherDebugAuto6237MR(SwerveSubsystem s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
 
         Command armToFloor = new ArmToIntakePositionCommand6237MR(arm);
-        Command intakeOn = intake.feedLauncher(launcher);
+        // Command intakeOn = intake.feedLauncher(launcher);
+        Command intakeOn = new RunCommand(() -> intake.setPower(Constants.Intake.kIntakePower), intake);
         Command pauseOne = new WaitCommand(1);
+        Command intakeRetract = intake.retract();
         Command armToScoring = new ArmToScoringPostionCommand6237MR(arm);
         Command fireLauncherCommand = new RunLauncherCommand6237MR(launcher);
         Command pauseCommand = new WaitCommand(1);
@@ -29,6 +33,7 @@ public class IntakeToLauncherDebugAuto6237MR extends SequentialCommandGroup impl
             armToFloor,
             intakeOn,
             pauseOne,
+            intakeRetract,
             armToScoring,
             fireLauncherCommand,
             pauseCommand,

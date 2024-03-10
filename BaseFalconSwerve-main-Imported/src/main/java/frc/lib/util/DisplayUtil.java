@@ -5,6 +5,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.wpilibj.DriverStation;
 
 public class DisplayUtil {
     
@@ -34,7 +35,7 @@ public class DisplayUtil {
     }
 
     public static void log(String caller, String message){
-        System.out.println("***************************" + caller + "***************************");
-        System.out.println(">>>" + message);
+        DriverStation.reportError("***************************" + caller + "***************************", new StackTraceElement[0]);
+        DriverStation.reportError(">>>" + message, new StackTraceElement[0]);
     }
 }

@@ -43,6 +43,6 @@ public class OperatorMapping6237MR {
         .onTrue(intake.feedLauncher(launcher));
 
     new JoystickButton(operatorController, XboxController.Button.kB.value)
-        .onTrue(intake.feedLauncherAlt(launcher, .25, 1.0));
+        .onTrue(intake.feedLauncherAlt(launcher, .5, 1.0));
     }
 }

@@ -104,6 +104,10 @@ public class ArmSubsystem extends SubsystemBase {
         m_targetState.position, CANSparkMax.ControlType.kPosition, 0, m_feedforward);
   }
 
+  public boolean isFinished(){
+    return m_profile.isFinished(m_timer.get());
+  }
+
   /**
    * Drives the arm using the provided power value (usually from a joystick).
    * This also adds in the feedforward value which can help counteract gravity.

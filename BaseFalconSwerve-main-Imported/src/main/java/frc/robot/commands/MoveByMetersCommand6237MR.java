@@ -62,8 +62,11 @@ public class MoveByMetersCommand6237MR extends Command{
                 Constants.AutoConstants.kPThetaController, 0, 0, Constants.AutoConstants.kThetaControllerConstraints);
         thetaController.enableContinuousInput(-Math.PI, Math.PI);
 
-        List<Pose2d> waypoints = new ArrayList<Pose2d>();
-        waypoints.add(new Pose2d(xInMeters / 2.0, yInMeters / 2.0, new Rotation2d()));
+        List<Pose2d> waypoints = new ArrayList<>();
+        // waypoints.add(new Pose2d(0,0,new Rotation2d(0)));
+        // waypoints.add(new Pose2d(1, -1, new Rotation2d(0)));
+        waypoints.add(new Pose2d(xInMeters / 3, yInMeters / 3,new Rotation2d(0)));
+        waypoints.add(new Pose2d(xInMeters / 2, yInMeters / 2, new Rotation2d(0)));
         Trajectory t = TrajectoryGenerator.generateTrajectory(waypoints, config);
 
         SwerveControllerCommand newCommand = new SwerveControllerCommand(

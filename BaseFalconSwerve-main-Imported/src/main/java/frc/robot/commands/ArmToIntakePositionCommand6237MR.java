@@ -18,20 +18,22 @@ public class ArmToIntakePositionCommand6237MR extends Command {
     @Override
     public void execute() {
         DisplayUtil.log(this.getName(), "Starting execute");
-        m_robotArm.setTargetPosition(Constants.Arm.kIntakePosition);
+        m_robotArm.runAutomatic();
         DisplayUtil.log(this.getName(), "Ending execute");
     }
 
     @Override
     public void initialize() {
         super.initialize();
+        m_robotArm.setTargetPosition(Constants.Arm.kIntakePosition);
         DisplayUtil.log(this.getName(), "In initialize");
     }
 
     @Override
     public boolean isFinished(){
         DisplayUtil.log(this.getName(), "In isFinished");
-        return super.isFinished(); //or false for the moment?
+        DisplayUtil.log(this.getName(), "super is finished for posterity:" + super.isFinished()); //or false for the moment?
+        return m_robotArm.isFinished();
     }
 
     @Override
