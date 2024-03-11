@@ -23,13 +23,18 @@ public class IntakeToLauncherDebugAuto6237MR extends SequentialCommandGroup impl
         Command intakeCommand = new RunIntakeCommand6237MR(intake);
         Command backIntoNote = MoveByMetersCommand6237MR.Create(s_Swerve, -1, 0);
         Command armToScoring = new ArmToScoringPostionCommand6237MR(arm);
-        Command resetMovementPositionToStart = MoveByMetersCommand6237MR.Create(s_Swerve, 0, 1);
+        Command resetMovementPositionToStart = MoveByMetersCommand6237MR.Create(s_Swerve, 1, 0);
         Command waitForPositioningArmPositioning2 = new WaitCommand(Constants.AutonomousModeConstants.kAutonomousArmWaitTime);
         Command fireLauncherCommand = new FireLauncherCommand6237MR(launcher, intake);
+        
+        Command deleteMeYPlusOne = MoveByMetersCommand6237MR.Create(s_Swerve, 0, 1);
+        Command deleteMeYMinusOne = MoveByMetersCommand6237MR.Create(s_Swerve, 0, -1);
+        // Command additionalCommand = MoveByMetersCommand6237MR.Create(s_Swerve,1, 0);
 
         addRequirements(intake, launcher);
 
         addCommands(
+            deleteMeYPlusOne,
             armToFloor,
             waitForPositioningArmPositioning1,
             intakeCommand,
@@ -37,7 +42,9 @@ public class IntakeToLauncherDebugAuto6237MR extends SequentialCommandGroup impl
             armToScoring,
             resetMovementPositionToStart,
             waitForPositioningArmPositioning2,
-            fireLauncherCommand
+            fireLauncherCommand,
+            deleteMeYMinusOne
+            // additionalCommand
         );
     }
 

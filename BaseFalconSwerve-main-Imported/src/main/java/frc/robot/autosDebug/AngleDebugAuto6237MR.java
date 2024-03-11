@@ -15,11 +15,14 @@ public class AngleDebugAuto6237MR extends SequentialCommandGroup implements IAut
 
         //Attempt 1 utilizing the existing Command structure...
         Command rotateCommand = new RotateInPlaceCommand6237MR(s_Swerve, 120);
-
+        Command rotateCommand2 = new RotateInPlaceCommand6237MR(s_Swerve, -30);
+        Command rotateCommand3 = new RotateInPlaceCommand6237MR(s_Swerve, 270);
         //Attempt 2 using a Factory style build to retrieve the command
         // Command rotateCommand = RotateInPlaceCommand6237MR.Create(s_Swerve, 120);
         
-        addCommands(rotateCommand);
+        addCommands(rotateCommand
+        ,rotateCommand2,
+        rotateCommand3);
     }
 
     @Override

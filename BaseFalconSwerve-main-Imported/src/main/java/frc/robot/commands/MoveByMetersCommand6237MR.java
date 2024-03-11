@@ -33,11 +33,15 @@ public class MoveByMetersCommand6237MR {
         thetaController.enableContinuousInput(-Math.PI, Math.PI);
 
         List<Pose2d> waypoints = new ArrayList<>();
+        // waypoints.add(new Pose2d(0, 0,new Rotation2d(0)));
+        waypoints.add(new Pose2d(-xInMeters / 2, yInMeters / 2,new Rotation2d(0)));
+        waypoints.add(new Pose2d(-xInMeters, yInMeters,new Rotation2d(0)));
+        // waypoints.add(new Pose2d( (xInMeters * 2) / 3, (yInMeters * 2) / 3, new Rotation2d(0)));
         // waypoints.add(new Pose2d(xInMeters / 3, yInMeters / 3,new Rotation2d(0)));
         // waypoints.add(new Pose2d( (xInMeters * 2) / 3, (yInMeters * 2) / 3, new Rotation2d(0)));
         //a change to these waypoints that feels like a good idea but cant be tested at the moment....
-        waypoints.add(new Pose2d(xInMeters / 3, yInMeters / 3,new Rotation2d(swerveDrive.getYaw().getDegrees())));
-        waypoints.add(new Pose2d( (xInMeters * 2) / 3, (yInMeters * 2) / 3, new Rotation2d(swerveDrive.getYaw().getDegrees())));
+        // waypoints.add(new Pose2d(xInMeters / 3, yInMeters / 3,new Rotation2d(swerveDrive.getYaw().getDegrees())));
+        // waypoints.add(new Pose2d( (xInMeters * 2) / 3, (yInMeters * 2) / 3, new Rotation2d(swerveDrive.getYaw().getDegrees())));
         Trajectory t = TrajectoryGenerator.generateTrajectory(waypoints, config);
 
         SwerveControllerCommand newCommand = new SwerveControllerCommand(
