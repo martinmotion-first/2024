@@ -35,6 +35,6 @@ public class RunIntakeCommand6237MR extends Command {
 
     @Override
     public boolean isFinished() {
-        return timer.hasElapsed(Constants.AutonomousModeConstants.kAutonomonousIntakeRunTime);
+        return true;
     }
 }
