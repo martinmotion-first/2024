@@ -27,35 +27,21 @@ public class BlueCenterDoubleSpeakerAuto6237MR extends SequentialCommandGroup im
     public double getSimulatorDisplayCoordinateY(){return SimulatorConstants6237MR.kBlueCenterStartingPositionY;}
 
     public BlueCenterDoubleSpeakerAuto6237MR(SwerveSubsystem s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
-        // Command moveToWhereFirstRingGetsFired = MoveByMetersCommand6237MR.Create(s_Swerve, .772, 2.04);
-        // Command moveArmToScoringPosition = new ArmToScoringPostionCommand6237MR(arm);
-        // Command rotateRobotToFiringAngle = new RotateInPlaceCommand6237MR(s_Swerve, -180);
         Command fireLauncherCommand = new FireLauncherCommand6237MR(launcher, intake);
-        // Command rotateToIntakePostion = new RotateInPlaceCommand6237MR(s_Swerve, -180);
         Command moveArmToIntakePosition = new ArmToIntakePositionCommand6237MR(arm);
         Command waitForPositioningArmPositioning1 = new WaitCommand(Constants.AutonomousModeConstants.kAutonomousArmWaitTime);
         Command turnIntakeOn = new RunIntakeCommand6237MR(intake);
-        // Command moveRobotToNote = MoveByMetersCommand6237MR.Create(s_Swerve, 2.828, 2.04);
         Command moveRobotToNote = new MoveToCoordinatesCommand(s_Swerve, -2.828, 0);
         Command turnIntakeOff = new StopIntakeCommand6237MR(intake);
-        //moveArmToScoringPosition
         Command moveToSecondFiringPosition = new MoveToCoordinatesCommand(s_Swerve, 2.828, 0);// NOTE - THESE ARE A PLACEHOLDER
         Command moveArmToScoringPosition = new ArmToScoringPostionCommand6237MR(arm);
         Command waitForArmPositioning2 = new WaitCommand(Constants.AutonomousModeConstants.kAutonomousArmWaitTime);
         Command fireLauncherCommand2 = new FireLauncherCommand6237MR(launcher, intake);
-        //rotateRobotToFiringAngle
-        //fireLauncher
-        // Command rotateToLeave = new RotateInPlaceCommand6237MR(s_Swerve, 180); //this may be neither needed, nor desirable
-        // Command moveRobotToLeave = MoveByMetersCommand6237MR.Create(s_Swerve, 5.679, 2.161);
         Command zeroGyroCommand = new ZeroGyroCommand6237MR(s_Swerve);
 
 
         addCommands(
-            // moveToWhereFirstRingGetsFired 
-            // ,moveArmToScoringPosition 
-            // ,rotateRobotToFiringAngle 
             fireLauncherCommand 
-            // ,rotateToIntakePostion 
             ,moveArmToIntakePosition 
             ,waitForPositioningArmPositioning1
             ,turnIntakeOn 
@@ -66,8 +52,6 @@ public class BlueCenterDoubleSpeakerAuto6237MR extends SequentialCommandGroup im
             ,waitForArmPositioning2
             ,fireLauncherCommand2
             ,zeroGyroCommand
-            // ,rotateToLeave 
-            // ,moveRobotToLeave 
         );
     }
 }
