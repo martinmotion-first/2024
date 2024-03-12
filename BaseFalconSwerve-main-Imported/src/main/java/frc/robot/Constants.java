@@ -174,6 +174,7 @@ public final class Constants {
         //Autonomous-only Intake Subsystem constants
         // public static final double kAutonomonousIntakeRunTime = 1;
         public static final double kAutonomonousIntakeRunTime = 3; //running intake longer since speeds are lower...
+        public static final double kLauncherRunBeforeFiringDelay = .25;
     }
 
     public static final class SimulatorConstants6237MR{

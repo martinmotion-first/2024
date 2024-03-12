@@ -23,7 +23,9 @@ public class FireLauncherCommand6237MR extends Command {
     @Override
     public void execute(){
         DisplayUtil.log(this.getName(), "In execute");
-        m_intake.setPower(1.0);
+        if(m_timer.get() > Constants.AutonomousModeConstants.kLauncherRunBeforeFiringDelay){
+            m_intake.setPower(1.0);
+        }
     }
     
     @Override
