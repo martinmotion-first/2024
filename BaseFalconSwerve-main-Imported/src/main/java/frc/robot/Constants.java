@@ -173,7 +173,7 @@ public final class Constants {
         public static final double kAutonomousArmWaitTime = 1;
         //Autonomous-only Intake Subsystem constants
         // public static final double kAutonomonousIntakeRunTime = 1;
-        public static final double kAutonomonousIntakeRunTime = 3; //running intake longer since speeds are lower...
+        public static final double kAutonomonousIntakeRunTime = 1; //running intake longer since speeds are lower...
         public static final double kLauncherRunBeforeFiringDelay = .25;
     }
 

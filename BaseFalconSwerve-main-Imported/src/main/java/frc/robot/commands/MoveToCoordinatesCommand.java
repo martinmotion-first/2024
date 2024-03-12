@@ -35,7 +35,7 @@ public class MoveToCoordinatesCommand extends Command {
         double currentX = swerveDriveSubsystem.swerveOdometry.getPoseMeters().getX();
         double currentY = swerveDriveSubsystem.swerveOdometry.getPoseMeters().getY();
         double distance = Math.sqrt(Math.pow(targetX - currentX, 2) + Math.pow(targetY - currentY, 2));
-        double angle = Math.atan2(targetY - currentY, targetX - currentX);
+        double angle = 0;//Math.atan2(targetY - currentY, targetX - currentX);
 
         // Limit speed based on distance to target
         double speed = Math.min(Constants.AutonomousModeConstants.kMaxSpeedMetersPerSecond, distance);
@@ -54,6 +54,7 @@ public class MoveToCoordinatesCommand extends Command {
     @Override
     public void end(boolean interrupted) {
         DisplayUtil.log(getName(), "In end, interrupted:" + interrupted);
+        swerveDriveSubsystem.stopModules();
         timer.stop();
     }
 
