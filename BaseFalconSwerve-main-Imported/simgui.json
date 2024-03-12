@@ -23,7 +23,8 @@
       "/SmartDashboard/Field": "Field2d",
       "/SmartDashboard/Field 2": "Field2d",
       "/SmartDashboard/Field 3": "Field2d",
-      "/SmartDashboard/Swerve": "Subsystem"
+      "/SmartDashboard/Swerve": "Subsystem",
+      "/SmartDashboard/SwerveSubsystem": "Subsystem"
     },
     "windows": {
       "/SmartDashboard/Auto choices": {
@@ -49,30 +50,25 @@
           "style": "Line",
           "weight": 2.0
         },
-        "bottom": 544,
-        "builtin": "2024 Crescendo",
-        "height": 8.013679504394531,
-        "left": 46,
-        "right": 1088,
-        "top": 36,
-        "width": 16.541748046875,
-        "window": {
-          "visible": true
-        }
+        "bottom": 1476,
+        "height": 8.210550308227539,
+        "left": 150,
+        "right": 2961,
+        "top": 79,
+        "width": 16.541748046875
       },
       "/SmartDashboard/Field 3": {
-        "bottom": 544,
-        "builtin": "2024 Crescendo",
-        "height": 8.013679504394531,
-        "left": 46,
-        "right": 1088,
-        "top": 36,
+        "bottom": 1476,
+        "height": 8.210550308227539,
+        "left": 150,
+        "right": 2961,
+        "top": 79,
         "width": 16.541748046875,
         "window": {
           "visible": true
         }
       },
-      "/SmartDashboard/Swerve": {
+      "/SmartDashboard/SwerveSubsystem": {
         "window": {
           "visible": true
         }

@@ -63,7 +63,7 @@ public class BlueCenterDoubleSpeakerAuto6237MR extends SequentialCommandGroup im
             ,turnIntakeOff 
             ,moveToSecondFiringPosition 
             ,moveArmToScoringPosition
-            ,waitForArmPositioning2,
+            ,waitForArmPositioning2
             ,fireLauncherCommand2
             ,zeroGyroCommand
             // ,rotateToLeave 
