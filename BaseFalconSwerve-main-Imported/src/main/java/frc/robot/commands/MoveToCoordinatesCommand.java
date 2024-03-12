@@ -44,7 +44,7 @@ public class MoveToCoordinatesCommand extends Command {
         DisplayUtil.log(getName(), "In execute, currentY:" + currentY);
         DisplayUtil.log(getName(), "In execute, distance:" + distance);
         DisplayUtil.log(getName(), "In execute, angle:" + angle);
-        DisplayUtil.log(getName(), "In execute, speed:" + speed);
+        DisplayUtil.log(getName(), "In execute, speed:" + speed + " <-- In particular check this, I think at our currently reduced speed this could be an issue");
 
         // Drive towards target at calculated speed and angle
         // swerveDriveSubsystem.drive(speed, angle);
