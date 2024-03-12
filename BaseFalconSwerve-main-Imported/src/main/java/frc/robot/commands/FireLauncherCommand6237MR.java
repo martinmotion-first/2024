@@ -24,14 +24,14 @@ public class FireLauncherCommand6237MR extends Command {
     public void execute(){
         DisplayUtil.log(this.getName(), "In execute");
         m_intake.setPower(1.0);
-        m_launcher.runLauncher(false);
     }
-
+    
     @Override
     public void initialize() {
         super.initialize();
         m_timer = new Timer();
         m_timer.start();
+        m_launcher.runLauncher(false);
         DisplayUtil.log(this.getName(), "In initialize");
     }
 

@@ -57,7 +57,7 @@ public class Robot extends TimedRobot {
 
     // chooserMenu.addOption("Blue Left Double Speaker", AutonomousModeChoices6237MR.BLUE_LEFT_DOUBLE_SPEAKER.toString());
     // chooserMenu.addOption("Red Right Double Speaker", AutonomousModeChoices6237MR.RED_RIGHT_DOUBLE_SPEAKER.toString());
-    // chooserMenu.addOption("Blue Center Double Speaker", AutonomousModeChoices6237MR.BLUE_CENTER_DOUBLE_SPEAKER.toString());
+    chooserMenu.addOption("Blue Center Double Speaker", AutonomousModeChoices6237MR.BLUE_CENTER_DOUBLE_SPEAKER.toString());
     // chooserMenu.addOption("Red Center Double Speaker", AutonomousModeChoices6237MR.RED_CENTER_DOUBLE_SPEAKER.toString());
     // chooserMenu.addOption("Blue Right Double Speaker", AutonomousModeChoices6237MR.BLUE_RIGHT_DOUBLE_SPEAKER.toString());
     // chooserMenu.addOption("Red Left Double Speaker", AutonomousModeChoices6237MR.RED_LEFT_DOUBLE_SPEAKER.toString());
@@ -66,7 +66,7 @@ public class Robot extends TimedRobot {
     chooserMenu.addOption("DEBUG Intake", AutonomousModeChoices6237MR.DEBUG_INTAKE_AUTO.toString());
     chooserMenu.addOption("DEBUG Movement", AutonomousModeChoices6237MR.DEBUG_MOVEMENT.toString());
     chooserMenu.addOption("DEBUG Robot Rotation Command", AutonomousModeChoices6237MR.DEBUG_ROBOT_ROTATION.toString());
-    chooserMenu.addOption("DEBUG Feed Intake and Fire Launcher", AutonomousModeChoices6237MR.DEBUG_INTAKE_TO_LAUNCER.toString());
+    chooserMenu.addOption("DEBUG Feed Intake and Fire Launcher", AutonomousModeChoices6237MR.DEBUG_FEED_INTAKE_FIRE_LAUNCER.toString());
     chooserMenu.addOption("DEBUG Move and Fire Launcher", AutonomousModeChoices6237MR.DEBUG_MOVE_AND_FIRE.toString());
 
     //one of a few different options that was used during testing. Probably should be deleted later, but leaving at this moment...

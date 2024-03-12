@@ -133,7 +133,7 @@ public class RobotContainer {
                 return new MovementDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case DEBUG_ROBOT_ROTATION:
                 return new AngleDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
-            case DEBUG_INTAKE_TO_LAUNCER:
+            case DEBUG_FEED_INTAKE_FIRE_LAUNCER:
                 return new IntakeToLauncherDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case DEBUG_MOVE_AND_FIRE:
                 return new MoveAndFireDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
