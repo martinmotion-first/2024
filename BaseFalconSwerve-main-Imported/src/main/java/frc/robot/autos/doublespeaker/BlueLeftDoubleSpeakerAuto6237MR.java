@@ -28,18 +28,18 @@ public class BlueLeftDoubleSpeakerAuto6237MR extends SequentialCommandGroup impl
 
     public BlueLeftDoubleSpeakerAuto6237MR(SwerveSubsystem s_Swerve, ArmSubsystem arm, LauncherSubsystem launcher, IntakeSubsystem intake){
         Command fireLauncherCommand = new FireLauncherCommand6237MR(launcher, intake);
-        Command moveRobotBack = new MoveToCoordinatesCommand(s_Swerve, -1, 0); //-1 will need tweaked
-        Command rotateForNoteGrab = new RotateInPlaceCommand6237MR(s_Swerve, -45);
+        Command moveRobotBack = new MoveToCoordinatesCommand(s_Swerve, -.2, 0); // will need tweaked
+        Command rotateForNoteGrab = new RotateInPlaceCommand6237MR(s_Swerve, 45);
 
         Command moveArmToIntakePosition = new ArmToIntakePositionCommand6237MR(arm);
         Command waitForPositioningArmPositioning1 = new WaitCommand(Constants.AutonomousModeConstants.kAutonomousArmWaitTime);
         Command turnIntakeOn = new RunIntakeCommand6237MR(intake);
-        Command moveBackwardsToGrabNote = new MoveToCoordinatesCommand(s_Swerve, -2.828, 0); //-2.8 will need tweaked
+        Command moveBackwardsToGrabNote = new MoveToCoordinatesCommand(s_Swerve, -2, 0); //will need tweaked
         Command turnIntakeOff = new StopIntakeCommand6237MR(intake);
 
         Command moveArmToScoringPosition = new ArmToScoringPostionCommand6237MR(arm);
         Command moveRobotBackToScoreAgain = new MoveToCoordinatesCommand(s_Swerve, 2, 1); //These values are PURELY a test for the moment
-        Command rotateToFiring = new RotateInPlaceCommand6237MR(s_Swerve, 45);
+        Command rotateToFiring = new RotateInPlaceCommand6237MR(s_Swerve, -45);
         Command fireLauncherCommand2 = new FireLauncherCommand6237MR(launcher, intake);
         
         addCommands(
