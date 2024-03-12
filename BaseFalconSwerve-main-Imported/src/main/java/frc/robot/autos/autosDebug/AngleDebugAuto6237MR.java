@@ -1,4 +1,4 @@
-package frc.robot.autosDebug;
+package frc.robot.autos.autosDebug;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;

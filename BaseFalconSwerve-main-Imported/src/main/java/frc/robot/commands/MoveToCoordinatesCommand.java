@@ -48,7 +48,7 @@ public class MoveToCoordinatesCommand extends Command {
 
         // Drive towards target at calculated speed and angle
         // swerveDriveSubsystem.drive(speed, angle);
-        swerveDriveSubsystem.driveAlternate(new Translation2d(targetX, targetY), angle, false, false, speed);
+        swerveDriveSubsystem.driveAlternateForAutonomous(new Translation2d(targetX, targetY), angle, false, false, speed);
     }
 
     @Override

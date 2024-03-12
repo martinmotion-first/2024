@@ -154,7 +154,7 @@ public final class Constants {
         //NOTE! - TURNING DOWN THE AUTONOMOUS SPEEDS SIGNIFICANTLY FOR NOW 
         // public static final double kMaxSpeedMetersPerSecond = 3;
         // public static final double kMaxAccelerationMetersPerSecondSquared = 3;
-        public static final double kMaxSpeedMetersPerSecond = 1;
+        public static final double kMaxSpeedMetersPerSecond = .2;
         public static final double kMaxAccelerationMetersPerSecondSquared = 1;
 
         public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;

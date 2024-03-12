@@ -72,8 +72,7 @@ public class RotateInPlaceCommand6237MR extends Command{
     
     @Override
     public void execute() {
-        // !!!! IF THIS WORKS !!!! - Remember to create a different version of drive for Autonomous potentially since this currently _could_ end up using Teleop constants...
-        m_swerveDrive.driveAlternate(new Translation2d(), m_desiredRotation, false, true, .1);
+        m_swerveDrive.driveAlternateForAutonomous(new Translation2d(), m_desiredRotation, false, true, Constants.AutonomousModeConstants.kMaxSpeedMetersPerSecond);
         DisplayUtil.log(this.getName(), "In execute");
     }
 

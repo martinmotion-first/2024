@@ -65,7 +65,7 @@ public class SwerveSubsystem extends SubsystemBase {
         }
     }    
 
-    public void driveAlternate(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop, double speedIn) {
+    public void driveAlternateForAutonomous(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop, double speedIn) {
         SwerveModuleState[] swerveModuleStates =
             Constants.Swerve.swerveKinematics.toSwerveModuleStates(
                 fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds(
