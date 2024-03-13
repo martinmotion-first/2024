@@ -13,17 +13,13 @@ import frc.robot.autos.autosDebug.IntakeToLauncherDebugAuto6237MR;
 import frc.robot.autos.autosDebug.MoveAndFireDebugAuto6237MR;
 import frc.robot.autos.autosDebug.MovementDebugAuto6237MR;
 import frc.robot.autos.doublespeaker.BlueCenterDoubleSpeakerAuto6237MR;
-import frc.robot.autos.doublespeaker.BlueLeftDoubleSpeakerAuto6237MR;
-import frc.robot.autos.doublespeaker.BlueRightDoubleSpeakerAuto6237MR;
-import frc.robot.autos.doublespeaker.RedLeftDoubleSpeakerAuto6237MR;
-import frc.robot.autos.doublespeaker.RedRightDoubleSpeakerAuto6237MR;
-import frc.robot.autos.initial.AnglePlaygroundAuto6237MR;
-import frc.robot.autos.initial.BlueCenterAuto6237MR;
-import frc.robot.autos.initial.BlueLeftAuto6237MR;
-import frc.robot.autos.initial.BlueRightAuto6237MR;
-import frc.robot.autos.initial.RedCenterAuto6237MR;
-import frc.robot.autos.initial.RedLeftAuto6237MR;
-import frc.robot.autos.initial.RedRightAuto6237MR;
+import frc.robot.autos.doublespeaker.RedCenterDoubleSpeakerAuto6237MR;
+import frc.robot.autos.simple.BlueAllClearAutonomousSimple6237MR;
+import frc.robot.autos.simple.BlueLeftAutonomousSimple6237MR;
+import frc.robot.autos.simple.BlueRightAutonomousSimple6237MR;
+import frc.robot.autos.simple.RedAllClearAutonomousSimple6237MR;
+import frc.robot.autos.simple.RedLeftAutonomousSimple6237MR;
+import frc.robot.autos.simple.RedRightAutonomousSimple6237MR;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.controllers.DriverMapping6237MR;
 import frc.robot.controllers.OperatorMapping6237MR;
@@ -100,30 +96,23 @@ public class RobotContainer {
     public SequentialCommandGroup getAutonomousCommand(String selectedOption) {
         switch (AutonomousModeChoices6237MR.valueOf(selectedOption)){
             case BLUE_RIGHT_AUTO_MODE_1:
-                return new BlueRightAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
+                return new BlueRightAutonomousSimple6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case RED_LEFT_AUTO_MODE_1:
-                return new RedLeftAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
-            case BLUE_CENTER_AUTO_MODE_1:
-                return new BlueCenterAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
-            case RED_CENTER_AUTO_MODE_1:
-                return new RedCenterAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
+                return new RedLeftAutonomousSimple6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case BLUE_LEFT_AUTO_MODE_1:
-                return new BlueLeftAuto6237MR(s_Swerve, m_intake, m_arm, m_launcher);
+                return new BlueLeftAutonomousSimple6237MR(s_Swerve, m_intake, m_arm, m_launcher);
             case RED_RIGHT_AUTO_MODE_1:
-                return new RedRightAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
+                return new RedRightAutonomousSimple6237MR(s_Swerve, m_arm, m_launcher, m_intake);
 
-            case BLUE_LEFT_DOUBLE_SPEAKER:
-                return new BlueLeftDoubleSpeakerAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
-            case RED_RIGHT_DOUBLE_SPEAKER:
-                return new RedRightDoubleSpeakerAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case BLUE_CENTER_DOUBLE_SPEAKER:
                 return new BlueCenterDoubleSpeakerAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case RED_CENTER_DOUBLE_SPEAKER:
-                return new RedCenterAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
-            case BLUE_RIGHT_DOUBLE_SPEAKER:
-                return new BlueRightDoubleSpeakerAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
-            case RED_LEFT_DOUBLE_SPEAKER:
-                return new RedLeftDoubleSpeakerAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
+                return new RedCenterDoubleSpeakerAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
+
+            case BLUE_STAY_CLEAR:
+                return new BlueAllClearAutonomousSimple6237MR(s_Swerve, m_arm, m_launcher, m_intake);
+            case RED_STAY_CLEAR:
+                return new RedAllClearAutonomousSimple6237MR(s_Swerve, m_arm, m_launcher, m_intake);
 
             case DEBUG_ARM_AUTO:
                 return new ArmDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
@@ -138,8 +127,6 @@ public class RobotContainer {
             case DEBUG_MOVE_AND_FIRE:
                 return new MoveAndFireDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
 
-            case ANGLE_PLAYGROUND:
-                return new AnglePlaygroundAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             default:
                return new IntakeDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
         }

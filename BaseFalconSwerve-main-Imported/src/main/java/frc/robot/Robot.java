@@ -48,19 +48,15 @@ public class Robot extends TimedRobot {
     // I am currently removing these autonomous options as they'll need to be investigated again and tested against.
     // Mostly I don't want someone to choose one accidentally during testing and tuning
 
-    // chooserMenu.addOption("Blue Right Auto Mode 1", AutonomousModeChoices6237MR.BLUE_RIGHT_AUTO_MODE_1.toString());
-    // chooserMenu.addOption("Blue Center Auto Mode 1", AutonomousModeChoices6237MR.BLUE_CENTER_AUTO_MODE_1.toString()); 
-    // chooserMenu.addOption("Blue Left Auto Mode 1", AutonomousModeChoices6237MR.BLUE_LEFT_AUTO_MODE_1.toString());
-    // chooserMenu.addOption("Red Left Auto Mode 1", AutonomousModeChoices6237MR.RED_LEFT_AUTO_MODE_1.toString()); //inverted Blue Right Auto
-    // chooserMenu.addOption("Red Center Auto Mode 1", AutonomousModeChoices6237MR.RED_CENTER_AUTO_MODE_1.toString()); //inverted Blue Center Auto
-    // chooserMenu.addOption("Red Right Auto Mode 1", AutonomousModeChoices6237MR.RED_RIGHT_AUTO_MODE_1.toString()); //inverted Blue Left Auto
-
-    chooserMenu.addOption("Blue Left Double Speaker", AutonomousModeChoices6237MR.BLUE_LEFT_DOUBLE_SPEAKER.toString());
-    // chooserMenu.addOption("Red Right Double Speaker", AutonomousModeChoices6237MR.RED_RIGHT_DOUBLE_SPEAKER.toString());
+    chooserMenu.addOption("Blue Left Auto Mode 1", AutonomousModeChoices6237MR.BLUE_LEFT_AUTO_MODE_1.toString());
     chooserMenu.addOption("Blue Center Double Speaker", AutonomousModeChoices6237MR.BLUE_CENTER_DOUBLE_SPEAKER.toString());
-    // chooserMenu.addOption("Red Center Double Speaker", AutonomousModeChoices6237MR.RED_CENTER_DOUBLE_SPEAKER.toString());
-    // chooserMenu.addOption("Blue Right Double Speaker", AutonomousModeChoices6237MR.BLUE_RIGHT_DOUBLE_SPEAKER.toString());
-    // chooserMenu.addOption("Red Left Double Speaker", AutonomousModeChoices6237MR.RED_LEFT_DOUBLE_SPEAKER.toString());
+    chooserMenu.addOption("Blue Right Auto Mode 1", AutonomousModeChoices6237MR.BLUE_RIGHT_AUTO_MODE_1.toString());
+    chooserMenu.addOption("Blue Stay Clear but leave start", AutonomousModeChoices6237MR.BLUE_STAY_CLEAR.toString());
+    
+    chooserMenu.addOption("Red Left Auto Mode 1", AutonomousModeChoices6237MR.RED_LEFT_AUTO_MODE_1.toString()); //inverted Blue Right Auto
+    chooserMenu.addOption("Red Center Double Speaker", AutonomousModeChoices6237MR.RED_CENTER_DOUBLE_SPEAKER.toString());
+    chooserMenu.addOption("Red Right Auto Mode 1", AutonomousModeChoices6237MR.RED_RIGHT_AUTO_MODE_1.toString()); //inverted Blue Left Auto
+    chooserMenu.addOption("Red Stay Clear but leave start", AutonomousModeChoices6237MR.RED_STAY_CLEAR.toString());
 
     chooserMenu.addOption("DEBUG Arm", AutonomousModeChoices6237MR.DEBUG_ARM_AUTO.toString());
     chooserMenu.addOption("DEBUG Intake", AutonomousModeChoices6237MR.DEBUG_INTAKE_AUTO.toString());
