@@ -65,6 +65,7 @@ public class Robot extends TimedRobot {
     chooserMenu.addOption("DEBUG Feed Intake and Fire Launcher", AutonomousModeChoices6237MR.DEBUG_FEED_INTAKE_FIRE_LAUNCER.toString());
     chooserMenu.addOption("DEBUG Move and Fire Launcher", AutonomousModeChoices6237MR.DEBUG_MOVE_AND_FIRE.toString());
 
+    chooserMenu.addOption("DEBUG Fire Launcher Only", AutonomousModeChoices6237MR.FIRE_LAUNCHER_ONLY.toString());
     //one of a few different options that was used during testing. Probably should be deleted later, but leaving at this moment...
     // chooserMenu.addOption("Angle Playground", AutonomousModeChoices6237MR.ANGLE_PLAYGROUND.toString()); 
 

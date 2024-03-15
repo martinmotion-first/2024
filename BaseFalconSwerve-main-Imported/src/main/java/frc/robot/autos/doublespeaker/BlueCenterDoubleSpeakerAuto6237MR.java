@@ -29,9 +29,9 @@ public class BlueCenterDoubleSpeakerAuto6237MR extends SequentialCommandGroup im
         Command moveArmToIntakePosition = new ArmToIntakePositionCommand6237MR(arm);
         Command waitForPositioningArmPositioning1 = new WaitCommand(Constants.AutonomousModeConstants.kAutonomousArmWaitTime);
         Command turnIntakeOn = new RunIntakeCommand6237MR(intake);
-        Command moveRobotToNote = new MoveToCoordinatesCommand(s_Swerve, -2.828, 0);
+        Command moveRobotToNote = new MoveToCoordinatesCommand(s_Swerve, -2.328, 0);
         Command turnIntakeOff = new StopIntakeCommand6237MR(intake);
-        Command moveToSecondFiringPosition = new MoveToCoordinatesCommand(s_Swerve, 2.828, 0);// NOTE - THESE ARE A PLACEHOLDER
+        Command moveToSecondFiringPosition = new MoveToCoordinatesCommand(s_Swerve, 2.328, 0);// NOTE - THESE ARE A PLACEHOLDER
         Command moveArmToScoringPosition = new ArmToScoringPostionCommand6237MR(arm);
         Command waitForArmPositioning2 = new WaitCommand(Constants.AutonomousModeConstants.kAutonomousArmWaitTime);
         Command fireLauncherCommand2 = new FireLauncherCommand6237MR(launcher, intake);

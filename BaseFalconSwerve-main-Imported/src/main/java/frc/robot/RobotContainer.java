@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.autos.AutonomousModeChoices6237MR;
 import frc.robot.autos.autosDebug.AngleDebugAuto6237MR;
 import frc.robot.autos.autosDebug.ArmDebugAuto6237MR;
+import frc.robot.autos.autosDebug.FireLauncherDebug6237MR;
 import frc.robot.autos.autosDebug.IntakeDebugAuto6237MR;
 import frc.robot.autos.autosDebug.IntakeToLauncherDebugAuto6237MR;
 import frc.robot.autos.autosDebug.MoveAndFireDebugAuto6237MR;
@@ -126,6 +127,8 @@ public class RobotContainer {
                 return new IntakeToLauncherDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
             case DEBUG_MOVE_AND_FIRE:
                 return new MoveAndFireDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
+            case FIRE_LAUNCHER_ONLY:
+                return new FireLauncherDebug6237MR(s_Swerve, m_arm, m_launcher, m_intake);
 
             default:
                return new IntakeDebugAuto6237MR(s_Swerve, m_arm, m_launcher, m_intake);
