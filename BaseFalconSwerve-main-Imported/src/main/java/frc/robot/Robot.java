@@ -43,7 +43,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
     CameraServer.startAutomaticCapture();
-
+    CameraServer.startAutomaticCapture();
     //!!!!!!!!!!!!!! NOTE !!!!!!!!!!!!!!!!!!!!!!!
     // I am currently removing these autonomous options as they'll need to be investigated again and tested against.
     // Mostly I don't want someone to choose one accidentally during testing and tuning
