@@ -222,7 +222,7 @@ public final class Constants {
             new TrapezoidProfile.Constraints(1.0, 2.0);
 
         public static final double kHomePosition = 0.3;
-        public static final double kScoringPosition = 0.3;
+        public static final double kScoringPosition = 0.34;
         public static final double kIntakePosition = -1.23;
   }
 
