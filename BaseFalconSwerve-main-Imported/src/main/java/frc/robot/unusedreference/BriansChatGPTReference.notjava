@@ -1,0 +1,26 @@
+//Can you construct a SwerveControllerCommand using a falcon swerve drive written in Java code that would turn a robot in place 90 degrees to the left?
+
+import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile;
+
+public class TurnInPlaceCommand extends SwerveControllerCommand {
+
+    // Adjust these values based on your robot's characteristics
+    private static final double kP = 0.1;
+    private static final double kI = 0.0;
+    private static final double kD = 0.0;
+    private static final double maxVelocity = 2.0; // Max velocity in meters per second
+
+    public TurnInPlaceCommand(SwerveDriveSubsystem swerveDrive) {
+        super(
+            new TrapezoidProfile.Constraints(maxVelocity, 1.0), // Adjust acceleration as needed
+            new PIDController(kP, kI, kD),
+            swerveDrive::getHeading,
+            () -> 90.0, // Target heading for a 90-degree turn
+            output -> swerveDrive.drive(0.0, 0.0, output, false), // Adjust based on your swerve drive implementation
+            swerveDrive
+        );
+
+        getController().enableContinuousInput(-180, 180); // Ensure continuous input for headings
+    }
+}

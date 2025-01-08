@@ -1,0 +1,135 @@
+{
+  "HALProvider": {
+    "Other Devices": {
+      "SPARK MAX [4]": {
+        "header": {
+          "open": true
+        }
+      }
+    },
+    "RoboRIO": {
+      "RoboRIO Input": {
+        "open": true
+      },
+      "window": {
+        "visible": true
+      }
+    }
+  },
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/SmartDashboard/Auto choices": "String Chooser",
+      "/SmartDashboard/Field": "Field2d",
+      "/SmartDashboard/Field 2": "Field2d",
+      "/SmartDashboard/Field 3": "Field2d",
+      "/SmartDashboard/Swerve": "Subsystem",
+      "/SmartDashboard/SwerveSubsystem": "Subsystem"
+    },
+    "windows": {
+      "/SmartDashboard/Auto choices": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Field": {
+        "78602508-e22d-4a1a-ab0b-aff73ef1c65c": {
+          "arrowSize": 2,
+          "style": "Line",
+          "weight": 1.0
+        },
+        "aabc7c04-1d60-4856-91d4-68affac7de0f": {
+          "style": "Line",
+          "weight": 2.0
+        },
+        "b664c77a-8c31-43f5-b0d1-e391d56dd561": {
+          "style": "Line",
+          "weight": 2.0
+        },
+        "bdd83d6c-d0eb-4467-8c38-0422796b2127": {
+          "style": "Line",
+          "weight": 2.0
+        },
+        "bottom": 1476,
+        "height": 8.210550308227539,
+        "left": 150,
+        "right": 2961,
+        "top": 79,
+        "width": 16.541748046875,
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Field 3": {
+        "bottom": 1476,
+        "height": 8.210550308227539,
+        "left": 150,
+        "right": 2961,
+        "top": 79,
+        "width": 16.541748046875,
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/SwerveSubsystem": {
+        "window": {
+          "visible": true
+        }
+      }
+    }
+  },
+  "NetworkTables": {
+    "Transitory Values": {
+      "open": false
+    },
+    "retained": {
+      "SmartDashboard": {
+        "Auto choices": {
+          "open": true
+        },
+        "open": true
+      }
+    },
+    "transitory": {
+      "LiveWindow": {
+        ".status": {
+          "open": true
+        }
+      },
+      "Shuffleboard": {
+        ".metadata": {
+          "open": true
+        }
+      }
+    }
+  },
+  "NetworkTables Info": {
+    "Connections": {
+      "open": true
+    },
+    "Server": {
+      "Subscribers": {
+        "open": true
+      }
+    },
+    "visible": true
+  },
+  "Plot": {
+    "Plot <0>": {
+      "plots": [
+        {
+          "backgroundColor": [
+            0.0,
+            0.0,
+            0.0,
+            0.8500000238418579
+          ],
+          "height": 0
+        }
+      ],
+      "window": {
+        "visible": false
+      }
+    }
+  }
+}
